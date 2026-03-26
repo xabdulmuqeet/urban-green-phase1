@@ -1,0 +1,78 @@
+[
+  {
+    "id": "monstera-deliciosa",
+    "name": "Monstera Deliciosa",
+    "price": 68,
+    "tag": "Best Seller",
+    "category": "Statement Plant",
+    "description": "Architectural leaves and a sculptural silhouette make this a signature plant for modern interiors.",
+    "sizes": ["Small", "Medium", "Large"],
+    "care": {
+      "light": "Thrives in bright, indirect light with gentle morning sun.",
+      "water": "Water when the top inch of soil feels dry, then drain thoroughly.",
+      "details": "Wipe leaves monthly and rotate weekly for even growth."
+    },
+    "images": [
+      "/products/monstera-main.svg",
+      "/products/monstera-detail.svg",
+      "/products/monstera-room.svg"
+    ]
+  },
+  {
+    "id": "olive-tree",
+    "name": "Indoor Olive Tree",
+    "price": 92,
+    "tag": "New Arrival",
+    "category": "Mediterranean",
+    "description": "A refined, silvery-green tree that brings warmth and height to calm, sunlit rooms.",
+    "sizes": ["Petite", "Classic", "Tall"],
+    "care": {
+      "light": "Needs a bright spot with several hours of direct sun.",
+      "water": "Allow the soil to dry slightly between waterings.",
+      "details": "Use a breathable pot and feed monthly in spring and summer."
+    },
+    "images": [
+      "/products/olive-main.svg",
+      "/products/olive-detail.svg",
+      "/products/olive-room.svg"
+    ]
+  },
+  {
+    "id": "calathea-orbifolia",
+    "name": "Calathea Orbifolia",
+    "price": 54,
+    "tag": "Low Stock",
+    "category": "Collector Favorite",
+    "description": "Broad patterned foliage with soft silver bands for a lush, gallery-like feel.",
+    "sizes": ["Desk", "Standard", "Full"],
+    "care": {
+      "light": "Prefers medium to bright indirect light.",
+      "water": "Keep soil lightly moist and use filtered water when possible.",
+      "details": "Enjoys added humidity and protection from drafts."
+    },
+    "images": [
+      "/products/calathea-main.svg",
+      "/products/calathea-detail.svg",
+      "/products/calathea-room.svg"
+    ]
+  },
+  {
+    "id": "ficus-altissima",
+    "name": "Ficus Altissima",
+    "price": 88,
+    "tag": "Studio Pick",
+    "category": "Tree Form",
+    "description": "Variegated leaves and an airy shape designed to anchor a room with understated drama.",
+    "sizes": ["Standard", "Tall"],
+    "care": {
+      "light": "Bright filtered light keeps the variegation crisp.",
+      "water": "Water when the upper layer of soil dries out.",
+      "details": "Keep away from cold vents and avoid moving it frequently."
+    },
+    "images": [
+      "/products/ficus-main.svg",
+      "/products/ficus-detail.svg",
+      "/products/ficus-room.svg"
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+<svg width="1200" height="1400" viewBox="0 0 1200 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1400" rx="48" fill="#F5F5DC"/>
+  <rect x="110" y="120" width="980" height="1160" rx="42" fill="#FBFAF5"/>
+  <ellipse cx="600" cy="1210" rx="260" ry="44" fill="#D7D7C5"/>
+  <path d="M510 1030H690L725 1220H475L510 1030Z" fill="#E2725B"/>
+  <path d="M600 410C534 332 470 268 398 220C390 338 418 422 510 498C434 460 358 432 266 422C300 508 356 578 470 626C378 632 300 658 216 712C320 764 416 778 526 742C460 796 416 858 394 958C506 930 576 862 620 754C650 860 720 932 826 966C808 872 768 802 706 748C810 776 904 760 992 716C910 660 832 632 742 626C856 580 908 504 936 422C850 430 772 456 688 500C778 426 816 336 804 220C732 266 666 334 600 410Z" fill="#87A96B"/>
+  <path d="M600 458C560 388 524 330 488 294" stroke="#6F9160" stroke-width="18" stroke-linecap="round"/>
+  <path d="M596 520C534 480 472 456 408 448" stroke="#6F9160" stroke-width="18" stroke-linecap="round"/>
+  <path d="M606 556C664 514 730 488 792 480" stroke="#6F9160" stroke-width="18" stroke-linecap="round"/>
+  <path d="M616 640C680 664 734 708 776 766" stroke="#6F9160" stroke-width="18" stroke-linecap="round"/>
+</svg>

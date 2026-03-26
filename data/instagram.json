@@ -1,0 +1,32 @@
+[
+  {
+    "id": "atelier-corner",
+    "title": "Atelier Corner",
+    "image": "/instagram/atelier-corner.svg"
+  },
+  {
+    "id": "sunroom-stack",
+    "title": "Sunroom Stack",
+    "image": "/instagram/sunroom-stack.svg"
+  },
+  {
+    "id": "ceramic-pairing",
+    "title": "Ceramic Pairing",
+    "image": "/instagram/ceramic-pairing.svg"
+  },
+  {
+    "id": "green-shelfie",
+    "title": "Green Shelfie",
+    "image": "/instagram/green-shelfie.svg"
+  },
+  {
+    "id": "terracotta-note",
+    "title": "Terracotta Note",
+    "image": "/instagram/terracotta-note.svg"
+  },
+  {
+    "id": "quiet-morning",
+    "title": "Quiet Morning",
+    "image": "/instagram/quiet-morning.svg"
+  }
+]
