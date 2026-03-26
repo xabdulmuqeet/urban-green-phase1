@@ -14,8 +14,8 @@
     ],
     "care": {
       "light": "Thrives in bright, indirect light with gentle morning sun.",
-      "water": "Water when the top inch of soil feels dry, then drain thoroughly.",
-      "details": "Wipe leaves monthly and rotate weekly for even growth."
+      "watering": "Water when the top inch of soil feels dry, then drain thoroughly.",
+      "commonIssues": "Wipe leaves monthly, rotate weekly, and watch for drooping caused by inconsistent watering."
     },
     "images": [
       "/products/monstera-main.svg",
@@ -38,8 +38,8 @@
     ],
     "care": {
       "light": "Needs a bright spot with several hours of direct sun.",
-      "water": "Allow the soil to dry slightly between waterings.",
-      "details": "Use a breathable pot and feed monthly in spring and summer."
+      "watering": "Allow the soil to dry slightly between waterings.",
+      "commonIssues": "Yellowing leaves often point to overwatering or too little direct sun."
     },
     "images": [
       "/products/olive-main.svg",
@@ -62,8 +62,8 @@
     ],
     "care": {
       "light": "Prefers medium to bright indirect light.",
-      "water": "Keep soil lightly moist and use filtered water when possible.",
-      "details": "Enjoys added humidity and protection from drafts."
+      "watering": "Keep soil lightly moist and use filtered water when possible.",
+      "commonIssues": "Brown edges can appear if the air is too dry or the water quality is harsh."
     },
     "images": [
       "/products/calathea-main.svg",
@@ -86,8 +86,8 @@
     ],
     "care": {
       "light": "Bright filtered light keeps the variegation crisp.",
-      "water": "Water when the upper layer of soil dries out.",
-      "details": "Keep away from cold vents and avoid moving it frequently."
+      "watering": "Water when the upper layer of soil dries out.",
+      "commonIssues": "Leaf drop is common after sudden moves, drafts, or irregular watering."
     },
     "images": [
       "/products/ficus-main.svg",

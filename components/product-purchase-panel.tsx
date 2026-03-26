@@ -1,16 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useCart } from "@/components/cart-provider";
 import { WishlistButton } from "@/components/wishlist-button";
 import { CareTabs } from "@/components/care-tabs";
 import { SizeSelector } from "@/components/size-selector";
+import { useProductSelection } from "@/hooks/use-product-selection";
 import { formatCurrency } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
 export function ProductPurchasePanel({ product }: { product: Product }) {
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0]?.label ?? "");
+  const { selectedSize, quantity, setSelectedSize, setQuantity } = useProductSelection(product);
   const { addToCart } = useCart();
 
   const selectedVariant = useMemo(
@@ -62,6 +63,27 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
         onSelect={setSelectedSize}
       />
 
+      <div className="space-y-4">
+        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-bark/70">Quantity</p>
+        <div className="inline-flex items-center gap-3 rounded-full border border-black/10 bg-white px-3 py-2">
+          <button
+            type="button"
+            onClick={() => setQuantity(Math.max(1, quantity - 1))}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-cream text-bark"
+          >
+            -
+          </button>
+          <span className="w-8 text-center font-semibold">{quantity}</span>
+          <button
+            type="button"
+            onClick={() => setQuantity(quantity + 1)}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-cream text-bark"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
       <div className="flex flex-col gap-3 sm:flex-row">
         <button
           type="button"
@@ -69,7 +91,8 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
             addToCart({
               product,
               size: selectedVariant.label,
-              unitPrice: selectedVariant.price
+              unitPrice: selectedVariant.price,
+              quantity
             })
           }
           className="rounded-full bg-terracotta px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-[#cd624b]"
@@ -81,6 +104,12 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
           className="rounded-full border border-black/10 bg-white px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-foreground transition hover:border-sage hover:text-sage"
         >
           View Cart
+        </Link>
+        <Link
+          href="/wishlist"
+          className="rounded-full border border-black/10 bg-white px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-foreground transition hover:border-sage hover:text-sage"
+        >
+          View Wishlist
         </Link>
       </div>
 

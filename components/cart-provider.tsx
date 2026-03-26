@@ -1,18 +1,14 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useMemo,
-  useReducer,
-  type ReactNode
-} from "react";
+import { createContext, useContext, useMemo, type ReactNode } from "react";
+import { useLocalStorage } from "@/hooks/use-local-storage";
 import type { CartItem, Product } from "@/lib/types";
 
 type AddToCartPayload = {
   product: Product;
   size: string;
   unitPrice: number;
+  quantity: number;
 };
 
 type CartContextValue = {
@@ -24,70 +20,15 @@ type CartContextValue = {
   removeFromCart: (productId: string, size: string) => void;
 };
 
-type CartAction =
-  | { type: "ADD_ITEM"; payload: AddToCartPayload }
-  | {
-      type: "UPDATE_QUANTITY";
-      payload: { productId: string; size: string; quantity: number };
-    }
-  | { type: "REMOVE_ITEM"; payload: { productId: string; size: string } };
-
 const CartContext = createContext<CartContextValue | null>(null);
 
-function cartReducer(state: CartItem[], action: CartAction) {
-  switch (action.type) {
-    case "ADD_ITEM": {
-      const { product, size, unitPrice } = action.payload;
-      const existingItem = state.find(
-        (item) => item.productId === product.id && item.size === size
-      );
-
-      if (existingItem) {
-        return state.map((item) =>
-          item.productId === product.id && item.size === size
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-
-      return [
-        ...state,
-        {
-          productId: product.id,
-          name: product.name,
-          image: product.images[0],
-          size,
-          type: product.type,
-          unitPrice,
-          quantity: 1
-        }
-      ];
-    }
-    case "UPDATE_QUANTITY":
-      return state
-        .map((item) =>
-          item.productId === action.payload.productId && item.size === action.payload.size
-            ? { ...item, quantity: action.payload.quantity }
-            : item
-        )
-        .filter((item) => item.quantity > 0);
-    case "REMOVE_ITEM":
-      return state.filter(
-        (item) =>
-          !(
-            item.productId === action.payload.productId &&
-            item.size === action.payload.size
-          )
-      );
-    default:
-      return state;
-  }
-}
-
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [cartItems, dispatch] = useReducer(cartReducer, []);
+  const { value: cartItems, setValue: setCartItems } = useLocalStorage<CartItem[]>(
+    "urban-green-cart",
+    []
+  );
 
-  const value = useMemo<CartContextValue>(() => {
+  const contextValue = useMemo<CartContextValue>(() => {
     const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = cartItems.reduce(
       (sum, item) => sum + item.unitPrice * item.quantity,
@@ -98,18 +39,53 @@ export function CartProvider({ children }: { children: ReactNode }) {
       cartItems,
       totalItems,
       totalPrice,
-      addToCart: (payload) => dispatch({ type: "ADD_ITEM", payload }),
-      updateQuantity: (productId, size, quantity) =>
-        dispatch({
-          type: "UPDATE_QUANTITY",
-          payload: { productId, size, quantity }
-        }),
-      removeFromCart: (productId, size) =>
-        dispatch({ type: "REMOVE_ITEM", payload: { productId, size } })
-    };
-  }, [cartItems]);
+      addToCart: ({ product, size, unitPrice, quantity }) =>
+        setCartItems((currentItems) => {
+          const existingItem = currentItems.find(
+            (item) => item.productId === product.id && item.size === size
+          );
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+          if (existingItem) {
+            return currentItems.map((item) =>
+              item.productId === product.id && item.size === size
+                ? { ...item, quantity: item.quantity + quantity }
+                : item
+            );
+          }
+
+          return [
+            ...currentItems,
+            {
+              productId: product.id,
+              name: product.name,
+              image: product.images[0],
+              size,
+              type: product.type,
+              unitPrice,
+              quantity
+            }
+          ];
+        }),
+      updateQuantity: (productId, size, quantity) =>
+        setCartItems((currentItems) =>
+          currentItems
+            .map((item) =>
+              item.productId === productId && item.size === size
+                ? { ...item, quantity }
+                : item
+            )
+            .filter((item) => item.quantity > 0)
+        ),
+      removeFromCart: (productId, size) =>
+        setCartItems((currentItems) =>
+          currentItems.filter(
+            (item) => !(item.productId === productId && item.size === size)
+          )
+        )
+    };
+  }, [cartItems, setCartItems]);
+
+  return <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>;
 }
 
 export function useCart() {

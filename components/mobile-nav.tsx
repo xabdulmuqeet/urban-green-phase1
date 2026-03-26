@@ -6,7 +6,9 @@ import Link from "next/link";
 const links = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
-  { href: "/shop/monstera-deliciosa", label: "Product" }
+  { href: "/shop/monstera-deliciosa", label: "Product" },
+  { href: "/cart", label: "Cart" },
+  { href: "/wishlist", label: "Wishlist" }
 ];
 
 export function MobileNav() {

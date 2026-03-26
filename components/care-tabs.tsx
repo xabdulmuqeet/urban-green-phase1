@@ -5,20 +5,20 @@ import { useState } from "react";
 type CareTabsProps = {
   care: {
     light: string;
-    water: string;
-    details: string;
+    watering: string;
+    commonIssues: string;
   };
 };
 
-const tabLabels = ["Light", "Water", "Details"];
+const tabLabels = ["Watering", "Light", "Common Issues"] as const;
 
 export function CareTabs({ care }: CareTabsProps) {
-  const [activeTab, setActiveTab] = useState<(typeof tabLabels)[number]>("Light");
+  const [activeTab, setActiveTab] = useState<(typeof tabLabels)[number]>("Watering");
 
   const tabContent = {
+    Watering: care.watering,
     Light: care.light,
-    Water: care.water,
-    Details: care.details
+    "Common Issues": care.commonIssues
   };
 
   return (

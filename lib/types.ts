@@ -14,8 +14,8 @@ export type Product = {
   sizes: ProductSize[];
   care: {
     light: string;
-    water: string;
-    details: string;
+    watering: string;
+    commonIssues: string;
   };
   images: string[];
 };
@@ -33,5 +33,10 @@ export type CartItem = {
   size: string;
   type: Product["type"];
   unitPrice: number;
+  quantity: number;
+};
+
+export type ProductSelection = {
+  size: string;
   quantity: number;
 };
