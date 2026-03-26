@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CartNavButton } from "@/components/cart-nav-button";
 import { CartProvider } from "@/components/cart-provider";
 import { WishlistProvider } from "@/components/wishlist-provider";
 import Link from "next/link";
@@ -38,6 +39,7 @@ function Header() {
           <Link href="/shop/monstera-deliciosa" className="transition hover:text-sage">
             Product
           </Link>
+          <CartNavButton />
         </nav>
 
         <MobileNav />
