@@ -3,10 +3,15 @@
     "id": "monstera-deliciosa",
     "name": "Monstera Deliciosa",
     "price": 68,
+    "type": "hardy",
     "tag": "Best Seller",
     "category": "Statement Plant",
     "description": "Architectural leaves and a sculptural silhouette make this a signature plant for modern interiors.",
-    "sizes": ["Small", "Medium", "Large"],
+    "sizes": [
+      { "label": "4\"", "price": 68 },
+      { "label": "6\"", "price": 82 },
+      { "label": "10\"", "price": 116 }
+    ],
     "care": {
       "light": "Thrives in bright, indirect light with gentle morning sun.",
       "water": "Water when the top inch of soil feels dry, then drain thoroughly.",
@@ -22,10 +27,15 @@
     "id": "olive-tree",
     "name": "Indoor Olive Tree",
     "price": 92,
+    "type": "fragile",
     "tag": "New Arrival",
     "category": "Mediterranean",
     "description": "A refined, silvery-green tree that brings warmth and height to calm, sunlit rooms.",
-    "sizes": ["Petite", "Classic", "Tall"],
+    "sizes": [
+      { "label": "4\"", "price": 92 },
+      { "label": "6\"", "price": 118 },
+      { "label": "10\"", "price": 156 }
+    ],
     "care": {
       "light": "Needs a bright spot with several hours of direct sun.",
       "water": "Allow the soil to dry slightly between waterings.",
@@ -41,10 +51,15 @@
     "id": "calathea-orbifolia",
     "name": "Calathea Orbifolia",
     "price": 54,
+    "type": "fragile",
     "tag": "Low Stock",
     "category": "Collector Favorite",
     "description": "Broad patterned foliage with soft silver bands for a lush, gallery-like feel.",
-    "sizes": ["Desk", "Standard", "Full"],
+    "sizes": [
+      { "label": "4\"", "price": 54 },
+      { "label": "6\"", "price": 72 },
+      { "label": "10\"", "price": 104 }
+    ],
     "care": {
       "light": "Prefers medium to bright indirect light.",
       "water": "Keep soil lightly moist and use filtered water when possible.",
@@ -60,10 +75,15 @@
     "id": "ficus-altissima",
     "name": "Ficus Altissima",
     "price": 88,
+    "type": "hardy",
     "tag": "Studio Pick",
     "category": "Tree Form",
     "description": "Variegated leaves and an airy shape designed to anchor a room with understated drama.",
-    "sizes": ["Standard", "Tall"],
+    "sizes": [
+      { "label": "4\"", "price": 88 },
+      { "label": "6\"", "price": 110 },
+      { "label": "10\"", "price": 148 }
+    ],
     "care": {
       "light": "Bright filtered light keeps the variegation crisp.",
       "water": "Water when the upper layer of soil dries out.",

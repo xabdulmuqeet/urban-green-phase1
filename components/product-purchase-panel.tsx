@@ -1,0 +1,90 @@
+"use client";
+
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { useCart } from "@/components/cart-provider";
+import { WishlistButton } from "@/components/wishlist-button";
+import { CareTabs } from "@/components/care-tabs";
+import { SizeSelector } from "@/components/size-selector";
+import { formatCurrency } from "@/lib/format";
+import type { Product } from "@/lib/types";
+
+export function ProductPurchasePanel({ product }: { product: Product }) {
+  const [selectedSize, setSelectedSize] = useState(product.sizes[0]?.label ?? "");
+  const { addToCart } = useCart();
+
+  const selectedVariant = useMemo(
+    () => product.sizes.find((size) => size.label === selectedSize) ?? product.sizes[0],
+    [product.sizes, selectedSize]
+  );
+
+  return (
+    <div className="space-y-7 lg:space-y-8">
+      <div className="space-y-4">
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sage">
+              {product.category}
+            </p>
+            <h1 className="font-[family:var(--font-heading)] text-4xl leading-tight sm:text-5xl">
+              {product.name}
+            </h1>
+          </div>
+          <WishlistButton productId={product.id} />
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <p className="text-2xl font-semibold leading-none text-terracotta">
+            {formatCurrency(selectedVariant.price)}
+          </p>
+          <span className="rounded-full bg-cream px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-bark">
+            {product.type}
+          </span>
+        </div>
+
+        <p className="max-w-xl text-base leading-6 text-bark/80 sm:text-[17px]">
+          {product.description}
+        </p>
+      </div>
+
+      <div className="rounded-[2rem] border border-black/5 bg-cream/60 p-6">
+        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-bark/70">
+          Why we love it
+        </p>
+        <p className="mt-3 text-sm leading-5 text-bark/80">
+          Sculptural shape, premium foliage, and an elevated presentation that makes any room feel calmer and more intentional.
+        </p>
+      </div>
+
+      <SizeSelector
+        sizes={product.sizes}
+        selectedSize={selectedSize}
+        onSelect={setSelectedSize}
+      />
+
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <button
+          type="button"
+          onClick={() =>
+            addToCart({
+              product,
+              size: selectedVariant.label,
+              unitPrice: selectedVariant.price
+            })
+          }
+          className="rounded-full bg-terracotta px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-[#cd624b]"
+        >
+          Add To Cart
+        </button>
+        <Link
+          href="/cart"
+          className="rounded-full border border-black/10 bg-white px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-foreground transition hover:border-sage hover:text-sage"
+        >
+          View Cart
+        </Link>
+      </div>
+
+      <CareTabs care={product.care} />
+    </div>
+  );
+}

@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 type CareTabsProps = {
   care: {
     light: string;
@@ -9,15 +13,24 @@ type CareTabsProps = {
 const tabLabels = ["Light", "Water", "Details"];
 
 export function CareTabs({ care }: CareTabsProps) {
+  const [activeTab, setActiveTab] = useState<(typeof tabLabels)[number]>("Light");
+
+  const tabContent = {
+    Light: care.light,
+    Water: care.water,
+    Details: care.details
+  };
+
   return (
     <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-card">
       <div className="grid grid-cols-3 gap-3">
-        {tabLabels.map((label, index) => (
+        {tabLabels.map((label) => (
           <button
             key={label}
             type="button"
+            onClick={() => setActiveTab(label)}
             className={`min-w-0 rounded-full px-3 py-3 text-center text-sm font-medium transition sm:px-4 ${
-              index === 0
+              activeTab === label
                 ? "bg-terracotta text-white"
                 : "border border-black/5 bg-cream text-bark hover:bg-sage/20"
             }`}
@@ -27,19 +40,9 @@ export function CareTabs({ care }: CareTabsProps) {
         ))}
       </div>
 
-      <div className="mt-6 grid gap-5 text-sm leading-6 text-bark/80 sm:grid-cols-3">
-        <div>
-          <p className="mb-3 font-semibold leading-none text-foreground">Light</p>
-          <p>{care.light}</p>
-        </div>
-        <div>
-          <p className="mb-3 font-semibold leading-none text-foreground">Water</p>
-          <p>{care.water}</p>
-        </div>
-        <div>
-          <p className="mb-3 font-semibold leading-none text-foreground">Details</p>
-          <p>{care.details}</p>
-        </div>
+      <div className="mt-6 rounded-[1.5rem] bg-cream/50 p-5 text-sm leading-6 text-bark/80">
+        <p className="mb-3 font-semibold leading-none text-foreground">{activeTab}</p>
+        <p>{tabContent[activeTab]}</p>
       </div>
     </div>
   );
