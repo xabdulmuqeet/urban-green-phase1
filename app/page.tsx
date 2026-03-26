@@ -84,7 +84,7 @@ export default function HomePage() {
             title="Plants chosen for calm, texture, and presence."
             description="Start with the pieces our stylists use most often to shape quiet, light-filled rooms."
           />
-          <ProductGrid products={featuredProducts} />
+          <ProductGrid products={featuredProducts} showActions />
         </div>
       </section>
 
