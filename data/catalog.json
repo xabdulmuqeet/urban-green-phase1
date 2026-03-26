@@ -1,0 +1,163 @@
+{
+  "plants": [
+    {
+      "id": "monstera-deliciosa",
+      "name": "Monstera Deliciosa",
+      "type": "plant",
+      "category": "plant",
+      "plantSize": "Medium",
+      "sizes": ["4\"", "6\"", "10\""],
+      "prices": {
+        "4\"": 68,
+        "6\"": 82,
+        "10\"": 116
+      },
+      "condition": "hardy",
+      "tag": "Best Seller",
+      "description": "Architectural leaves and a sculptural silhouette make this a signature plant for modern interiors.",
+      "care": {
+        "light": "Thrives in bright, indirect light with gentle morning sun.",
+        "watering": "Water when the top inch of soil feels dry, then drain thoroughly.",
+        "commonIssues": "Wipe leaves monthly, rotate weekly, and watch for drooping caused by inconsistent watering."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "olive-tree",
+      "name": "Indoor Olive Tree",
+      "type": "plant",
+      "category": "plant",
+      "plantSize": "Large",
+      "sizes": ["4\"", "6\"", "10\""],
+      "prices": {
+        "4\"": 92,
+        "6\"": 118,
+        "10\"": 156
+      },
+      "condition": "fragile",
+      "tag": "New Arrival",
+      "description": "A refined, silvery-green tree that brings warmth and height to calm, sunlit rooms.",
+      "care": {
+        "light": "Needs a bright spot with several hours of direct sun.",
+        "watering": "Allow the soil to dry slightly between waterings.",
+        "commonIssues": "Yellowing leaves often point to overwatering or too little direct sun."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "calathea-orbifolia",
+      "name": "Calathea Orbifolia",
+      "type": "plant",
+      "category": "plant",
+      "plantSize": "Small",
+      "sizes": ["4\"", "6\"", "10\""],
+      "prices": {
+        "4\"": 54,
+        "6\"": 72,
+        "10\"": 104
+      },
+      "condition": "fragile",
+      "tag": "Low Stock",
+      "description": "Broad patterned foliage with soft silver bands for a lush, gallery-like feel.",
+      "care": {
+        "light": "Prefers medium to bright indirect light.",
+        "watering": "Keep soil lightly moist and use filtered water when possible.",
+        "commonIssues": "Brown edges can appear if the air is too dry or the water quality is harsh."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "ficus-altissima",
+      "name": "Ficus Altissima",
+      "type": "plant",
+      "category": "plant",
+      "plantSize": "Large",
+      "sizes": ["4\"", "6\"", "10\""],
+      "prices": {
+        "4\"": 88,
+        "6\"": 110,
+        "10\"": 148
+      },
+      "condition": "hardy",
+      "tag": "Studio Pick",
+      "description": "Variegated leaves and an airy shape designed to anchor a room with understated drama.",
+      "care": {
+        "light": "Bright filtered light keeps the variegation crisp.",
+        "watering": "Water when the upper layer of soil dries out.",
+        "commonIssues": "Leaf drop is common after sudden moves, drafts, or irregular watering."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    }
+  ],
+  "pots": [
+    {
+      "id": "linen-ceramic-pot",
+      "name": "Linen Ceramic Pot",
+      "type": "pot",
+      "category": "pot",
+      "fits": ["Small", "Medium"],
+      "price": 26,
+      "images": ["/instagram/ceramic-pairing.svg"]
+    },
+    {
+      "id": "terracotta-studio-pot",
+      "name": "Terracotta Studio Pot",
+      "type": "pot",
+      "category": "pot",
+      "fits": ["Medium", "Large"],
+      "price": 34,
+      "images": ["/instagram/terracotta-note.svg"]
+    },
+    {
+      "id": "stone-ribbed-planter",
+      "name": "Stone Ribbed Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": ["Small", "Large"],
+      "price": 39,
+      "images": ["/instagram/atelier-corner.svg"]
+    }
+  ],
+  "extras": [
+    {
+      "id": "care-card-set",
+      "name": "Care Card Set",
+      "type": "extra",
+      "category": "extra",
+      "price": 12,
+      "images": ["/instagram/green-shelfie.svg"]
+    },
+    {
+      "id": "humidity-mister",
+      "name": "Humidity Mister",
+      "type": "extra",
+      "category": "extra",
+      "price": 18,
+      "images": ["/instagram/quiet-morning.svg"]
+    },
+    {
+      "id": "organic-feed-kit",
+      "name": "Organic Feed Kit",
+      "type": "extra",
+      "category": "extra",
+      "price": 16,
+      "images": ["/instagram/sunroom-stack.svg"]
+    }
+  ]
+}

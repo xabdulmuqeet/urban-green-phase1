@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { ProductImageSlider } from "@/components/product-image-slider";
 import { ProductPurchasePanel } from "@/components/product-purchase-panel";
-import { products, getProductById } from "@/lib/data";
+import { getAllPlants, getPlantById } from "@/lib/data";
 
 type ProductPageProps = {
   params: Promise<{
@@ -10,14 +10,14 @@ type ProductPageProps = {
 };
 
 export function generateStaticParams() {
-  return products.map((product) => ({
+  return getAllPlants().map((product) => ({
     slug: product.id
   }));
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = getProductById(slug);
+  const product = getPlantById(slug);
 
   if (!product) {
     notFound();

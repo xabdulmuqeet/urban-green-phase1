@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { WishlistItem } from "@/components/wishlist-item";
 import { useWishlist } from "@/components/wishlist-provider";
-import { products } from "@/lib/data";
+import { getAllPlants } from "@/lib/data";
 
 export function WishlistPageClient() {
   const { wishlistIds } = useWishlist();
-  const wishlistProducts = products.filter((product) => wishlistIds.includes(product.id));
+  const wishlistProducts = getAllPlants().filter((product) =>
+    wishlistIds.includes(product.id)
+  );
 
   if (wishlistProducts.length === 0) {
     return (

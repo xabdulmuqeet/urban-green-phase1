@@ -1,8 +1,10 @@
 import { ProductGrid } from "@/components/product-grid";
 import { SectionHeading } from "@/components/section-heading";
-import { products } from "@/lib/data";
+import { getAllPlants } from "@/lib/data";
 
 export default function ShopPage() {
+  const plants = getAllPlants();
+
   return (
     <section className="section-space">
       <div className="page-shell space-y-10">
@@ -26,7 +28,7 @@ export default function ShopPage() {
           ))}
         </div>
 
-        <ProductGrid products={products} />
+        <ProductGrid products={plants} />
       </div>
     </section>
   );

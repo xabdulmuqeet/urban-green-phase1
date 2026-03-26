@@ -4,6 +4,7 @@ import type {
   CatalogData,
   CatalogExtra,
   CatalogPlant,
+  PlantSizeLabel,
   CatalogPot,
   InstagramPost,
   Product,
@@ -16,13 +17,17 @@ export const instagramPosts = instagramData as InstagramPost[];
 export const getAllPlants = (): CatalogPlant[] => catalog.plants;
 export const getAllPots = (): CatalogPot[] => catalog.pots;
 export const getAllExtras = (): CatalogExtra[] => catalog.extras;
+export const getPlantById = (id: string): CatalogPlant | undefined =>
+  getAllPlants().find((plant) => plant.id === id);
+export const getPotsByPlantSize = (plantSize: PlantSizeLabel): CatalogPot[] =>
+  getAllPots().filter((pot) => pot.fits.includes(plantSize));
 
 export const products: Product[] = getAllPlants();
 
 export const getFeaturedProducts = () => getAllPlants().slice(0, 3);
 
 export const getProductById = (id: string) =>
-  getAllPlants().find((product) => product.id === id);
+  getPlantById(id);
 
 export const getPriceForSize = (product: Product, size: ProductSizeLabel) =>
   product.prices[size];
