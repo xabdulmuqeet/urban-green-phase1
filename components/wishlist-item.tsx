@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { WishlistButton } from "@/components/wishlist-button";
+import { getStartingPrice } from "@/lib/data";
 import { formatCurrency } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -20,7 +21,7 @@ export function WishlistItem({ product }: { product: Product }) {
           <div className="flex flex-wrap items-center gap-2">
             <p className="text-xs uppercase tracking-[0.28em] text-bark/60">{product.category}</p>
             <span className="rounded-full bg-cream px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-bark">
-              {product.type}
+              {product.condition}
             </span>
           </div>
           <div className="flex items-end justify-between gap-4">
@@ -29,7 +30,7 @@ export function WishlistItem({ product }: { product: Product }) {
               <p className="mt-2 text-sm leading-6 text-bark/75">{product.description}</p>
             </div>
             <p className="text-lg font-semibold text-terracotta">
-              {formatCurrency(product.price)}
+              {formatCurrency(getStartingPrice(product))}
             </p>
           </div>
         </div>

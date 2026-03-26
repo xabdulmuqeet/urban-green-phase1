@@ -29,7 +29,7 @@ export function CartItemRow({
         <div className="space-y-2">
           <p className="font-[family:var(--font-heading)] text-2xl">{item.name}</p>
           <p className="text-xs uppercase tracking-[0.24em] text-bark/60">
-            {item.size} pot · {item.type}
+            {item.size} pot · {item.condition}
           </p>
           <p className="text-sm text-bark/75">{formatCurrency(item.unitPrice)} each</p>
         </div>

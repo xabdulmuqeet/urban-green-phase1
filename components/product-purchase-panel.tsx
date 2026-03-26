@@ -2,20 +2,22 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
-import { useCart } from "@/components/cart-provider";
-import { WishlistButton } from "@/components/wishlist-button";
 import { CareTabs } from "@/components/care-tabs";
+import { useCart } from "@/components/cart-provider";
 import { SizeSelector } from "@/components/size-selector";
-import { useProductSelection } from "@/hooks/use-product-selection";
+import { WishlistButton } from "@/components/wishlist-button";
+import { getPriceForSize } from "@/lib/data";
 import { formatCurrency } from "@/lib/format";
-import type { Product } from "@/lib/types";
+import { useProductSelection } from "@/hooks/use-product-selection";
+import type { Product, ProductSizeLabel } from "@/lib/types";
 
 export function ProductPurchasePanel({ product }: { product: Product }) {
   const { selectedSize, quantity, setSelectedSize, setQuantity } = useProductSelection(product);
   const { addToCart } = useCart();
 
-  const selectedVariant = useMemo(
-    () => product.sizes.find((size) => size.label === selectedSize) ?? product.sizes[0],
+  const resolvedSize = useMemo(
+    () =>
+      (product.sizes.find((size) => size === selectedSize) ?? product.sizes[0]) as ProductSizeLabel,
     [product.sizes, selectedSize]
   );
 
@@ -36,10 +38,10 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
 
         <div className="flex flex-wrap items-center gap-3">
           <p className="text-2xl font-semibold leading-none text-terracotta">
-            {formatCurrency(selectedVariant.price)}
+            {formatCurrency(getPriceForSize(product, resolvedSize))}
           </p>
           <span className="rounded-full bg-cream px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-bark">
-            {product.type}
+            {product.condition}
           </span>
         </div>
 
@@ -59,7 +61,8 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
 
       <SizeSelector
         sizes={product.sizes}
-        selectedSize={selectedSize}
+        prices={product.prices}
+        selectedSize={resolvedSize}
         onSelect={setSelectedSize}
       />
 
@@ -90,8 +93,8 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
           onClick={() =>
             addToCart({
               product,
-              size: selectedVariant.label,
-              unitPrice: selectedVariant.price,
+              size: resolvedSize,
+              unitPrice: getPriceForSize(product, resolvedSize),
               quantity
             })
           }

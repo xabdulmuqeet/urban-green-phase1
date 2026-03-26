@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
-import type { Product, ProductSelection } from "@/lib/types";
+import type { Product, ProductSelection, ProductSizeLabel } from "@/lib/types";
 
 export function useProductSelection(product: Product) {
   const defaultSelection: ProductSelection = {
@@ -24,9 +24,9 @@ export function useProductSelection(product: Product) {
   }, [defaultSelection, isHydrated, setValue, value.size]);
 
   return {
-    selectedSize: value.size || defaultSelection.size,
+    selectedSize: (value.size || defaultSelection.size) as ProductSizeLabel,
     quantity: value.quantity || 1,
-    setSelectedSize: (size: string) => setValue((current) => ({ ...current, size })),
+    setSelectedSize: (size: ProductSizeLabel) => setValue((current) => ({ ...current, size })),
     setQuantity: (quantity: number) =>
       setValue((current) => ({ ...current, quantity: Math.max(1, quantity) }))
   };
