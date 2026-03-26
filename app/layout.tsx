@@ -36,6 +36,9 @@ function Header() {
           <Link href="/shop" className="transition hover:text-sage">
             Shop
           </Link>
+          <Link href="/bundle" className="transition hover:text-sage">
+            Bundle
+          </Link>
           <Link href="/shop/monstera-deliciosa" className="transition hover:text-sage">
             Product
           </Link>

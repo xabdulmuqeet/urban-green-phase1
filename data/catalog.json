@@ -136,24 +136,24 @@
   ],
   "extras": [
     {
-      "id": "care-card-set",
-      "name": "Care Card Set",
+      "id": "soil",
+      "name": "Soil",
       "type": "extra",
       "category": "extra",
       "price": 12,
       "images": ["/instagram/green-shelfie.svg"]
     },
     {
-      "id": "humidity-mister",
-      "name": "Humidity Mister",
+      "id": "fertilizer",
+      "name": "Fertilizer",
       "type": "extra",
       "category": "extra",
       "price": 18,
       "images": ["/instagram/quiet-morning.svg"]
     },
     {
-      "id": "organic-feed-kit",
-      "name": "Organic Feed Kit",
+      "id": "moisture-meter",
+      "name": "Moisture Meter",
       "type": "extra",
       "category": "extra",
       "price": 16,
