@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { ApiCartItem } from "@/lib/api-types";
-import { calculateCartTotal, normalizeCartItems } from "@/lib/commerce";
+import { calculateCartTotal, normalizeAndMergeCartItems } from "@/lib/commerce";
 import { requireCurrentUser, getCurrentSessionEmail } from "@/lib/session";
 import { saveCartSchema } from "@/lib/validators";
 import { isDatabaseConfigured } from "@/lib/mongoose";
@@ -61,7 +61,7 @@ export async function POST(request: Request) {
     }
 
     const payload = saveCartSchema.parse(await request.json());
-    const normalizedItems = await normalizeCartItems(payload.items);
+    const normalizedItems = await normalizeAndMergeCartItems(payload.items);
     user.cart = normalizedItems;
     await user.save();
 

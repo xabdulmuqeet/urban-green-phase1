@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { ApiCartItem } from "@/lib/api-types";
-import { calculateCartTotal, normalizeCartItems } from "@/lib/commerce";
+import { calculateCartTotal, normalizeAndMergeCartItems } from "@/lib/commerce";
 import { requireCurrentUser, getCurrentSessionEmail } from "@/lib/session";
 import { createOrderSchema } from "@/lib/validators";
 import { OrderModel } from "@/models/Order";
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Cart is empty." }, { status: 400 });
     }
 
-    const normalizedItems = await normalizeCartItems(sourceItems);
+    const normalizedItems = await normalizeAndMergeCartItems(sourceItems);
     const totalAmount = calculateCartTotal(normalizedItems);
 
     const order = await OrderModel.create({

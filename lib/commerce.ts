@@ -108,6 +108,73 @@ export async function normalizeCartItems(items: ApiCartItem[]) {
   });
 }
 
+function getSingleItemKey(item: Extract<ApiCartItem, { type: "single" }>) {
+  return `single:${item.productId}:${item.size}`;
+}
+
+function getBundleItemKey(item: Extract<ApiCartItem, { type: "bundle" }>) {
+  return `bundle:${item.bundle.plant}:${item.bundle.pot}:${[...item.bundle.extras].sort().join(",")}`;
+}
+
+export function mergeCartItems(items: ApiCartItem[]) {
+  const mergedItems = new Map<string, ApiCartItem>();
+
+  items.forEach((item) => {
+    if (item.type === "single") {
+      const key = getSingleItemKey(item);
+      const existing = mergedItems.get(key);
+
+      if (existing && existing.type === "single") {
+        mergedItems.set(key, {
+          ...existing,
+          quantity: existing.quantity + item.quantity
+        });
+        return;
+      }
+
+      mergedItems.set(key, item);
+      return;
+    }
+
+    const normalizedExtras = [...item.bundle.extras].sort();
+    const key = getBundleItemKey({
+      ...item,
+      bundle: {
+        ...item.bundle,
+        extras: normalizedExtras
+      }
+    });
+    const existing = mergedItems.get(key);
+
+    if (existing && existing.type === "bundle") {
+      mergedItems.set(key, {
+        ...existing,
+        quantity: existing.quantity + item.quantity,
+        bundle: {
+          ...existing.bundle,
+          extras: normalizedExtras
+        }
+      });
+      return;
+    }
+
+    mergedItems.set(key, {
+      ...item,
+      bundle: {
+        ...item.bundle,
+        extras: normalizedExtras
+      }
+    });
+  });
+
+  return [...mergedItems.values()];
+}
+
+export async function normalizeAndMergeCartItems(items: ApiCartItem[]) {
+  const normalizedItems = await normalizeCartItems(items);
+  return mergeCartItems(normalizedItems);
+}
+
 export function calculateCartTotal(items: ApiCartItem[]) {
   return items.reduce((sum, item) => {
     if (item.type === "single") {

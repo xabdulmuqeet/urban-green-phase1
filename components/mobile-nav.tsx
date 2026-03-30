@@ -8,7 +8,6 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
   { href: "/bundle", label: "Bundle" },
-  { href: "/shop/monstera-deliciosa", label: "Products" },
   { href: "/cart", label: "Cart" },
   { href: "/orders", label: "Orders" },
   { href: "/wishlist", label: "Wishlist" }

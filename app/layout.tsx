@@ -41,9 +41,6 @@ function Header() {
           <Link href="/bundle" className="transition hover:text-sage">
             Bundle
           </Link>
-          <Link href="/shop/monstera-deliciosa" className="transition hover:text-sage">
-            Products
-          </Link>
           <Link href="/orders" className="transition hover:text-sage">
             Orders
           </Link>
