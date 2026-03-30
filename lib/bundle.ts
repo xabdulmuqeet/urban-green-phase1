@@ -1,5 +1,5 @@
 import { getPriceForSize } from "@/lib/data";
-import type { CatalogExtra, CatalogPlant, CatalogPot } from "@/lib/types";
+import type { CatalogExtra, CatalogPot, Product } from "@/lib/types";
 
 export const BUNDLE_DISCOUNT_RATE = 0.1;
 
@@ -17,7 +17,7 @@ export function calculateBundlePricing({
   pot,
   extras
 }: {
-  plant: CatalogPlant | null;
+  plant: Product | null;
   pot: CatalogPot | null;
   extras: CatalogExtra[];
 }): BundlePricing {

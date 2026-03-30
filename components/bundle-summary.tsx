@@ -1,9 +1,9 @@
 import { formatCurrency } from "@/lib/format";
-import type { CatalogExtra, CatalogPlant, CatalogPot } from "@/lib/types";
+import type { CatalogExtra, CatalogPot, Product } from "@/lib/types";
 import type { BundlePricing } from "@/lib/bundle";
 
 type BundleSummaryProps = {
-  plant: CatalogPlant | null;
+  plant: Product | null;
   pot: CatalogPot | null;
   extras: CatalogExtra[];
   pricing: BundlePricing;

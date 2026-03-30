@@ -5,13 +5,14 @@
       "name": "Monstera Deliciosa",
       "type": "plant",
       "category": "plant",
+      "displayCategory": "Statement Plant",
+      "collections": ["statement"],
       "plantSize": "Medium",
-      "sizes": ["4\"", "6\"", "10\""],
-      "prices": {
-        "4\"": 68,
-        "6\"": 82,
-        "10\"": 116
-      },
+      "variants": [
+        { "id": "monstera-deliciosa-4", "size": "4\"", "sku": "MON-4", "price": 68, "inStock": true },
+        { "id": "monstera-deliciosa-6", "size": "6\"", "sku": "MON-6", "price": 82, "inStock": true },
+        { "id": "monstera-deliciosa-10", "size": "10\"", "sku": "MON-10", "price": 116, "inStock": true }
+      ],
       "condition": "hardy",
       "tag": "Best Seller",
       "description": "Architectural leaves and a sculptural silhouette make this a signature plant for modern interiors.",
@@ -31,13 +32,14 @@
       "name": "Indoor Olive Tree",
       "type": "plant",
       "category": "plant",
+      "displayCategory": "Mediterranean Tree",
+      "collections": ["trees"],
       "plantSize": "Large",
-      "sizes": ["4\"", "6\"", "10\""],
-      "prices": {
-        "4\"": 92,
-        "6\"": 118,
-        "10\"": 156
-      },
+      "variants": [
+        { "id": "olive-tree-4", "size": "4\"", "sku": "OLI-4", "price": 92, "inStock": true },
+        { "id": "olive-tree-6", "size": "6\"", "sku": "OLI-6", "price": 118, "inStock": true },
+        { "id": "olive-tree-10", "size": "10\"", "sku": "OLI-10", "price": 156, "inStock": false }
+      ],
       "condition": "fragile",
       "tag": "New Arrival",
       "description": "A refined, silvery-green tree that brings warmth and height to calm, sunlit rooms.",
@@ -57,13 +59,14 @@
       "name": "Calathea Orbifolia",
       "type": "plant",
       "category": "plant",
+      "displayCategory": "Low-Light Favorite",
+      "collections": ["low-light", "statement"],
       "plantSize": "Small",
-      "sizes": ["4\"", "6\"", "10\""],
-      "prices": {
-        "4\"": 54,
-        "6\"": 72,
-        "10\"": 104
-      },
+      "variants": [
+        { "id": "calathea-orbifolia-4", "size": "4\"", "sku": "CAL-4", "price": 54, "inStock": true },
+        { "id": "calathea-orbifolia-6", "size": "6\"", "sku": "CAL-6", "price": 72, "inStock": true },
+        { "id": "calathea-orbifolia-10", "size": "10\"", "sku": "CAL-10", "price": 104, "inStock": true }
+      ],
       "condition": "fragile",
       "tag": "Low Stock",
       "description": "Broad patterned foliage with soft silver bands for a lush, gallery-like feel.",
@@ -83,13 +86,14 @@
       "name": "Ficus Altissima",
       "type": "plant",
       "category": "plant",
+      "displayCategory": "Tree Form",
+      "collections": ["trees", "statement"],
       "plantSize": "Large",
-      "sizes": ["4\"", "6\"", "10\""],
-      "prices": {
-        "4\"": 88,
-        "6\"": 110,
-        "10\"": 148
-      },
+      "variants": [
+        { "id": "ficus-altissima-4", "size": "4\"", "sku": "FIC-4", "price": 88, "inStock": true },
+        { "id": "ficus-altissima-6", "size": "6\"", "sku": "FIC-6", "price": 110, "inStock": true },
+        { "id": "ficus-altissima-10", "size": "10\"", "sku": "FIC-10", "price": 148, "inStock": true }
+      ],
       "condition": "hardy",
       "tag": "Studio Pick",
       "description": "Variegated leaves and an airy shape designed to anchor a room with understated drama.",

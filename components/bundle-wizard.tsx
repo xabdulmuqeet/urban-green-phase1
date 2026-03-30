@@ -1,29 +1,48 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { BundleOptionCard } from "@/components/bundle-option-card";
 import { BundleProgress } from "@/components/bundle-progress";
 import { BundleSummary } from "@/components/bundle-summary";
-import { getAllExtras, getPotsByPlantSize, getPriceForSize } from "@/lib/data";
+import { useCart } from "@/components/cart-provider";
+import { useBundleBuilder } from "@/hooks/use-bundle-builder";
+import { getAllExtras, getAllPots, getPotsByPlantSize, getPriceForSize } from "@/lib/data";
 import { calculateBundlePricing } from "@/lib/bundle";
 import { formatCurrency } from "@/lib/format";
-import type { CatalogExtra, CatalogPlant, CatalogPot } from "@/lib/types";
+import type { Product } from "@/lib/types";
 
 type BundleWizardProps = {
-  plants: CatalogPlant[];
+  plants: Product[];
 };
 
 export function BundleWizard({ plants }: BundleWizardProps) {
-  const [step, setStep] = useState(1);
-  const [selectedPlant, setSelectedPlant] = useState<CatalogPlant | null>(null);
-  const [selectedPot, setSelectedPot] = useState<CatalogPot | null>(null);
-  const [selectedExtras, setSelectedExtras] = useState<CatalogExtra[]>([]);
+  const router = useRouter();
+  const extras = useMemo(() => getAllExtras(), []);
+  const allPots = useMemo(() => getAllPots(), []);
+  const {
+    step,
+    selectedPlant,
+    selectedPot,
+    selectedExtras,
+    setStep,
+    selectPlant,
+    selectPot,
+    toggleExtra,
+    reset
+  } = useBundleBuilder({
+    plants,
+    pots: allPots.filter(
+      (pot, index, current) => current.findIndex((item) => item.id === pot.id) === index
+    ),
+    extras
+  });
+  const { addBundleToCart } = useCart();
 
   const availablePots = useMemo(
     () => (selectedPlant ? getPotsByPlantSize(selectedPlant.plantSize) : []),
     [selectedPlant]
   );
-  const extras = useMemo(() => getAllExtras(), []);
   const pricing = useMemo(
     () =>
       calculateBundlePricing({
@@ -34,29 +53,24 @@ export function BundleWizard({ plants }: BundleWizardProps) {
     [selectedPlant, selectedPot, selectedExtras]
   );
 
-  const toggleExtra = (extra: CatalogExtra) => {
-    setSelectedExtras((current) =>
-      current.some((item) => item.id === extra.id)
-        ? current.filter((item) => item.id !== extra.id)
-        : [...current, extra]
-    );
-  };
-
-  const handlePlantSelect = (plant: CatalogPlant) => {
-    setSelectedPlant(plant);
-    setSelectedPot((currentPot) =>
-      currentPot && currentPot.fits.includes(plant.plantSize) ? currentPot : null
-    );
-    setStep(2);
-  };
-
-  const handlePotSelect = (pot: CatalogPot) => {
-    setSelectedPot(pot);
-    setStep(3);
-  };
-
   const canContinueFromStep1 = Boolean(selectedPlant);
   const canContinueFromStep2 = Boolean(selectedPot);
+  const canAddBundle = Boolean(selectedPlant && selectedPot);
+  const addSelectedBundleToCart = () => {
+    if (!selectedPlant || !selectedPot) {
+      return false;
+    }
+
+    addBundleToCart({
+      plant: selectedPlant,
+      pot: selectedPot,
+      extras: selectedExtras,
+      unitPrice: pricing.total,
+      discount: pricing.discount
+    });
+
+    return true;
+  };
 
   return (
     <div className="space-y-8">
@@ -88,7 +102,7 @@ export function BundleWizard({ plants }: BundleWizardProps) {
                     image={plant.images[0]}
                     badge={plant.tag}
                     selected={selectedPlant?.id === plant.id}
-                    onClick={() => handlePlantSelect(plant)}
+                    onClick={() => selectPlant(plant)}
                   />
                 ))}
               </div>
@@ -119,7 +133,7 @@ export function BundleWizard({ plants }: BundleWizardProps) {
                     image={pot.images[0]}
                     badge={`Fits-${selectedPlant?.plantSize}`}
                     selected={selectedPot?.id === pot.id}
-                    onClick={() => handlePotSelect(pot)}
+                    onClick={() => selectPot(pot)}
                   />
                 ))}
               </div>
@@ -159,7 +173,7 @@ export function BundleWizard({ plants }: BundleWizardProps) {
           <div className="flex flex-col gap-3 sm:flex-row">
             <button
               type="button"
-              onClick={() => setStep((current) => Math.max(1, current - 1))}
+              onClick={() => setStep(Math.max(1, step - 1))}
               disabled={step === 1}
               className="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition disabled:cursor-not-allowed disabled:opacity-40"
             >
@@ -168,25 +182,42 @@ export function BundleWizard({ plants }: BundleWizardProps) {
             {step < 3 ? (
               <button
                 type="button"
-                onClick={() => setStep((current) => Math.min(3, current + 1))}
+                onClick={() => setStep(Math.min(3, step + 1))}
                 disabled={(step === 1 && !canContinueFromStep1) || (step === 2 && !canContinueFromStep2)}
                 className="rounded-full bg-terracotta px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#cd624b] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Continue
               </button>
             ) : (
-              <button
-                type="button"
-                onClick={() => {
-                  setStep(1);
-                  setSelectedPlant(null);
-                  setSelectedPot(null);
-                  setSelectedExtras([]);
-                }}
-                className="rounded-full bg-terracotta px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#cd624b]"
-              >
-                Start Over
-              </button>
+              <>
+                <button
+                  type="button"
+                  onClick={addSelectedBundleToCart}
+                  disabled={!canAddBundle}
+                  className="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Add Bundle To Cart
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (addSelectedBundleToCart()) {
+                      router.push("/cart");
+                    }
+                  }}
+                  disabled={!canAddBundle}
+                  className="rounded-full bg-terracotta px-6 py-3 text-center text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#cd624b] disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Add Bundle & View Cart
+                </button>
+                <button
+                  type="button"
+                  onClick={reset}
+                  className="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition"
+                >
+                  Start Over
+                </button>
+              </>
             )}
           </div>
         </div>

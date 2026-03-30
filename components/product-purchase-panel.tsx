@@ -6,7 +6,7 @@ import { CareTabs } from "@/components/care-tabs";
 import { useCart } from "@/components/cart-provider";
 import { SizeSelector } from "@/components/size-selector";
 import { WishlistButton } from "@/components/wishlist-button";
-import { getPriceForSize } from "@/lib/data";
+import { getDefaultSize, getPriceForSize, getVariantBySize } from "@/lib/data";
 import { formatCurrency } from "@/lib/format";
 import { useProductSelection } from "@/hooks/use-product-selection";
 import type { Product, ProductSizeLabel } from "@/lib/types";
@@ -14,11 +14,16 @@ import type { Product, ProductSizeLabel } from "@/lib/types";
 export function ProductPurchasePanel({ product }: { product: Product }) {
   const { selectedSize, quantity, setSelectedSize, setQuantity } = useProductSelection(product);
   const { addToCart } = useCart();
+  const defaultSize = getDefaultSize(product);
 
   const resolvedSize = useMemo(
     () =>
-      (product.sizes.find((size) => size === selectedSize) ?? product.sizes[0]) as ProductSizeLabel,
-    [product.sizes, selectedSize]
+      (product.sizes.find((size) => size === selectedSize) ?? defaultSize) as ProductSizeLabel,
+    [defaultSize, product.sizes, selectedSize]
+  );
+  const selectedVariant = useMemo(
+    () => getVariantBySize(product, resolvedSize),
+    [product, resolvedSize]
   );
 
   return (
@@ -43,6 +48,11 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
           <span className="rounded-full bg-cream px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-bark">
             {product.condition}
           </span>
+          {selectedVariant && !selectedVariant.inStock ? (
+            <span className="rounded-full border border-terracotta/20 bg-terracotta/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-terracotta">
+              Out of stock
+            </span>
+          ) : null}
         </div>
 
         <p className="max-w-xl text-base leading-6 text-bark/80 sm:text-[17px]">
@@ -98,9 +108,10 @@ export function ProductPurchasePanel({ product }: { product: Product }) {
               quantity
             })
           }
-          className="rounded-full bg-terracotta px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-[#cd624b]"
+          disabled={selectedVariant?.inStock === false}
+          className="rounded-full bg-terracotta px-7 py-4 text-center text-sm font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-[#cd624b] disabled:cursor-not-allowed disabled:opacity-40"
         >
-          Add To Cart
+          {selectedVariant?.inStock === false ? "Out Of Stock" : "Add To Cart"}
         </button>
         <Link
           href="/cart"

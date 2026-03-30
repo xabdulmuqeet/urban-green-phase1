@@ -1,9 +1,23 @@
+import Link from "next/link";
 import { ProductGrid } from "@/components/product-grid";
 import { SectionHeading } from "@/components/section-heading";
-import { getAllPlants } from "@/lib/data";
+import {
+  getPlantsForShopFilter,
+  getShopFilterFromSearchParam,
+  getShopFilterOptions
+} from "@/lib/data";
 
-export default function ShopPage() {
-  const plants = getAllPlants();
+type ShopPageProps = {
+  searchParams?: Promise<{
+    filter?: string;
+  }>;
+};
+
+export default async function ShopPage({ searchParams }: ShopPageProps) {
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const activeFilter = getShopFilterFromSearchParam(resolvedSearchParams?.filter);
+  const plants = getPlantsForShopFilter(activeFilter);
+  const filterOptions = getShopFilterOptions();
 
   return (
     <section className="section-space">
@@ -11,20 +25,22 @@ export default function ShopPage() {
         <SectionHeading
           eyebrow="Shop All"
           title="Design-led plants for elevated everyday living."
-          description="Browse our full static collection of premium indoor plants, each paired with a considered care profile and sculptural presence."
+          description="Browse our curated plant collection, then narrow the view by mood, form, or light needs."
         />
 
         <div className="flex flex-wrap items-center gap-3">
-          {["All Plants", "Statement", "Trees", "Low Light"].map((filter, index) => (
-            <button
-              key={filter}
-              type="button"
+          {filterOptions.map((filter) => (
+            <Link
+              key={filter.key}
+              href={filter.key === "all" ? "/shop" : `/shop?filter=${filter.key}`}
               className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                index === 0 ? "bg-sage text-white" : "bg-white text-bark hover:bg-cream"
+                activeFilter === filter.key
+                  ? "bg-sage text-white"
+                  : "bg-white text-bark hover:bg-cream"
               }`}
             >
-              {filter}
-            </button>
+              {filter.label}
+            </Link>
           ))}
         </div>
 

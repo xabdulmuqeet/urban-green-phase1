@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/components/cart-provider";
 import { WishlistButton } from "@/components/wishlist-button";
-import { getStartingPrice } from "@/lib/data";
+import { getDefaultSize, getPriceForSize, getStartingPrice } from "@/lib/data";
 import { formatCurrency } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -18,8 +18,8 @@ export function ProductCard({ product, showActions = false }: ProductCardProps) 
   const router = useRouter();
   const { addToCart } = useCart();
 
-  const defaultSize = product.sizes.includes('6"') ? '6"' : product.sizes[0];
-  const defaultPrice = product.prices[defaultSize];
+  const defaultSize = getDefaultSize(product);
+  const defaultPrice = getPriceForSize(product, defaultSize);
 
   const handleAddToCart = () => {
     addToCart({

@@ -1,14 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import type { Product, ProductSelection, ProductSizeLabel } from "@/lib/types";
 
 export function useProductSelection(product: Product) {
-  const defaultSelection: ProductSelection = {
-    size: product.sizes[0]?.label ?? "",
-    quantity: 1
-  };
+  const defaultSelection = useMemo<ProductSelection>(
+    () => ({
+      size: product.sizes[0] ?? "",
+      quantity: 1
+    }),
+    [product.sizes]
+  );
 
   const { value, setValue, isHydrated } = useLocalStorage<ProductSelection>(
     `urban-green-selection-${product.id}`,
