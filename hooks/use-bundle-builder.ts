@@ -3,18 +3,34 @@
 import { useMemo } from "react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import type {
+  BundleCartItem,
   BundleSelection,
   CatalogExtra,
   CatalogPot
 } from "@/lib/types";
 import type { Product } from "@/lib/types";
 
+export const BUNDLE_SELECTION_STORAGE_KEY = "urban-green-bundle-builder";
+
 const defaultSelection: BundleSelection = {
   step: 1,
   plantId: null,
   potId: null,
-  extraIds: []
+  extraIds: [],
+  quantity: 1,
+  editingCartKey: null
 };
+
+export function createBundleSelectionFromCartItem(item: BundleCartItem): BundleSelection {
+  return {
+    step: 3,
+    plantId: item.bundle.plantId,
+    potId: item.bundle.potId,
+    extraIds: item.bundle.extraIds,
+    quantity: item.quantity,
+    editingCartKey: item.cartKey
+  };
+}
 
 export function useBundleBuilder({
   plants,
@@ -26,7 +42,7 @@ export function useBundleBuilder({
   extras: CatalogExtra[];
 }) {
   const { value, setValue } = useLocalStorage<BundleSelection>(
-    "urban-green-bundle-builder",
+    BUNDLE_SELECTION_STORAGE_KEY,
     defaultSelection
   );
 
@@ -45,6 +61,8 @@ export function useBundleBuilder({
 
   return {
     step: value.step || 1,
+    quantity: value.quantity || 1,
+    editingCartKey: value.editingCartKey,
     selectedPlant,
     selectedPot,
     selectedExtras,
@@ -71,6 +89,12 @@ export function useBundleBuilder({
         extraIds: current.extraIds.includes(extra.id)
           ? current.extraIds.filter((id) => id !== extra.id)
           : [...current.extraIds, extra.id]
+      })),
+    clearEditingState: () =>
+      setValue((current) => ({
+        ...current,
+        editingCartKey: null,
+        quantity: 1
       })),
     reset: () => setValue(defaultSelection)
   };

@@ -46,6 +46,14 @@ export const getAllPots = (): CatalogPot[] => catalog.pots;
 export const getAllExtras = (): CatalogExtra[] => catalog.extras;
 export const getPlantById = (id: string): Product | undefined =>
   getAllPlants().find((plant) => plant.id === id);
+export const getPotById = (id: string): CatalogPot | undefined =>
+  getAllPots().find((pot) => pot.id === id);
+export const getExtraById = (id: string): CatalogExtra | undefined =>
+  getAllExtras().find((extra) => extra.id === id);
+export const getExtrasByIds = (extraIds: string[]): CatalogExtra[] =>
+  extraIds
+    .map((extraId) => getExtraById(extraId))
+    .filter((extra): extra is CatalogExtra => Boolean(extra));
 export const getPotsByPlantSize = (plantSize: PlantSizeLabel): CatalogPot[] =>
   getAllPots().filter((pot) => pot.fits.includes(plantSize));
 

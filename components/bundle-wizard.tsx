@@ -22,6 +22,8 @@ export function BundleWizard({ plants }: BundleWizardProps) {
   const allPots = useMemo(() => getAllPots(), []);
   const {
     step,
+    quantity,
+    editingCartKey,
     selectedPlant,
     selectedPot,
     selectedExtras,
@@ -29,6 +31,7 @@ export function BundleWizard({ plants }: BundleWizardProps) {
     selectPlant,
     selectPot,
     toggleExtra,
+    clearEditingState,
     reset
   } = useBundleBuilder({
     plants,
@@ -37,7 +40,7 @@ export function BundleWizard({ plants }: BundleWizardProps) {
     ),
     extras
   });
-  const { addBundleToCart } = useCart();
+  const { addBundleToCart, replaceBundleInCart } = useCart();
 
   const availablePots = useMemo(
     () => (selectedPlant ? getPotsByPlantSize(selectedPlant.plantSize) : []),
@@ -56,18 +59,26 @@ export function BundleWizard({ plants }: BundleWizardProps) {
   const canContinueFromStep1 = Boolean(selectedPlant);
   const canContinueFromStep2 = Boolean(selectedPot);
   const canAddBundle = Boolean(selectedPlant && selectedPot);
-  const addSelectedBundleToCart = () => {
+  const saveSelectedBundle = () => {
     if (!selectedPlant || !selectedPot) {
       return false;
     }
 
-    addBundleToCart({
+    const payload = {
       plant: selectedPlant,
       pot: selectedPot,
       extras: selectedExtras,
       unitPrice: pricing.total,
-      discount: pricing.discount
-    });
+      discount: pricing.discount,
+      quantity
+    };
+
+    if (editingCartKey) {
+      replaceBundleInCart(editingCartKey, payload);
+      clearEditingState();
+    } else {
+      addBundleToCart(payload);
+    }
 
     return true;
   };
@@ -192,23 +203,23 @@ export function BundleWizard({ plants }: BundleWizardProps) {
               <>
                 <button
                   type="button"
-                  onClick={addSelectedBundleToCart}
+                  onClick={saveSelectedBundle}
                   disabled={!canAddBundle}
                   className="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  Add Bundle To Cart
+                  {editingCartKey ? "Update Bundle" : "Add Bundle To Cart"}
                 </button>
                 <button
                   type="button"
                   onClick={() => {
-                    if (addSelectedBundleToCart()) {
+                    if (saveSelectedBundle()) {
                       router.push("/cart");
                     }
                   }}
                   disabled={!canAddBundle}
                   className="rounded-full bg-terracotta px-6 py-3 text-center text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#cd624b] disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  Add Bundle & View Cart
+                  {editingCartKey ? "Update Bundle & View Cart" : "Add Bundle & View Cart"}
                 </button>
                 <button
                   type="button"

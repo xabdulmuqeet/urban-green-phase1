@@ -1,12 +1,35 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CartItemRow } from "@/components/cart-item-row";
 import { useCart } from "@/components/cart-provider";
+import { getPlantById } from "@/lib/data";
+import {
+  BUNDLE_SELECTION_STORAGE_KEY,
+  createBundleSelectionFromCartItem
+} from "@/hooks/use-bundle-builder";
 import { formatCurrency } from "@/lib/format";
 
 export function CartPageClient() {
+  const router = useRouter();
   const { cartItems, totalPrice, updateQuantity, removeFromCart } = useCart();
+
+  const handleEditBundle = (cartKey: string) => {
+    const bundleItem = cartItems.find(
+      (item) => item.kind === "bundle" && item.cartKey === cartKey
+    );
+
+    if (!bundleItem || bundleItem.kind !== "bundle") {
+      return;
+    }
+
+    window.localStorage.setItem(
+      BUNDLE_SELECTION_STORAGE_KEY,
+      JSON.stringify(createBundleSelectionFromCartItem(bundleItem))
+    );
+    router.push("/bundle");
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -34,6 +57,7 @@ export function CartPageClient() {
             item={item}
             onUpdateQuantity={updateQuantity}
             onRemove={removeFromCart}
+            onEditBundle={handleEditBundle}
           />
         ))}
       </div>
@@ -44,23 +68,34 @@ export function CartPageClient() {
         </p>
         <div className="mt-6 space-y-4">
           {cartItems.map((item) => (
-            <div
-              key={`summary-${item.cartKey}`}
-              className="flex items-start justify-between gap-4 border-b border-black/5 pb-4"
-            >
-              <div className="space-y-1">
-                <p className="text-sm font-semibold text-foreground">{item.name}</p>
-                <p className="text-xs uppercase tracking-[0.18em] text-bark/60">
-                  {item.kind === "bundle"
-                    ? `Bundle · ${item.bundle.plantSize}`
-                    : `${item.size} pot`}
-                </p>
-                <p className="text-sm text-bark/70">Qty {item.quantity}</p>
-              </div>
-              <p className="text-sm font-semibold text-foreground">
-                {formatCurrency(item.unitPrice * item.quantity)}
-              </p>
-            </div>
+            (() => {
+              const bundlePlant =
+                item.kind === "bundle" ? getPlantById(item.bundle.plantId) : null;
+              const summaryName =
+                item.kind === "bundle"
+                  ? `${bundlePlant?.name ?? "Bundle"} Bundle`
+                  : item.name;
+
+              return (
+                <div
+                  key={`summary-${item.cartKey}`}
+                  className="flex items-start justify-between gap-4 border-b border-black/5 pb-4"
+                >
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold text-foreground">{summaryName}</p>
+                    <p className="text-xs uppercase tracking-[0.18em] text-bark/60">
+                      {item.kind === "bundle"
+                        ? `Bundle · ${item.bundle.plantSize}`
+                        : `${item.size} pot`}
+                    </p>
+                    <p className="text-sm text-bark/70">Qty {item.quantity}</p>
+                  </div>
+                  <p className="text-sm font-semibold text-foreground">
+                    {formatCurrency(item.unitPrice * item.quantity)}
+                  </p>
+                </div>
+              );
+            })()
           ))}
         </div>
         <div className="mt-6 flex items-center justify-between">

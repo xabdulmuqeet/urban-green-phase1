@@ -84,21 +84,14 @@ export type ProductCartItem = {
 export type BundleCartItem = {
   kind: "bundle";
   cartKey: string;
-  name: string;
   image: string;
   quantity: number;
   unitPrice: number;
   bundle: {
     plantId: string;
-    plantName: string;
     plantSize: Product["plantSize"];
     potId: string;
-    potName: string;
-    extras: Array<{
-      id: string;
-      name: string;
-      price: number;
-    }>;
+    extraIds: string[];
     discount: number;
   };
 };
@@ -115,4 +108,6 @@ export type BundleSelection = {
   plantId: string | null;
   potId: string | null;
   extraIds: string[];
+  quantity: number;
+  editingCartKey: string | null;
 };

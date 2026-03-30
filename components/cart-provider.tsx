@@ -34,6 +34,7 @@ type CartContextValue = {
   totalPrice: number;
   addToCart: (payload: AddToCartPayload) => void;
   addBundleToCart: (payload: AddBundleToCartPayload) => void;
+  replaceBundleInCart: (cartKeyToReplace: string, payload: AddBundleToCartPayload) => void;
   updateQuantity: (cartKey: string, quantity: number) => void;
   removeFromCart: (cartKey: string) => void;
 };
@@ -50,6 +51,32 @@ function createBundleCartKey(
   extraIds: string[]
 ) {
   return `bundle:${plantId}:${potId}:${[...extraIds].sort().join(",")}`;
+}
+
+function buildBundleCartItem({
+  plant,
+  pot,
+  extras,
+  unitPrice,
+  discount,
+  quantity = 1
+}: AddBundleToCartPayload): BundleCartItem {
+  const extraIds = extras.map((extra) => extra.id);
+
+  return {
+    kind: "bundle",
+    cartKey: createBundleCartKey(plant.id, pot.id, extraIds),
+    image: plant.images[0],
+    quantity,
+    unitPrice,
+    bundle: {
+      plantId: plant.id,
+      plantSize: plant.plantSize,
+      potId: pot.id,
+      extraIds,
+      discount
+    }
+  };
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
@@ -98,43 +125,37 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
           return [...currentItems, nextItem];
         }),
-      addBundleToCart: ({ plant, pot, extras, unitPrice, discount, quantity = 1 }) =>
+      addBundleToCart: (payload) =>
         setCartItems((currentItems) => {
-          const extraIds = extras.map((extra) => extra.id);
-          const cartKey = createBundleCartKey(plant.id, pot.id, extraIds);
+          const nextItem = buildBundleCartItem(payload);
+          const cartKey = nextItem.cartKey;
           const existingItem = currentItems.find((item) => item.cartKey === cartKey);
 
           if (existingItem) {
             return currentItems.map((item) =>
               item.cartKey === cartKey
-                ? { ...item, quantity: item.quantity + quantity }
+                ? { ...item, quantity: item.quantity + nextItem.quantity }
                 : item
             );
           }
 
-          const nextItem: BundleCartItem = {
-            kind: "bundle",
-            cartKey,
-            name: `${plant.name} Bundle`,
-            image: plant.images[0],
-            quantity,
-            unitPrice,
-            bundle: {
-              plantId: plant.id,
-              plantName: plant.name,
-              plantSize: plant.plantSize,
-              potId: pot.id,
-              potName: pot.name,
-              extras: extras.map((extra) => ({
-                id: extra.id,
-                name: extra.name,
-                price: extra.price
-              })),
-              discount
-            }
-          };
-
           return [...currentItems, nextItem];
+        }),
+      replaceBundleInCart: (cartKeyToReplace, payload) =>
+        setCartItems((currentItems) => {
+          const nextItem = buildBundleCartItem(payload);
+          const remainingItems = currentItems.filter((item) => item.cartKey !== cartKeyToReplace);
+          const existingItem = remainingItems.find((item) => item.cartKey === nextItem.cartKey);
+
+          if (existingItem) {
+            return remainingItems.map((item) =>
+              item.cartKey === nextItem.cartKey
+                ? { ...item, quantity: item.quantity + nextItem.quantity }
+                : item
+            );
+          }
+
+          return [...remainingItems, nextItem];
         }),
       updateQuantity: (cartKey, quantity) =>
         setCartItems((currentItems) =>

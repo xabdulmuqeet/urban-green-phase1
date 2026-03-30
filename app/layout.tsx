@@ -40,7 +40,7 @@ function Header() {
             Bundle
           </Link>
           <Link href="/shop/monstera-deliciosa" className="transition hover:text-sage">
-            Product
+            Products
           </Link>
           <CartNavButton />
         </nav>
