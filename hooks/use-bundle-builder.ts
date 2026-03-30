@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import type {
   BundleCartItem,
@@ -41,7 +41,7 @@ export function useBundleBuilder({
   pots: CatalogPot[];
   extras: CatalogExtra[];
 }) {
-  const { value, setValue } = useLocalStorage<BundleSelection>(
+  const { value, setValue, isHydrated } = useLocalStorage<BundleSelection>(
     BUNDLE_SELECTION_STORAGE_KEY,
     defaultSelection
   );
@@ -59,15 +59,13 @@ export function useBundleBuilder({
     [extras, value.extraIds]
   );
 
-  return {
-    step: value.step || 1,
-    quantity: value.quantity || 1,
-    editingCartKey: value.editingCartKey,
-    selectedPlant,
-    selectedPot,
-    selectedExtras,
-    setStep: (step: number) => setValue((current) => ({ ...current, step })),
-    selectPlant: (plant: Product) =>
+  const setStep = useCallback(
+    (step: number) => setValue((current) => ({ ...current, step })),
+    [setValue]
+  );
+
+  const selectPlant = useCallback(
+    (plant: Product) =>
       setValue((current) => ({
         ...current,
         plantId: plant.id,
@@ -77,25 +75,55 @@ export function useBundleBuilder({
             : null,
         step: 2
       })),
-    selectPot: (pot: CatalogPot) =>
+    [pots, setValue]
+  );
+
+  const selectPot = useCallback(
+    (pot: CatalogPot) =>
       setValue((current) => ({
         ...current,
         potId: pot.id,
         step: 3
       })),
-    toggleExtra: (extra: CatalogExtra) =>
+    [setValue]
+  );
+
+  const toggleExtra = useCallback(
+    (extra: CatalogExtra) =>
       setValue((current) => ({
         ...current,
         extraIds: current.extraIds.includes(extra.id)
           ? current.extraIds.filter((id) => id !== extra.id)
           : [...current.extraIds, extra.id]
       })),
-    clearEditingState: () =>
+    [setValue]
+  );
+
+  const clearEditingState = useCallback(
+    () =>
       setValue((current) => ({
         ...current,
         editingCartKey: null,
         quantity: 1
       })),
-    reset: () => setValue(defaultSelection)
+    [setValue]
+  );
+
+  const reset = useCallback(() => setValue(defaultSelection), [setValue]);
+
+  return {
+    isHydrated,
+    step: value.step || 1,
+    quantity: value.quantity || 1,
+    editingCartKey: value.editingCartKey,
+    selectedPlant,
+    selectedPot,
+    selectedExtras,
+    setStep,
+    selectPlant,
+    selectPot,
+    toggleExtra,
+    clearEditingState,
+    reset
   };
 }

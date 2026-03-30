@@ -1,7 +1,10 @@
 "use client";
 
-import { createContext, useContext, useMemo, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, type ReactNode } from "react";
+import { useSession } from "next-auth/react";
+import { fetchCartFromApi, saveCartToApi } from "@/lib/api-client";
 import { useLocalStorage } from "@/hooks/use-local-storage";
+import { getPlantById, getVariantBySize } from "@/lib/data";
 import type {
   BundleCartItem,
   CartItem,
@@ -10,7 +13,6 @@ import type {
   Product,
   ProductCartItem
 } from "@/lib/types";
-import { getVariantBySize } from "@/lib/data";
 
 type AddToCartPayload = {
   product: Product;
@@ -37,6 +39,7 @@ type CartContextValue = {
   replaceBundleInCart: (cartKeyToReplace: string, payload: AddBundleToCartPayload) => void;
   updateQuantity: (cartKey: string, quantity: number) => void;
   removeFromCart: (cartKey: string) => void;
+  clearCart: () => void;
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -80,10 +83,98 @@ function buildBundleCartItem({
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const { value: cartItems, setValue: setCartItems } = useLocalStorage<CartItem[]>(
+  const { data: session, status } = useSession();
+  const hasLoadedBackendCart = useRef(false);
+  const skipNextSave = useRef(false);
+  const { value: cartItems, setValue: setCartItems, isHydrated } = useLocalStorage<CartItem[]>(
     "urban-green-cart",
     []
   );
+
+  useEffect(() => {
+    if (!isHydrated || status !== "authenticated" || hasLoadedBackendCart.current) {
+      return;
+    }
+
+    let isCancelled = false;
+
+    const loadCart = async () => {
+      try {
+        const response = await fetchCartFromApi();
+
+        if (!isCancelled) {
+          skipNextSave.current = true;
+          setCartItems(response.items.map((item) =>
+            item.type === "single"
+              ? (() => {
+                  const product = getPlantById(item.productId);
+                  const variant = product ? getVariantBySize(product, item.size) : null;
+
+                  return {
+                    kind: "product" as const,
+                    cartKey: createProductCartKey(item.productId, item.size),
+                    productId: item.productId,
+                    variantId: variant?.id ?? `${item.productId}-${item.size}`,
+                    name: product?.name ?? item.productId,
+                    image: product?.images[0] ?? "/products/hero-plant.svg",
+                    size: item.size,
+                    condition: product?.condition ?? "hardy",
+                    unitPrice: item.price,
+                    quantity: item.quantity
+                  };
+                })()
+              : (() => {
+                  const plant = getPlantById(item.bundle.plant);
+
+                  return {
+                    kind: "bundle" as const,
+                    cartKey: createBundleCartKey(
+                      item.bundle.plant,
+                      item.bundle.pot,
+                      item.bundle.extras
+                    ),
+                    image: plant?.images[0] ?? "/products/hero-plant.svg",
+                    quantity: item.quantity,
+                    unitPrice: item.bundle.totalPrice,
+                    bundle: {
+                      plantId: item.bundle.plant,
+                      plantSize: plant?.plantSize ?? "Medium",
+                      potId: item.bundle.pot,
+                      extraIds: item.bundle.extras,
+                      discount: item.bundle.discount
+                    }
+                  };
+                })()
+          ));
+        }
+      } catch {
+        // Keep local fallback cart when backend sync is unavailable.
+      } finally {
+        hasLoadedBackendCart.current = true;
+      }
+    };
+
+    void loadCart();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [isHydrated, setCartItems, status]);
+
+  useEffect(() => {
+    if (!isHydrated || status !== "authenticated" || !hasLoadedBackendCart.current || !session) {
+      return;
+    }
+
+    if (skipNextSave.current) {
+      skipNextSave.current = false;
+      return;
+    }
+
+    void saveCartToApi(cartItems).catch(() => {
+      // Local cart remains the fallback source if API sync fails.
+    });
+  }, [cartItems, isHydrated, session, status]);
 
   const contextValue = useMemo<CartContextValue>(() => {
     const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -166,7 +257,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       removeFromCart: (cartKey) =>
         setCartItems((currentItems) =>
           currentItems.filter((item) => item.cartKey !== cartKey)
-        )
+        ),
+      clearCart: () => setCartItems([])
     };
   }, [cartItems, setCartItems]);
 

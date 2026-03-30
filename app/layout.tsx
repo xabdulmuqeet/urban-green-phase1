@@ -1,3 +1,5 @@
+import { AuthSessionProvider } from "@/components/auth-session-provider";
+import { AuthControls } from "@/components/auth-controls";
 import type { Metadata } from "next";
 import { CartNavButton } from "@/components/cart-nav-button";
 import { CartProvider } from "@/components/cart-provider";
@@ -42,6 +44,10 @@ function Header() {
           <Link href="/shop/monstera-deliciosa" className="transition hover:text-sage">
             Products
           </Link>
+          <Link href="/orders" className="transition hover:text-sage">
+            Orders
+          </Link>
+          <AuthControls />
           <CartNavButton />
         </nav>
 
@@ -90,13 +96,15 @@ export default function RootLayout({
         suppressHydrationWarning
         className="min-h-screen font-[family:var(--font-body)] text-foreground antialiased"
       >
-        <CartProvider>
-          <WishlistProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </WishlistProvider>
-        </CartProvider>
+        <AuthSessionProvider>
+          <CartProvider>
+            <WishlistProvider>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </WishlistProvider>
+          </CartProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );

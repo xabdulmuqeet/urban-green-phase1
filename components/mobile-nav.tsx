@@ -1,5 +1,6 @@
 "use client";
 
+import { AuthControls } from "@/components/auth-controls";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -9,6 +10,7 @@ const links = [
   { href: "/bundle", label: "Bundle" },
   { href: "/shop/monstera-deliciosa", label: "Products" },
   { href: "/cart", label: "Cart" },
+  { href: "/orders", label: "Orders" },
   { href: "/wishlist", label: "Wishlist" }
 ];
 
@@ -59,6 +61,9 @@ export function MobileNav() {
               {link.label}
             </Link>
           ))}
+          <div className="pt-2">
+            <AuthControls mobile onNavigate={() => setIsOpen(false)} />
+          </div>
         </nav>
       </div>
     </div>

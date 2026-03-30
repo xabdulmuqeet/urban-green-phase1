@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { CartItemRow } from "@/components/cart-item-row";
 import { useCart } from "@/components/cart-provider";
+import { createOrderFromApi } from "@/lib/api-client";
 import { getPlantById } from "@/lib/data";
 import {
   BUNDLE_SELECTION_STORAGE_KEY,
@@ -13,7 +16,10 @@ import { formatCurrency } from "@/lib/format";
 
 export function CartPageClient() {
   const router = useRouter();
-  const { cartItems, totalPrice, updateQuantity, removeFromCart } = useCart();
+  const { status } = useSession();
+  const { cartItems, totalPrice, updateQuantity, removeFromCart, clearCart } = useCart();
+  const [isSubmittingOrder, setIsSubmittingOrder] = useState(false);
+  const [orderError, setOrderError] = useState("");
 
   const handleEditBundle = (cartKey: string) => {
     const bundleItem = cartItems.find(
@@ -28,7 +34,27 @@ export function CartPageClient() {
       BUNDLE_SELECTION_STORAGE_KEY,
       JSON.stringify(createBundleSelectionFromCartItem(bundleItem))
     );
-    router.push("/bundle");
+    router.push(`/bundle?edit=${encodeURIComponent(bundleItem.cartKey)}`);
+  };
+
+  const handlePlaceOrder = async () => {
+    if (status !== "authenticated") {
+      await signIn();
+      return;
+    }
+
+    setIsSubmittingOrder(true);
+    setOrderError("");
+
+    try {
+      await createOrderFromApi(cartItems);
+      clearCart();
+      router.push("/orders");
+    } catch (caughtError) {
+      setOrderError(caughtError instanceof Error ? caughtError.message : "Failed to place order.");
+    } finally {
+      setIsSubmittingOrder(false);
+    }
   };
 
   if (cartItems.length === 0) {
@@ -102,6 +128,19 @@ export function CartPageClient() {
           <p className="font-[family:var(--font-heading)] text-3xl">Total</p>
           <p className="text-2xl font-semibold text-terracotta">{formatCurrency(totalPrice)}</p>
         </div>
+        {orderError ? <p className="mt-4 text-sm text-terracotta">{orderError}</p> : null}
+        <button
+          type="button"
+          onClick={() => void handlePlaceOrder()}
+          disabled={isSubmittingOrder}
+          className="mt-6 w-full rounded-full bg-terracotta px-6 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-[#cd624b] disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          {status === "authenticated"
+            ? isSubmittingOrder
+              ? "Placing Order..."
+              : "Place Order"
+            : "Sign In To Place Order"}
+        </button>
       </div>
     </div>
   );

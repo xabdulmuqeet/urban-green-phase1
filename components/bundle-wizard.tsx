@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { BundleOptionCard } from "@/components/bundle-option-card";
 import { BundleProgress } from "@/components/bundle-progress";
@@ -14,13 +14,16 @@ import type { Product } from "@/lib/types";
 
 type BundleWizardProps = {
   plants: Product[];
+  editKey?: string | null;
 };
 
-export function BundleWizard({ plants }: BundleWizardProps) {
+export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
   const router = useRouter();
+  const hasInitializedFreshMode = useRef(false);
   const extras = useMemo(() => getAllExtras(), []);
   const allPots = useMemo(() => getAllPots(), []);
   const {
+    isHydrated,
     step,
     quantity,
     editingCartKey,
@@ -59,6 +62,28 @@ export function BundleWizard({ plants }: BundleWizardProps) {
   const canContinueFromStep1 = Boolean(selectedPlant);
   const canContinueFromStep2 = Boolean(selectedPot);
   const canAddBundle = Boolean(selectedPlant && selectedPot);
+
+  useEffect(() => {
+    if (!isHydrated) {
+      return;
+    }
+
+    if (!editKey && !hasInitializedFreshMode.current) {
+      hasInitializedFreshMode.current = true;
+      reset();
+    }
+  }, [editKey, isHydrated, reset]);
+
+  useEffect(() => {
+    if (!isHydrated) {
+      return;
+    }
+
+    if (editingCartKey && editKey !== editingCartKey) {
+      clearEditingState();
+    }
+  }, [clearEditingState, editKey, editingCartKey, isHydrated]);
+
   const saveSelectedBundle = () => {
     if (!selectedPlant || !selectedPot) {
       return false;
