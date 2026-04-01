@@ -144,18 +144,38 @@ export function ProductReviewsSection({
               <label className="text-sm font-medium text-foreground" htmlFor="review-rating">
                 Rating
               </label>
-              <select
-                id="review-rating"
-                value={rating}
-                onChange={(event) => setRating(Number(event.target.value))}
-                className="mt-2 w-full rounded-full border border-black/10 bg-white px-5 py-3 text-sm text-foreground outline-none transition focus:border-sage"
-              >
-                {[5, 4, 3, 2, 1].map((value) => (
-                  <option key={value} value={value}>
-                    {value} Star{value === 1 ? "" : "s"}
-                  </option>
-                ))}
-              </select>
+              <div className="relative mt-2">
+                <select
+                  id="review-rating"
+                  value={rating}
+                  onChange={(event) => setRating(Number(event.target.value))}
+                  className="w-full appearance-none rounded-full border border-black/10 bg-white px-5 py-3 pr-11 text-sm text-foreground outline-none transition focus:border-sage"
+                >
+                  {[5, 4, 3, 2, 1].map((value) => (
+                    <option key={value} value={value}>
+                      {value} Star{value === 1 ? "" : "s"}
+                    </option>
+                  ))}
+                </select>
+                <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-bark/45">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2.25 4.5L6 8.25L9.75 4.5"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
             <div>
               <label className="text-sm font-medium text-foreground" htmlFor="review-comment">

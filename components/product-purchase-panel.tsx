@@ -145,10 +145,11 @@ export function ProductPurchasePanel({
             >
               Buy Now
             </button>
-            <div className="flex flex-wrap gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-bark/68">
+            <div className="flex flex-wrap items-center gap-4 border-t border-black/5 pt-4 text-xs font-semibold uppercase tracking-[0.18em] text-bark/62">
               <Link href="/cart" className="transition hover:text-sage">
                 View Cart
               </Link>
+              <span className="h-1 w-1 rounded-full bg-bark/25" />
               <Link href="/wishlist" className="transition hover:text-sage">
                 View Wishlist
               </Link>

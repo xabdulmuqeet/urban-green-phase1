@@ -23,6 +23,7 @@ export function CartItemRow({
   const bundlePot = isBundle ? getPotById(item.bundle.potId) : null;
   const bundleExtras = isBundle ? getExtrasByIds(item.bundle.extraIds) : [];
   const itemName = isBundle ? `${bundlePlant?.name ?? "Bundle"} Bundle` : item.name;
+  const bundleDiscountTotal = isBundle ? item.bundle.discount * item.quantity : 0;
 
   return (
     <div className="grid gap-4 rounded-[2rem] border border-black/5 bg-white p-4 shadow-card sm:grid-cols-[120px_1fr]">
@@ -102,7 +103,7 @@ export function CartItemRow({
         <div className="text-right">
           {isBundle ? (
             <p className="text-xs uppercase tracking-[0.2em] text-sage">
-              Discount saved {formatCurrency(item.bundle.discount)}
+              Discount saved {formatCurrency(bundleDiscountTotal)}
             </p>
           ) : null}
           <p className="text-lg font-semibold text-terracotta">

@@ -15,6 +15,48 @@ import {
   getShopSortOptions
 } from "@/lib/data";
 
+function FilterSelect({
+  name,
+  defaultValue,
+  children,
+  className = ""
+}: {
+  name: string;
+  defaultValue: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className="relative">
+      <select
+        name={name}
+        defaultValue={defaultValue}
+        className={`w-full appearance-none rounded-full border border-black/10 bg-white px-4 py-3 pr-11 text-sm text-foreground outline-none transition focus:border-sage ${className}`}
+      >
+        {children}
+      </select>
+      <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-bark/45">
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M2.25 4.5L6 8.25L9.75 4.5"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+    </div>
+  );
+}
+
 type ShopPageProps = {
   searchParams?: Promise<{
     filter?: string;
@@ -105,17 +147,13 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
               <div className="mt-4 space-y-4">
                 <div className="space-y-2">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Category</p>
-                  <select
-                    name="filter"
-                    defaultValue={activeFilter}
-                    className="w-full rounded-full border border-black/10 bg-white px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
-                  >
+                  <FilterSelect name="filter" defaultValue={activeFilter}>
                     {filterOptions.map((option) => (
                       <option key={option.key} value={option.key}>
                         {option.label}
                       </option>
                     ))}
-                  </select>
+                  </FilterSelect>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -123,68 +161,60 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
                     <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">
                       Price
                     </span>
-                    <select
-                      name="price"
-                      defaultValue={activePrice}
-                      className="mt-2 w-full rounded-full border border-black/10 bg-white px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
-                    >
+                    <div className="mt-2">
+                    <FilterSelect name="price" defaultValue={activePrice}>
                       {priceOptions.map((option) => (
                         <option key={option.key} value={option.key}>
                           {option.label}
                         </option>
                       ))}
-                    </select>
+                    </FilterSelect>
+                    </div>
                   </label>
 
                   <label className="block">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">
                       Condition
                     </span>
-                    <select
-                      name="condition"
-                      defaultValue={activeCondition}
-                      className="mt-2 w-full rounded-full border border-black/10 bg-white px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
-                    >
+                    <div className="mt-2">
+                    <FilterSelect name="condition" defaultValue={activeCondition}>
                       {conditionOptions.map((option) => (
                         <option key={option.key} value={option.key}>
                           {option.label}
                         </option>
                       ))}
-                    </select>
+                    </FilterSelect>
+                    </div>
                   </label>
 
                   <label className="block">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">
                       Plant Size
                     </span>
-                    <select
-                      name="size"
-                      defaultValue={activeSize}
-                      className="mt-2 w-full rounded-full border border-black/10 bg-white px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
-                    >
+                    <div className="mt-2">
+                    <FilterSelect name="size" defaultValue={activeSize}>
                       {sizeOptions.map((option) => (
                         <option key={option.key} value={option.key}>
                           {option.label}
                         </option>
                       ))}
-                    </select>
+                    </FilterSelect>
+                    </div>
                   </label>
 
                   <label className="block">
                     <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">
                       Sort
                     </span>
-                    <select
-                      name="sort"
-                      defaultValue={activeSort}
-                      className="mt-2 w-full rounded-full border border-black/10 bg-white px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
-                    >
+                    <div className="mt-2">
+                    <FilterSelect name="sort" defaultValue={activeSort}>
                       {sortOptions.map((option) => (
                         <option key={option.key} value={option.key}>
                           {option.label}
                         </option>
                       ))}
-                    </select>
+                    </FilterSelect>
+                    </div>
                   </label>
                 </div>
               </div>
@@ -193,83 +223,84 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
             <div className="hidden gap-3 lg:grid lg:grid-cols-[1.3fr_repeat(4,minmax(0,1fr))] lg:items-end">
               <div className="space-y-2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Category</p>
-                <select
+                <FilterSelect
                   name="filter"
                   defaultValue={activeFilter}
-                  className="w-full rounded-full border border-black/10 bg-cream/25 px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
+                  className="bg-cream/25"
                 >
                   {filterOptions.map((option) => (
                     <option key={option.key} value={option.key}>
                       {option.label}
                     </option>
                   ))}
-                </select>
+                </FilterSelect>
               </div>
               <div className="space-y-2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Price</p>
                 <label className="block">
                   <span className="sr-only">Price</span>
-                  <select
+                  <FilterSelect
                     name="price"
                     defaultValue={activePrice}
-                    className="w-full rounded-full border border-black/10 bg-cream/25 px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
+                    className="bg-cream/25"
                   >
                     {priceOptions.map((option) => (
                       <option key={option.key} value={option.key}>
                         {option.label}
                       </option>
                     ))}
-                  </select>
+                  </FilterSelect>
                 </label>
               </div>
               <div className="space-y-2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Condition</p>
                 <label className="block">
                   <span className="sr-only">Condition</span>
-                  <select
+                  <FilterSelect
                     name="condition"
                     defaultValue={activeCondition}
-                    className="w-full rounded-full border border-black/10 bg-cream/25 px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
+                    className="bg-cream/25"
                   >
                     {conditionOptions.map((option) => (
                       <option key={option.key} value={option.key}>
                         {option.label}
                       </option>
                     ))}
-                  </select>
+                  </FilterSelect>
                 </label>
               </div>
               <div className="space-y-2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Plant Size</p>
                 <label className="block">
                   <span className="sr-only">Plant Size</span>
-                  <select
+                  <FilterSelect
                     name="size"
                     defaultValue={activeSize}
-                    className="w-full rounded-full border border-black/10 bg-cream/25 px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
+                    className="bg-cream/25"
                   >
                     {sizeOptions.map((option) => (
                       <option key={option.key} value={option.key}>
                         {option.label}
                       </option>
                     ))}
-                  </select>
+                  </FilterSelect>
+                </label>
               </div>
               <div className="space-y-2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Sort</p>
                 <label className="block">
                   <span className="sr-only">Sort</span>
-                  <select
+                  <FilterSelect
                     name="sort"
                     defaultValue={activeSort}
-                    className="w-full rounded-full border border-black/10 bg-cream/25 px-4 py-3 text-sm text-foreground outline-none transition focus:border-sage"
+                    className="bg-cream/25"
                   >
                     {sortOptions.map((option) => (
                       <option key={option.key} value={option.key}>
                         {option.label}
                       </option>
                     ))}
-                  </select>
+                  </FilterSelect>
                 </label>
               </div>
             </div>

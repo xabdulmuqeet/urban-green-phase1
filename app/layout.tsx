@@ -43,10 +43,7 @@ function Header() {
           <Link href="/" className="transition hover:text-sage">
             Home
           </Link>
-          <Link
-            href="/shop"
-            className="rounded-full bg-sage px-4 py-2 font-semibold text-white transition hover:bg-[#6b866e]"
-          >
+          <Link href="/shop" className="transition hover:text-sage">
             Shop
           </Link>
           <Link href="/bundle" className="transition hover:text-sage">
