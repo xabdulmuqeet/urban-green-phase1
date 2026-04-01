@@ -1,5 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import { compare } from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 import EmailProvider from "next-auth/providers/email";
 import getMongoClientPromise from "@/lib/mongodb-client";
@@ -20,12 +21,6 @@ if (!authSecret) {
   throw new Error("Missing NEXTAUTH_SECRET environment variable.");
 }
 
-if (process.env.NODE_ENV === "production" && !isEmailProviderConfigured) {
-  throw new Error(
-    "Missing email auth environment variables. Expected EMAIL_SERVER_HOST, EMAIL_SERVER_USER, EMAIL_SERVER_PASSWORD, and EMAIL_FROM."
-  );
-}
-
 export const authOptions: NextAuthOptions = {
   ...(isDatabaseConfigured()
     ? {
@@ -37,6 +32,45 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt"
   },
   providers: [
+    ...(isDatabaseConfigured()
+      ? [
+          CredentialsProvider({
+            id: "password-login",
+            name: "Password Login",
+            credentials: {
+              email: { label: "Email", type: "email" },
+              password: { label: "Password", type: "password" }
+            },
+            async authorize(credentials) {
+              const email = credentials?.email?.trim().toLowerCase();
+              const password = credentials?.password ?? "";
+
+              if (!email || !password) {
+                return null;
+              }
+
+              await connectToDatabase();
+              const user = await UserModel.findOne({ email });
+
+              if (!user?.passwordHash) {
+                return null;
+              }
+
+              const isValid = await compare(password, user.passwordHash);
+
+              if (!isValid) {
+                return null;
+              }
+
+              return {
+                id: String(user._id),
+                email: user.email,
+                name: user.name ?? email.split("@")[0]
+              };
+            }
+          })
+        ]
+      : []),
     ...(process.env.NODE_ENV !== "production"
       ? [
           CredentialsProvider({

@@ -6,6 +6,10 @@ import { ProductModel } from "@/models/Product";
 type ProductRecord = {
   id: string;
   type: "plant" | "pot" | "extra";
+  name?: string;
+  plantSize?: "Small" | "Medium" | "Large";
+  fits?: Array<"Small" | "Medium" | "Large">;
+  condition?: "hardy" | "fragile";
   variants?: Array<{
     id: string;
     size: '4"' | '6"' | '10"';
@@ -86,7 +90,23 @@ export async function normalizeCartItems(items: ApiCartItem[]) {
       throw new Error("Bundle extras must all be valid extras.");
     }
 
-    const plantVariant = plant.variants?.find((variant) => variant.inStock) ?? plant.variants?.[0];
+    if (plant.plantSize && pot.fits?.length && !pot.fits.includes(plant.plantSize)) {
+      throw new Error(`Pot ${pot.id} does not fit plant size ${plant.plantSize}.`);
+    }
+
+    const plantVariant =
+      plant.variants?.find((variant) => variant.size === item.bundle.size && variant.inStock) ??
+      plant.variants?.find((variant) => variant.size === item.bundle.size) ??
+      null;
+
+    if (!plantVariant) {
+      throw new Error(`Bundle plant size ${item.bundle.size} is not available for ${plant.id}.`);
+    }
+
+    if (!plantVariant.inStock) {
+      throw new Error(`Bundle plant size ${item.bundle.size} for ${plant.id} is out of stock.`);
+    }
+
     const plantPrice = plantVariant?.price ?? 0;
     const potPrice = pot.price ?? 0;
     const extrasPrice = extras.reduce((sum, extra) => sum + (extra?.price ?? 0), 0);
@@ -99,6 +119,7 @@ export async function normalizeCartItems(items: ApiCartItem[]) {
       quantity: item.quantity,
       bundle: {
         plant: plant.id,
+        size: plantVariant.size,
         pot: pot.id,
         extras: extras.map((extra) => extra!.id),
         discount,
@@ -113,7 +134,7 @@ function getSingleItemKey(item: Extract<ApiCartItem, { type: "single" }>) {
 }
 
 function getBundleItemKey(item: Extract<ApiCartItem, { type: "bundle" }>) {
-  return `bundle:${item.bundle.plant}:${item.bundle.pot}:${[...item.bundle.extras].sort().join(",")}`;
+  return `bundle:${item.bundle.plant}:${item.bundle.size}:${item.bundle.pot}:${[...item.bundle.extras].sort().join(",")}`;
 }
 
 export function mergeCartItems(items: ApiCartItem[]) {

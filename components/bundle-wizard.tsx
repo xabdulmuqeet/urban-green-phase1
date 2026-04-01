@@ -7,10 +7,10 @@ import { BundleProgress } from "@/components/bundle-progress";
 import { BundleSummary } from "@/components/bundle-summary";
 import { useCart } from "@/components/cart-provider";
 import { useBundleBuilder } from "@/hooks/use-bundle-builder";
-import { getAllExtras, getAllPots, getPotsByPlantSize, getPriceForSize } from "@/lib/data";
+import { getAllExtras, getAllPots, getPriceForSize } from "@/lib/data";
 import { calculateBundlePricing } from "@/lib/bundle";
 import { formatCurrency } from "@/lib/format";
-import type { Product } from "@/lib/types";
+import type { PlantSizeLabel, Product } from "@/lib/types";
 
 type BundleWizardProps = {
   plants: Product[];
@@ -28,10 +28,12 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
     quantity,
     editingCartKey,
     selectedPlant,
+    selectedPlantVariantSize,
     selectedPot,
     selectedExtras,
     setStep,
     selectPlant,
+    selectPlantVariantSize,
     selectPot,
     toggleExtra,
     clearEditingState,
@@ -45,23 +47,104 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
   });
   const { addBundleToCart, replaceBundleInCart } = useCart();
 
+  const resolvedPlantFitSize = useMemo<PlantSizeLabel | null>(() => {
+    if (!selectedPlant || !selectedPlantVariantSize) {
+      return null;
+    }
+
+    if (selectedPlantVariantSize === '4"') {
+      return "Small";
+    }
+
+    if (selectedPlantVariantSize === '6"') {
+      return "Medium";
+    }
+
+    return "Large";
+  }, [selectedPlant, selectedPlantVariantSize]);
+
   const availablePots = useMemo(
-    () => (selectedPlant ? getPotsByPlantSize(selectedPlant.plantSize) : []),
-    [selectedPlant]
+    () =>
+      resolvedPlantFitSize
+        ? allPots
+            .filter((pot) => pot.fits.includes(resolvedPlantFitSize))
+            .sort((left, right) => {
+              const leftExact = left.fits.length === 1 && left.fits[0] === resolvedPlantFitSize;
+              const rightExact = right.fits.length === 1 && right.fits[0] === resolvedPlantFitSize;
+
+              if (leftExact === rightExact) {
+                return left.price - right.price;
+              }
+
+              return leftExact ? -1 : 1;
+            })
+        : [],
+    [allPots, resolvedPlantFitSize]
+  );
+  const recommendedExtraIds = useMemo(() => {
+    if (!selectedPlant) {
+      return [] as string[];
+    }
+
+    const recommended = new Set<string>();
+
+    if (selectedPlant.condition === "fragile") {
+      recommended.add("moisture-meter");
+      recommended.add("heat-pack");
+    }
+
+    if (selectedPlant.collections.includes("trailing")) {
+      recommended.add("fertilizer");
+    }
+
+    if (selectedPlant.collections.includes("collector")) {
+      recommended.add("soil");
+      recommended.add("moisture-meter");
+    }
+
+    if (recommended.size === 0) {
+      recommended.add("soil");
+    }
+
+    return [...recommended];
+  }, [selectedPlant]);
+  const sortedExtras = useMemo(
+    () =>
+      [...extras].sort((left, right) => {
+        const leftRecommended = recommendedExtraIds.includes(left.id);
+        const rightRecommended = recommendedExtraIds.includes(right.id);
+
+        if (leftRecommended === rightRecommended) {
+          return left.price - right.price;
+        }
+
+        return leftRecommended ? -1 : 1;
+      }),
+    [extras, recommendedExtraIds]
   );
   const pricing = useMemo(
     () =>
       calculateBundlePricing({
         plant: selectedPlant,
+        plantVariantSize: selectedPlantVariantSize,
         pot: selectedPot,
         extras: selectedExtras
       }),
-    [selectedPlant, selectedPot, selectedExtras]
+    [selectedPlant, selectedPlantVariantSize, selectedPot, selectedExtras]
   );
 
-  const canContinueFromStep1 = Boolean(selectedPlant);
-  const canContinueFromStep2 = Boolean(selectedPot);
   const canAddBundle = Boolean(selectedPlant && selectedPot);
+  const canAccessStep = (targetStep: number) => {
+    if (targetStep === 1) {
+      return true;
+    }
+
+    if (targetStep === 2) {
+      return Boolean(selectedPlant);
+    }
+
+    return Boolean(selectedPlant && selectedPot);
+  };
 
   useEffect(() => {
     if (!isHydrated) {
@@ -91,6 +174,7 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
 
     const payload = {
       plant: selectedPlant,
+      plantVariantSize: selectedPlantVariantSize ?? selectedPlant.sizes[0],
       pot: selectedPot,
       extras: selectedExtras,
       unitPrice: pricing.total,
@@ -110,7 +194,15 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
 
   return (
     <div className="space-y-8">
-      <BundleProgress currentStep={step} />
+      <BundleProgress
+        currentStep={step}
+        canAccessStep={canAccessStep}
+        onStepClick={(nextStep) => {
+          if (canAccessStep(nextStep)) {
+            setStep(nextStep);
+          }
+        }}
+      />
 
       <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-8">
@@ -137,8 +229,39 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
                     priceLabel={formatCurrency(getPriceForSize(plant, plant.sizes[0]))}
                     image={plant.images[0]}
                     badge={plant.tag}
+                    metaChips={plant.variants.filter((variant) => variant.inStock).map((variant) => variant.size)}
                     selected={selectedPlant?.id === plant.id}
                     onClick={() => selectPlant(plant)}
+                    expandedContent={
+                      selectedPlant?.id === plant.id ? (
+                        <div className="space-y-3">
+                          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bark/60">
+                            Choose Size
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {plant.variants
+                              .filter((variant) => variant.inStock)
+                              .map((variant) => (
+                                <button
+                                  key={variant.id}
+                                  type="button"
+                                  onClick={(event) => {
+                                    event.stopPropagation();
+                                    selectPlantVariantSize(variant.size);
+                                  }}
+                                  className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition ${
+                                    selectedPlantVariantSize === variant.size
+                                      ? "border-sage bg-sage text-white"
+                                      : "border-black/10 bg-white text-foreground hover:border-sage hover:text-sage"
+                                  }`}
+                                >
+                                  {variant.size} · {formatCurrency(variant.price)}
+                                </button>
+                              ))}
+                          </div>
+                        </div>
+                      ) : undefined
+                    }
                   />
                 ))}
               </div>
@@ -155,7 +278,7 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
                   Pair it with a matching pot.
                 </h2>
                 <p className="text-sm leading-7 text-bark/80">
-                  Only compatible pots are shown for your selected {selectedPlant?.plantSize.toLowerCase()} plant.
+                  Only compatible pots are shown for your selected {selectedPlantVariantSize ?? selectedPlant?.sizes[0]} plant.
                 </p>
               </div>
 
@@ -167,7 +290,11 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
                     subtitle={`Fits ${pot.fits.join(" / ")}`}
                     priceLabel={formatCurrency(pot.price)}
                     image={pot.images[0]}
-                    badge={`Fits-${selectedPlant?.plantSize}`}
+                    badge={
+                      resolvedPlantFitSize && pot.fits.length === 1 && pot.fits[0] === resolvedPlantFitSize
+                        ? "Best Match"
+                        : `Fits ${resolvedPlantFitSize ?? selectedPlant?.plantSize}`
+                    }
                     selected={selectedPot?.id === pot.id}
                     onClick={() => selectPot(pot)}
                   />
@@ -186,18 +313,23 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
                   Finish with thoughtful extras.
                 </h2>
                 <p className="text-sm leading-7 text-bark/80">
-                  Add soil, fertilizer, or a moisture meter. Any extra added to a plant-and-pot bundle triggers the 10% discount.
+                  Add finishing extras to complete the bundle. Recommended items float to the top based on your plant style, and any extra still triggers the 10% bundle discount.
                 </p>
               </div>
 
               <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                {extras.map((extra) => (
+                {sortedExtras.map((extra) => (
                   <BundleOptionCard
                     key={extra.id}
                     title={extra.name}
-                    subtitle="Bundle add-on"
+                    subtitle={
+                      recommendedExtraIds.includes(extra.id)
+                        ? "Recommended for this bundle"
+                        : "Bundle add-on"
+                    }
                     priceLabel={formatCurrency(extra.price)}
                     image={extra.images[0]}
+                    badge={recommendedExtraIds.includes(extra.id) ? "Suggested" : undefined}
                     selected={selectedExtras.some((item) => item.id === extra.id)}
                     onClick={() => toggleExtra(extra)}
                   />
@@ -206,63 +338,24 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
             </section>
           ) : null}
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <button
-              type="button"
-              onClick={() => setStep(Math.max(1, step - 1))}
-              disabled={step === 1}
-              className="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              Back
-            </button>
-            {step < 3 ? (
-              <button
-                type="button"
-                onClick={() => setStep(Math.min(3, step + 1))}
-                disabled={(step === 1 && !canContinueFromStep1) || (step === 2 && !canContinueFromStep2)}
-                className="rounded-full bg-terracotta px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#cd624b] disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Continue
-              </button>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  onClick={saveSelectedBundle}
-                  disabled={!canAddBundle}
-                  className="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  {editingCartKey ? "Update Bundle" : "Add Bundle To Cart"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (saveSelectedBundle()) {
-                      router.push("/cart");
-                    }
-                  }}
-                  disabled={!canAddBundle}
-                  className="rounded-full bg-terracotta px-6 py-3 text-center text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#cd624b] disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  {editingCartKey ? "Update Bundle & View Cart" : "Add Bundle & View Cart"}
-                </button>
-                <button
-                  type="button"
-                  onClick={reset}
-                  className="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition"
-                >
-                  Start Over
-                </button>
-              </>
-            )}
-          </div>
         </div>
 
         <BundleSummary
           plant={selectedPlant}
+          plantVariantSize={selectedPlantVariantSize}
           pot={selectedPot}
           extras={selectedExtras}
           pricing={pricing}
+          canAddBundle={canAddBundle}
+          editingCartKey={editingCartKey}
+          onAddBundle={() => {
+            void saveSelectedBundle();
+          }}
+          onAddBundleAndViewCart={() => {
+            if (saveSelectedBundle()) {
+              router.push("/cart");
+            }
+          }}
         />
       </div>
     </div>

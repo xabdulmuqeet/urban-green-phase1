@@ -1,4 +1,14 @@
-import type { ApiCartItem, CartResponse, OrderResponse } from "@/lib/api-types";
+import type {
+  ApiCartItem,
+  CartResponse,
+  CheckoutAddress,
+  CheckoutResponse,
+  GuestOrderLookupResponse,
+  OrderResponse,
+  ShippingMethodType,
+  ShippingQuoteResponse,
+  WishlistResponse
+} from "@/lib/api-types";
 import type { CartItem, Product } from "@/lib/types";
 
 async function readJson<T>(response: Response): Promise<T> {
@@ -31,6 +41,7 @@ export function mapFrontendCartToApi(items: CartItem[]): ApiCartItem[] {
       quantity: item.quantity,
       bundle: {
         plant: item.bundle.plantId,
+        size: item.bundle.plantVariantSize,
         pot: item.bundle.potId,
         extras: item.bundle.extraIds,
         discount: item.bundle.discount,
@@ -58,8 +69,47 @@ export async function saveCartToApi(items: CartItem[]) {
   );
 }
 
+export async function fetchWishlistFromApi() {
+  return readJson<WishlistResponse>(await fetch("/api/wishlist", { cache: "no-store" }));
+}
+
+export async function saveWishlistToApi(wishlistIds: string[]) {
+  return readJson<WishlistResponse>(
+    await fetch("/api/wishlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ wishlistIds })
+    })
+  );
+}
+
 export async function fetchOrdersFromApi() {
   return readJson<{ orders: OrderResponse[] }>(await fetch("/api/orders", { cache: "no-store" }));
+}
+
+export async function lookupGuestOrderFromApi(email: string, orderNumber: string) {
+  return readJson<GuestOrderLookupResponse>(
+    await fetch("/api/orders/lookup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        orderNumber
+      })
+    })
+  );
+}
+
+export async function fetchOrderBySessionIdFromApi(sessionId: string) {
+  return readJson<GuestOrderLookupResponse>(
+    await fetch(`/api/orders/lookup?session_id=${encodeURIComponent(sessionId)}`, {
+      cache: "no-store"
+    })
+  );
 }
 
 export async function createOrderFromApi(items?: CartItem[]) {
@@ -76,6 +126,43 @@ export async function createOrderFromApi(items?: CartItem[]) {
             }
           : {}
       )
+    })
+  );
+}
+
+export async function fetchShippingQuoteFromApi(items: CartItem[], postalCode: string) {
+  return readJson<ShippingQuoteResponse>(
+    await fetch("/api/checkout/quote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        items: mapFrontendCartToApi(items),
+        postalCode
+      })
+    })
+  );
+}
+
+export async function createCheckoutSessionFromApiWithShipping(
+  items: CartItem[],
+  address: CheckoutAddress,
+  shippingType: ShippingMethodType,
+  customerEmail?: string
+) {
+  return readJson<CheckoutResponse>(
+    await fetch("/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        items: mapFrontendCartToApi(items),
+        address,
+        shippingType,
+        customerEmail
+      })
     })
   );
 }

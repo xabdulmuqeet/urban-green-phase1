@@ -9,6 +9,7 @@ const cartItemSchema = new Schema(
     price: { type: Number, min: 0 },
     bundle: {
       plant: { type: String },
+      size: { type: String, enum: ['4"', '6"', '10"'] },
       pot: { type: String },
       extras: [{ type: String }],
       discount: { type: Number, min: 0 },
@@ -22,8 +23,13 @@ const userSchema = new Schema(
   {
     name: { type: String },
     email: { type: String, required: true, unique: true, index: true },
+    passwordHash: { type: String, default: null },
     image: { type: String },
     emailVerified: { type: Date, default: null },
+    wishlist: {
+      type: [{ type: String }],
+      default: []
+    },
     cart: {
       type: [cartItemSchema],
       default: []

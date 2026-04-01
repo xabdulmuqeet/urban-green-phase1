@@ -23,6 +23,7 @@ type AddToCartPayload = {
 
 type AddBundleToCartPayload = {
   plant: Product;
+  plantVariantSize: Product["sizes"][number];
   pot: CatalogPot;
   extras: CatalogExtra[];
   unitPrice: number;
@@ -50,14 +51,16 @@ function createProductCartKey(productId: string, size: string) {
 
 function createBundleCartKey(
   plantId: string,
+  plantVariantSize: string,
   potId: string,
   extraIds: string[]
 ) {
-  return `bundle:${plantId}:${potId}:${[...extraIds].sort().join(",")}`;
+  return `bundle:${plantId}:${plantVariantSize}:${potId}:${[...extraIds].sort().join(",")}`;
 }
 
 function buildBundleCartItem({
   plant,
+  plantVariantSize,
   pot,
   extras,
   unitPrice,
@@ -68,13 +71,14 @@ function buildBundleCartItem({
 
   return {
     kind: "bundle",
-    cartKey: createBundleCartKey(plant.id, pot.id, extraIds),
+    cartKey: createBundleCartKey(plant.id, plantVariantSize, pot.id, extraIds),
     image: plant.images[0],
     quantity,
     unitPrice,
     bundle: {
       plantId: plant.id,
       plantSize: plant.plantSize,
+      plantVariantSize,
       potId: pot.id,
       extraIds,
       discount
@@ -130,6 +134,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
                     kind: "bundle" as const,
                     cartKey: createBundleCartKey(
                       item.bundle.plant,
+                      item.bundle.size,
                       item.bundle.pot,
                       item.bundle.extras
                     ),
@@ -139,6 +144,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
                     bundle: {
                       plantId: item.bundle.plant,
                       plantSize: plant?.plantSize ?? "Medium",
+                      plantVariantSize: item.bundle.size,
                       potId: item.bundle.pot,
                       extraIds: item.bundle.extras,
                       discount: item.bundle.discount

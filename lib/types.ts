@@ -1,6 +1,18 @@
 export type PlantSizeLabel = "Small" | "Medium" | "Large";
 export type ProductSizeLabel = '4"' | '6"' | '10"';
-export type ShopFilterKey = "all" | "statement" | "trees" | "low-light";
+export type ShopFilterKey =
+  | "all"
+  | "statement"
+  | "trees"
+  | "low-light"
+  | "trailing"
+  | "succulents"
+  | "collector"
+  | "palms";
+export type ShopSortKey = "featured" | "newest" | "price-low" | "price-high" | "name";
+export type ShopConditionFilter = "all" | "hardy" | "fragile";
+export type ShopSizeFilter = "all" | PlantSizeLabel;
+export type ShopPriceFilter = "all" | "under-80" | "80-120" | "120-plus";
 
 export type ProductVariant = {
   id: string;
@@ -90,6 +102,7 @@ export type BundleCartItem = {
   bundle: {
     plantId: string;
     plantSize: Product["plantSize"];
+    plantVariantSize: ProductSizeLabel;
     potId: string;
     extraIds: string[];
     discount: number;
@@ -97,6 +110,11 @@ export type BundleCartItem = {
 };
 
 export type CartItem = ProductCartItem | BundleCartItem;
+
+export type CheckoutDraft = {
+  postalCode: string;
+  shippingType: import("@/lib/api-types").ShippingMethodType | null;
+};
 
 export type ProductSelection = {
   size: ProductSizeLabel | "";
@@ -106,6 +124,7 @@ export type ProductSelection = {
 export type BundleSelection = {
   step: number;
   plantId: string | null;
+  plantVariantSize: ProductSizeLabel | null;
   potId: string | null;
   extraIds: string[];
   quantity: number;

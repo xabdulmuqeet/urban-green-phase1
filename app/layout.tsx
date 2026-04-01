@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { CartNavButton } from "@/components/cart-nav-button";
 import { CartProvider } from "@/components/cart-provider";
 import { WishlistProvider } from "@/components/wishlist-provider";
+import Image from "next/image";
 import Link from "next/link";
 import { MobileNav } from "@/components/mobile-nav";
 import "./globals.css";
@@ -18,8 +19,15 @@ function Header() {
     <header className="sticky top-0 z-50 border-b border-black/5 bg-[rgba(248,247,241,0.88)] backdrop-blur-xl">
       <div className="page-shell flex items-center justify-between py-4">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full border border-sage/30 bg-sage/10 text-lg text-sage">
-            tg
+          <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-sage/30 bg-sage/10">
+            <Image
+              src="/brand-mark.svg"
+              alt="The Urban Green logo"
+              width={44}
+              height={44}
+              className="h-10 w-10"
+              priority
+            />
           </div>
           <div>
             <p className="font-[family:var(--font-heading)] text-xl leading-none tracking-wide">
@@ -31,11 +39,14 @@ function Header() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-3 text-xs font-medium uppercase tracking-[0.18em] sm:gap-5 sm:text-sm sm:normal-case sm:tracking-normal md:flex">
+        <nav className="hidden items-center gap-4 text-xs font-medium uppercase tracking-[0.18em] sm:gap-7 sm:text-sm sm:normal-case sm:tracking-normal md:flex">
           <Link href="/" className="transition hover:text-sage">
             Home
           </Link>
-          <Link href="/shop" className="transition hover:text-sage">
+          <Link
+            href="/shop"
+            className="rounded-full bg-sage px-4 py-2 font-semibold text-white transition hover:bg-[#6b866e]"
+          >
             Shop
           </Link>
           <Link href="/bundle" className="transition hover:text-sage">

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 
 type BundleOptionCardProps = {
   title: string;
@@ -8,6 +9,8 @@ type BundleOptionCardProps = {
   selected: boolean;
   onClick: () => void;
   badge?: string;
+  metaChips?: string[];
+  expandedContent?: ReactNode;
 };
 
 export function BundleOptionCard({
@@ -17,7 +20,9 @@ export function BundleOptionCard({
   image,
   selected,
   onClick,
-  badge
+  badge,
+  metaChips = [],
+  expandedContent
 }: BundleOptionCardProps) {
   return (
     <button
@@ -49,6 +54,21 @@ export function BundleOptionCard({
           <p className="text-base font-semibold text-terracotta">{priceLabel}</p>
         </div>
         <p className="text-sm leading-6 text-bark/75">{subtitle}</p>
+        {metaChips.length > 0 ? (
+          <div className="flex flex-wrap gap-2">
+            {metaChips.map((chip) => (
+              <span
+                key={chip}
+                className="rounded-full bg-cream px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-bark/70"
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
+        ) : null}
+        {expandedContent ? (
+          <div className="border-t border-black/5 pt-4">{expandedContent}</div>
+        ) : null}
       </div>
     </button>
   );

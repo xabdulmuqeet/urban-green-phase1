@@ -40,7 +40,7 @@ export function CartItemRow({
           {isBundle ? (
             <>
               <p className="text-xs uppercase tracking-[0.24em] text-bark/60">
-                Bundle · {item.bundle.plantSize}
+                Bundle · {item.bundle.plantVariantSize}
               </p>
               <p className="text-sm text-bark/75">
                 {bundlePlant?.name ?? "Plant"} + {bundlePot?.name ?? "Pot"}

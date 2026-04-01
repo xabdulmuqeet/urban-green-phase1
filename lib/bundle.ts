@@ -1,5 +1,5 @@
 import { getPriceForSize } from "@/lib/data";
-import type { CatalogExtra, CatalogPot, Product } from "@/lib/types";
+import type { CatalogExtra, CatalogPot, Product, ProductSizeLabel } from "@/lib/types";
 
 export const BUNDLE_DISCOUNT_RATE = 0.1;
 
@@ -14,14 +14,17 @@ export type BundlePricing = {
 
 export function calculateBundlePricing({
   plant,
+  plantVariantSize,
   pot,
   extras
 }: {
   plant: Product | null;
+  plantVariantSize: ProductSizeLabel | null;
   pot: CatalogPot | null;
   extras: CatalogExtra[];
 }): BundlePricing {
-  const plantPrice = plant ? getPriceForSize(plant, plant.sizes[0]) : 0;
+  const resolvedSize = plant && plantVariantSize ? plantVariantSize : plant?.sizes[0];
+  const plantPrice = plant && resolvedSize ? getPriceForSize(plant, resolvedSize) : 0;
   const potPrice = pot?.price ?? 0;
   const extrasPrice = extras.reduce((sum, extra) => sum + extra.price, 0);
   const subtotal = plantPrice + potPrice + extrasPrice;

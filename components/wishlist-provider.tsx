@@ -1,6 +1,8 @@
 "use client";
 
-import { createContext, useContext, useMemo, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, type ReactNode } from "react";
+import { useSession } from "next-auth/react";
+import { fetchWishlistFromApi, saveWishlistToApi } from "@/lib/api-client";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 
 type WishlistContextValue = {
@@ -12,10 +14,78 @@ type WishlistContextValue = {
 const WishlistContext = createContext<WishlistContextValue | null>(null);
 
 export function WishlistProvider({ children }: { children: ReactNode }) {
-  const { value: wishlistIds, setValue: setWishlistIds } = useLocalStorage<string[]>(
+  const { data: session, status } = useSession();
+  const hasLoadedBackendWishlist = useRef(false);
+  const skipNextSave = useRef(false);
+  const hasMergedLocalWishlist = useRef(false);
+  const { value: wishlistIds, setValue: setWishlistIds, isHydrated } = useLocalStorage<string[]>(
     "urban-green-wishlist",
     []
   );
+
+  useEffect(() => {
+    if (!isHydrated || status !== "authenticated" || hasLoadedBackendWishlist.current) {
+      return;
+    }
+
+    let isCancelled = false;
+
+    const loadWishlist = async () => {
+      try {
+        const response = await fetchWishlistFromApi();
+
+        if (!isCancelled) {
+          const localIds = wishlistIds;
+          const mergedWishlistIds = [...new Set([...response.wishlistIds, ...localIds])];
+
+          skipNextSave.current = true;
+          hasMergedLocalWishlist.current = true;
+          setWishlistIds(mergedWishlistIds);
+
+          if (mergedWishlistIds.length !== response.wishlistIds.length) {
+            void saveWishlistToApi(mergedWishlistIds).catch(() => {
+              // Keep local wishlist if backend sync fails.
+            });
+          }
+        }
+      } catch {
+        // Keep local wishlist when backend sync is unavailable.
+      } finally {
+        hasLoadedBackendWishlist.current = true;
+      }
+    };
+
+    void loadWishlist();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [isHydrated, setWishlistIds, status, wishlistIds]);
+
+  useEffect(() => {
+    if (status !== "authenticated") {
+      hasLoadedBackendWishlist.current = false;
+      hasMergedLocalWishlist.current = false;
+      return;
+    }
+
+    if (!isHydrated || !session || !hasLoadedBackendWishlist.current) {
+      return;
+    }
+
+    if (skipNextSave.current) {
+      skipNextSave.current = false;
+      return;
+    }
+
+    if (!hasMergedLocalWishlist.current) {
+      return;
+    }
+
+    void saveWishlistToApi(wishlistIds).catch(() => {
+      // Local wishlist remains the fallback if API sync fails.
+    });
+  }, [isHydrated, session, status, wishlistIds]);
 
   const contextValue = useMemo<WishlistContextValue>(
     () => ({

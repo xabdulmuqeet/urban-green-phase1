@@ -3,11 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useCart } from "@/components/cart-provider";
 import { WishlistButton } from "@/components/wishlist-button";
 import { getDefaultSize, getPriceForSize, getStartingPrice } from "@/lib/data";
 import { formatCurrency } from "@/lib/format";
-import type { Product } from "@/lib/types";
+import type { Product, ProductSizeLabel } from "@/lib/types";
 
 type ProductCardProps = {
   product: Product;
@@ -19,13 +20,14 @@ export function ProductCard({ product, showActions = false }: ProductCardProps) 
   const { addToCart } = useCart();
 
   const defaultSize = getDefaultSize(product);
-  const defaultPrice = getPriceForSize(product, defaultSize);
+  const [selectedSize, setSelectedSize] = useState<ProductSizeLabel>(defaultSize);
+  const selectedPrice = getPriceForSize(product, selectedSize);
 
   const handleAddToCart = () => {
     addToCart({
       product,
-      size: defaultSize,
-      unitPrice: defaultPrice,
+      size: selectedSize,
+      unitPrice: selectedPrice,
       quantity: 1
     });
   };
@@ -53,7 +55,7 @@ export function ProductCard({ product, showActions = false }: ProductCardProps) 
           />
         </div>
 
-        <div className="space-y-4 p-6">
+        <div className="space-y-5 p-6">
           <div className="flex items-center gap-2">
             <p className="text-xs uppercase tracking-[0.28em] text-bark/60">
               {product.category}
@@ -67,13 +69,43 @@ export function ProductCard({ product, showActions = false }: ProductCardProps) 
             <h3 className="font-[family:var(--font-heading)] text-2xl leading-tight">
               {product.name}
             </h3>
-            <p className="text-sm leading-6 text-bark/75">{product.description}</p>
+            <p className="text-sm leading-6 text-bark/75 line-clamp-3">{product.description}</p>
           </div>
 
-          <div className="flex items-center justify-between gap-4">
-            <p className="text-lg font-semibold text-terracotta">
-              {formatCurrency(getStartingPrice(product))}
-            </p>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-lg font-semibold text-terracotta">
+                {showActions ? formatCurrency(selectedPrice) : formatCurrency(getStartingPrice(product))}
+              </p>
+              {!showActions ? (
+                <p className="mt-1 text-xs uppercase tracking-[0.16em] text-bark/55">
+                  Starting price
+                </p>
+              ) : null}
+            </div>
+            {showActions ? (
+              <div className="flex max-w-[58%] flex-wrap justify-end gap-1.5">
+                {product.variants
+                  .filter((variant) => variant.inStock)
+                  .map((variant) => (
+                    <button
+                      key={variant.id}
+                      type="button"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setSelectedSize(variant.size);
+                      }}
+                      className={`rounded-full border px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] transition ${
+                        selectedSize === variant.size
+                          ? "border-sage bg-sage text-white"
+                          : "border-black/10 bg-cream/20 text-foreground hover:border-sage hover:text-sage"
+                      }`}
+                    >
+                      {variant.size}
+                    </button>
+                  ))}
+              </div>
+            ) : null}
           </div>
         </div>
       </Link>
@@ -83,14 +115,14 @@ export function ProductCard({ product, showActions = false }: ProductCardProps) 
           <button
             type="button"
             onClick={handleAddToCart}
-            className="rounded-full border border-black/10 bg-white px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition hover:border-sage hover:text-sage"
+            className="rounded-full border border-black/10 bg-white px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.16em] text-foreground transition hover:border-sage hover:text-sage"
           >
             Add To Cart
           </button>
           <button
             type="button"
             onClick={handleBuyNow}
-            className="rounded-full bg-terracotta px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#cd624b]"
+            className="rounded-full bg-terracotta px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#cd624b]"
           >
             Buy Now
           </button>

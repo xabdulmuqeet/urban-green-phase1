@@ -15,6 +15,7 @@ export const BUNDLE_SELECTION_STORAGE_KEY = "urban-green-bundle-builder";
 const defaultSelection: BundleSelection = {
   step: 1,
   plantId: null,
+  plantVariantSize: null,
   potId: null,
   extraIds: [],
   quantity: 1,
@@ -25,6 +26,7 @@ export function createBundleSelectionFromCartItem(item: BundleCartItem): BundleS
   return {
     step: 3,
     plantId: item.bundle.plantId,
+    plantVariantSize: item.bundle.plantVariantSize,
     potId: item.bundle.potId,
     extraIds: item.bundle.extraIds,
     quantity: item.quantity,
@@ -64,18 +66,51 @@ export function useBundleBuilder({
     [setValue]
   );
 
+  const toFitSize = useCallback((size: Product["sizes"][number]) => {
+    if (size === '4"') {
+      return "Small" as const;
+    }
+
+    if (size === '6"') {
+      return "Medium" as const;
+    }
+
+    return "Large" as const;
+  }, []);
+
   const selectPlant = useCallback(
     (plant: Product) =>
+      setValue((current) => {
+        const nextVariantSize =
+          current.plantId === plant.id ? current.plantVariantSize ?? plant.sizes[0] : plant.sizes[0];
+        const nextFitSize = toFitSize(nextVariantSize);
+
+        return {
+          ...current,
+          plantId: plant.id,
+          plantVariantSize: nextVariantSize,
+          potId:
+            current.potId && pots.find((pot) => pot.id === current.potId)?.fits.includes(nextFitSize)
+              ? current.potId
+              : null,
+          step: 1
+        };
+      }),
+    [pots, setValue, toFitSize]
+  );
+
+  const selectPlantVariantSize = useCallback(
+    (size: Product["sizes"][number]) =>
       setValue((current) => ({
         ...current,
-        plantId: plant.id,
+        plantVariantSize: size,
         potId:
-          current.potId && pots.find((pot) => pot.id === current.potId)?.fits.includes(plant.plantSize)
+          current.potId && pots.find((pot) => pot.id === current.potId)?.fits.includes(toFitSize(size))
             ? current.potId
             : null,
         step: 2
       })),
-    [pots, setValue]
+    [pots, setValue, toFitSize]
   );
 
   const selectPot = useCallback(
@@ -117,10 +152,12 @@ export function useBundleBuilder({
     quantity: value.quantity || 1,
     editingCartKey: value.editingCartKey,
     selectedPlant,
+    selectedPlantVariantSize: value.plantVariantSize,
     selectedPot,
     selectedExtras,
     setStep,
     selectPlant,
+    selectPlantVariantSize,
     selectPot,
     toggleExtra,
     clearEditingState,
