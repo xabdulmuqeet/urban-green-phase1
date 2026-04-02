@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { ProductGrid } from "@/components/product-grid";
 import { SectionHeading } from "@/components/section-heading";
 import {
@@ -23,7 +24,7 @@ function FilterSelect({
 }: {
   name: string;
   defaultValue: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   return (

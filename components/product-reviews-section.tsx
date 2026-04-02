@@ -2,6 +2,7 @@
 
 import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
+import { Skeleton } from "@/components/skeleton";
 import type { ProductReviewsResponse } from "@/lib/api-types";
 
 function renderStars(rating: number) {
@@ -123,7 +124,13 @@ export function ProductReviewsSection({
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-bark/70">
           Leave a Review
         </p>
-        {status !== "authenticated" ? (
+        {status === "loading" ? (
+          <div className="mt-4 space-y-4">
+            <Skeleton className="h-11 w-full rounded-full" />
+            <Skeleton className="h-32 w-full rounded-[1.5rem]" />
+            <Skeleton className="h-12 w-40 rounded-full" />
+          </div>
+        ) : status !== "authenticated" ? (
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-bark/75">Sign in to leave a rating and comment for this plant.</p>
             <button

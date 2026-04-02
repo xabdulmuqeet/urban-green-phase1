@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { BundleOptionCard } from "@/components/bundle-option-card";
 import { BundleProgress } from "@/components/bundle-progress";
 import { BundleSummary } from "@/components/bundle-summary";
+import { BundleSummarySkeleton } from "@/components/bundle-summary-skeleton";
 import { useCart } from "@/components/cart-provider";
 import { useBundleBuilder } from "@/hooks/use-bundle-builder";
 import { getAllExtras, getAllPots, getPriceForSize } from "@/lib/data";
@@ -191,6 +192,42 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
 
     return true;
   };
+
+  if (!isHydrated) {
+    return (
+      <div className="space-y-8">
+        <div className="grid gap-4 md:grid-cols-3">
+          {["Select Plant", "Select Pot", "Extras"].map((stepLabel) => (
+            <div
+              key={stepLabel}
+              className="rounded-[1.75rem] border border-black/5 bg-white px-5 py-4"
+            >
+              <div className="premium-skeleton animate-shimmer h-3 w-14 rounded-full" />
+              <div className="premium-skeleton animate-shimmer mt-3 h-8 w-36 rounded-xl" />
+            </div>
+          ))}
+        </div>
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="grid gap-6 md:grid-cols-2">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div
+                key={index}
+                className="rounded-[2rem] border border-black/5 bg-white p-4 shadow-card"
+              >
+                <div className="premium-skeleton animate-shimmer h-56 w-full rounded-[1.5rem]" />
+                <div className="mt-4 space-y-3">
+                  <div className="premium-skeleton animate-shimmer h-6 w-2/3 rounded-xl" />
+                  <div className="premium-skeleton animate-shimmer h-4 w-1/2 rounded-xl" />
+                  <div className="premium-skeleton animate-shimmer h-4 w-20 rounded-xl" />
+                </div>
+              </div>
+            ))}
+          </div>
+          <BundleSummarySkeleton />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">

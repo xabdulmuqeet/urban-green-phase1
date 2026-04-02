@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useRef, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { fetchCartFromApi, saveCartToApi } from "@/lib/api-client";
 import { useLocalStorage } from "@/hooks/use-local-storage";
@@ -35,6 +35,7 @@ type CartContextValue = {
   cartItems: CartItem[];
   totalItems: number;
   totalPrice: number;
+  isReady: boolean;
   addToCart: (payload: AddToCartPayload) => void;
   addBundleToCart: (payload: AddBundleToCartPayload) => void;
   replaceBundleInCart: (cartKeyToReplace: string, payload: AddBundleToCartPayload) => void;
@@ -90,6 +91,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const { data: session, status } = useSession();
   const hasLoadedBackendCart = useRef(false);
   const skipNextSave = useRef(false);
+  const [isBackendReady, setIsBackendReady] = useState(false);
   const { value: cartItems, setValue: setCartItems, isHydrated } = useLocalStorage<CartItem[]>(
     "urban-green-cart",
     []
@@ -100,6 +102,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    setIsBackendReady(false);
     let isCancelled = false;
 
     const loadCart = async () => {
@@ -157,6 +160,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         // Keep local fallback cart when backend sync is unavailable.
       } finally {
         hasLoadedBackendCart.current = true;
+        if (!isCancelled) {
+          setIsBackendReady(true);
+        }
       }
     };
 
@@ -193,6 +199,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       cartItems,
       totalItems,
       totalPrice,
+      isReady: isHydrated && (status !== "authenticated" || isBackendReady),
       addToCart: ({ product, size, unitPrice, quantity }) =>
         setCartItems((currentItems) => {
           const cartKey = createProductCartKey(product.id, size);
@@ -266,7 +273,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         ),
       clearCart: () => setCartItems([])
     };
-  }, [cartItems, setCartItems]);
+  }, [cartItems, isBackendReady, isHydrated, setCartItems, status]);
 
   return <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>;
 }

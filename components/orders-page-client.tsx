@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSession, signIn } from "next-auth/react";
 import { fetchOrdersFromApi, lookupGuestOrderFromApi } from "@/lib/api-client";
+import { OrderCardSkeleton } from "@/components/order-card-skeleton";
 import { getExtrasByIds, getPlantById, getPotById } from "@/lib/data";
 import { formatCurrency } from "@/lib/format";
 import type { OrderResponse } from "@/lib/api-types";
@@ -133,8 +134,9 @@ export function OrdersPageClient() {
 
   if (status === "loading" || isLoading) {
     return (
-      <div className="rounded-[2rem] border border-black/5 bg-white p-10 text-center shadow-card">
-        <p className="font-[family:var(--font-heading)] text-3xl">Loading your orders...</p>
+      <div className="space-y-6">
+        <OrderCardSkeleton />
+        <OrderCardSkeleton />
       </div>
     );
   }

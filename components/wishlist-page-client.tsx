@@ -1,15 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { ProductCardSkeleton } from "@/components/product-card-skeleton";
 import { WishlistItem } from "@/components/wishlist-item";
 import { useWishlist } from "@/components/wishlist-provider";
 import { getAllPlants } from "@/lib/data";
 
 export function WishlistPageClient() {
-  const { wishlistIds } = useWishlist();
+  const { wishlistIds, isReady } = useWishlist();
   const wishlistProducts = getAllPlants().filter((product) =>
     wishlistIds.includes(product.id)
   );
+
+  if (!isReady) {
+    return (
+      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <ProductCardSkeleton key={index} />
+        ))}
+      </div>
+    );
+  }
 
   if (wishlistProducts.length === 0) {
     return (

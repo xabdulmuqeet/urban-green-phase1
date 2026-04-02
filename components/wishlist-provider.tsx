@@ -1,12 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useRef, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { fetchWishlistFromApi, saveWishlistToApi } from "@/lib/api-client";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 
 type WishlistContextValue = {
   wishlistIds: string[];
+  isReady: boolean;
   toggleWishlist: (productId: string) => void;
   isWishlisted: (productId: string) => boolean;
 };
@@ -18,6 +19,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
   const hasLoadedBackendWishlist = useRef(false);
   const skipNextSave = useRef(false);
   const hasMergedLocalWishlist = useRef(false);
+  const [isBackendReady, setIsBackendReady] = useState(false);
   const { value: wishlistIds, setValue: setWishlistIds, isHydrated } = useLocalStorage<string[]>(
     "urban-green-wishlist",
     []
@@ -28,6 +30,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    setIsBackendReady(false);
     let isCancelled = false;
 
     const loadWishlist = async () => {
@@ -52,6 +55,9 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
         // Keep local wishlist when backend sync is unavailable.
       } finally {
         hasLoadedBackendWishlist.current = true;
+        if (!isCancelled) {
+          setIsBackendReady(true);
+        }
       }
     };
 
@@ -66,6 +72,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
     if (status !== "authenticated") {
       hasLoadedBackendWishlist.current = false;
       hasMergedLocalWishlist.current = false;
+      setIsBackendReady(true);
       return;
     }
 
@@ -90,6 +97,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
   const contextValue = useMemo<WishlistContextValue>(
     () => ({
       wishlistIds,
+      isReady: isHydrated && (status !== "authenticated" || isBackendReady),
       toggleWishlist: (productId) =>
         setWishlistIds((current) =>
           current.includes(productId)
@@ -98,7 +106,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
         ),
       isWishlisted: (productId) => wishlistIds.includes(productId)
     }),
-    [setWishlistIds, wishlistIds]
+    [isBackendReady, isHydrated, setWishlistIds, status, wishlistIds]
   );
 
   return (
