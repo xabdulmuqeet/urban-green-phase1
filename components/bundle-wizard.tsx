@@ -241,7 +241,7 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
         }}
       />
 
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
         <div className="space-y-8">
           {step === 1 ? (
             <section className="space-y-5">

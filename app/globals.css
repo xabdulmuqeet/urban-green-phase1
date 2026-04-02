@@ -36,7 +36,7 @@ body {
 }
 
 .section-space {
-  @apply py-16 sm:py-20 lg:py-24;
+  @apply pb-16 pt-10 sm:pb-20 sm:pt-12 lg:pb-24 lg:pt-14;
 }
 
 .card-surface {

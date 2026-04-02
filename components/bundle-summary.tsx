@@ -26,7 +26,7 @@ export function BundleSummary({
   onAddBundleAndViewCart
 }: BundleSummaryProps) {
   return (
-    <aside className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-card lg:sticky lg:top-28">
+    <aside className="h-fit self-start rounded-[2rem] border border-black/5 bg-white p-6 shadow-card lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
       <p className="text-sm font-semibold uppercase tracking-[0.25em] text-bark/70">
         Live Summary
       </p>

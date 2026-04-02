@@ -122,13 +122,13 @@ export function AuthControls({ mobile = false, onNavigate }: AuthControlsProps) 
         <div
           className={`${
             mobile ? "mt-3 w-full rounded-[1.75rem]" : "absolute right-0 top-full mt-3 w-[22rem] rounded-[1.9rem]"
-          } border border-black/5 bg-white/96 p-5 shadow-card backdrop-blur-sm`}
+          } border border-black/8 bg-[#fcfbf7] p-5 shadow-[0_24px_60px_rgba(36,48,32,0.14)]`}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-bark/55">
             Your Account
           </p>
           <p className="mt-2 text-sm leading-6 text-bark/72">
-            Sign in to sync wishlist, track orders, and keep your plant edits saved.
+            Sign in to save favorites, track orders, and return to your picks anytime.
           </p>
 
           <div className="mt-5 flex items-center gap-2">

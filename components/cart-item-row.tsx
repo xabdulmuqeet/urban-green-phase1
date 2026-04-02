@@ -65,8 +65,9 @@ export function CartItemRow({
         <div className="flex items-center gap-3">
           <button
             type="button"
+            disabled={item.quantity <= 1}
             onClick={() => onUpdateQuantity(item.cartKey, Math.max(0, item.quantity - 1))}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-cream text-bark"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-cream text-bark disabled:cursor-not-allowed disabled:opacity-40"
           >
             -
           </button>

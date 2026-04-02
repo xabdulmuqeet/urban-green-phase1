@@ -12,8 +12,8 @@ export default function HomePage() {
       <section className="section-space overflow-hidden">
         <div className="page-shell grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
           <div className="fade-up space-y-8">
-            <p className="inline-flex rounded-full border border-sage/30 bg-sage/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.32em] text-sage">
-              Premium Plant Styling
+            <p className="inline-flex rounded-full border border-black/8 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-bark/70 shadow-sm">
+              Curated For Design-Led Homes
             </p>
             <div className="space-y-6">
               <h1 className="max-w-2xl font-[family:var(--font-heading)] text-5xl leading-none sm:text-6xl lg:text-7xl">
