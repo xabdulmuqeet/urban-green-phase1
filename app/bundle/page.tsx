@@ -9,15 +9,14 @@ const excludedBundlePlantIds = new Set([
 ]);
 
 type BundlePageProps = {
-  searchParams?: Promise<{
+  searchParams?: {
     edit?: string;
-  }>;
+  };
 };
 
 export default async function BundlePage({ searchParams }: BundlePageProps) {
   const plants = getAllPlants().filter((plant) => !excludedBundlePlantIds.has(plant.id));
-  const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const editKey = resolvedSearchParams?.edit ?? null;
+  const editKey = searchParams?.edit ?? null;
 
   return (
     <main className="mx-auto max-w-screen-2xl px-[80px] pb-24 pt-32">

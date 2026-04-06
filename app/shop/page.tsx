@@ -56,24 +56,23 @@ function FilterSelect({
 }
 
 type ShopPageProps = {
-  searchParams?: Promise<{
+  searchParams?: {
     filter?: string;
     search?: string;
     condition?: string;
     size?: string;
     price?: string;
     sort?: string;
-  }>;
+  };
 };
 
 export default async function ShopPage({ searchParams }: ShopPageProps) {
-  const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const activeFilter = getShopFilterFromSearchParam(resolvedSearchParams?.filter);
-  const activeCondition = getShopConditionFromSearchParam(resolvedSearchParams?.condition);
-  const activeSize = getShopSizeFromSearchParam(resolvedSearchParams?.size);
-  const activePrice = getShopPriceFromSearchParam(resolvedSearchParams?.price);
-  const activeSort = getShopSortFromSearchParam(resolvedSearchParams?.sort);
-  const searchQuery = resolvedSearchParams?.search?.trim() ?? "";
+  const activeFilter = getShopFilterFromSearchParam(searchParams?.filter);
+  const activeCondition = getShopConditionFromSearchParam(searchParams?.condition);
+  const activeSize = getShopSizeFromSearchParam(searchParams?.size);
+  const activePrice = getShopPriceFromSearchParam(searchParams?.price);
+  const activeSort = getShopSortFromSearchParam(searchParams?.sort);
+  const searchQuery = searchParams?.search?.trim() ?? "";
 
   const plants = getPlantsForShopQuery({
     filter: activeFilter,

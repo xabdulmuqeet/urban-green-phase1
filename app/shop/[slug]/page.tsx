@@ -6,9 +6,9 @@ import { getAllPlants, getPlantById } from "@/lib/data";
 import type { ProductReviewsResponse } from "@/lib/api-types";
 
 type ProductPageProps = {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 };
 
 export function generateStaticParams() {
@@ -23,8 +23,7 @@ const emptyReviews: ProductReviewsResponse = {
 };
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params;
-  const product = getPlantById(slug);
+  const product = getPlantById(params.slug);
 
   if (!product) {
     notFound();
