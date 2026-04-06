@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { hash } from "bcryptjs";
 import { z } from "zod";
 import { connectToDatabase, isDatabaseConfigured } from "@/lib/mongoose";
+import { rateLimit } from "@/lib/security/rate-limit";
 import { UserModel } from "@/models/User";
 
 const registerSchema = z.object({
@@ -11,6 +12,17 @@ const registerSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  const limitedResponse = rateLimit(request, {
+    keyPrefix: "auth-register",
+    limit: 5,
+    windowMs: 10 * 60 * 1000,
+    message: "Too many sign-up attempts. Please wait a few minutes and try again."
+  });
+
+  if (limitedResponse) {
+    return limitedResponse;
+  }
+
   try {
     if (!isDatabaseConfigured()) {
       return NextResponse.json(

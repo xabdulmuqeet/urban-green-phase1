@@ -1,17 +1,17 @@
-import { SectionHeading } from "@/components/section-heading";
 import { CartPageClient } from "@/components/cart-page-client";
 
 export default function CartPage() {
   return (
-    <section className="section-space">
-      <div className="page-shell space-y-10">
-        <SectionHeading
-          eyebrow="Your Cart"
-          title="A calm collection, ready to come home."
-          description="Review your selected plants, adjust quantities, and keep your styling choices organized."
-        />
-        <CartPageClient />
-      </div>
-    </section>
+    <main className="mx-auto max-w-screen-2xl px-[80px] pb-24 pt-32">
+      <header className="mb-16">
+        <p className="mb-4 font-[family:var(--font-body)] text-xs uppercase tracking-[0.24em] text-[#486730]">
+          The Final Selection
+        </p>
+        <h1 className="font-[family:var(--font-heading)] text-5xl font-bold leading-none tracking-[-0.06em] text-[#486730] md:text-7xl">
+          Checkout.
+        </h1>
+      </header>
+      <CartPageClient />
+    </main>
   );
 }

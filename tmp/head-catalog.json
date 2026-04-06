@@ -1,0 +1,3370 @@
+{
+  "plants": [
+    {
+      "id": "monstera-deliciosa",
+      "name": "Monstera Deliciosa",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Statement Plant",
+      "collections": [
+        "statement"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "monstera-deliciosa-4",
+          "size": "4\"",
+          "sku": "MON-4",
+          "price": 68,
+          "inStock": true
+        },
+        {
+          "id": "monstera-deliciosa-6",
+          "size": "6\"",
+          "sku": "MON-6",
+          "price": 82,
+          "inStock": true
+        },
+        {
+          "id": "monstera-deliciosa-10",
+          "size": "10\"",
+          "sku": "MON-10",
+          "price": 116,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Best Seller",
+      "description": "Architectural leaves and a sculptural silhouette make this a signature plant for modern interiors.",
+      "care": {
+        "light": "Thrives in bright, indirect light with gentle morning sun.",
+        "watering": "Water when the top inch of soil feels dry, then drain thoroughly.",
+        "commonIssues": "Wipe leaves monthly, rotate weekly, and watch for drooping caused by inconsistent watering."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "olive-tree",
+      "name": "Indoor Olive Tree",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Mediterranean Tree",
+      "collections": [
+        "trees"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "olive-tree-4",
+          "size": "4\"",
+          "sku": "OLI-4",
+          "price": 92,
+          "inStock": true
+        },
+        {
+          "id": "olive-tree-6",
+          "size": "6\"",
+          "sku": "OLI-6",
+          "price": 118,
+          "inStock": true
+        },
+        {
+          "id": "olive-tree-10",
+          "size": "10\"",
+          "sku": "OLI-10",
+          "price": 156,
+          "inStock": false
+        }
+      ],
+      "condition": "fragile",
+      "tag": "New Arrival",
+      "description": "A refined, silvery-green tree that brings warmth and height to calm, sunlit rooms.",
+      "care": {
+        "light": "Needs a bright spot with several hours of direct sun.",
+        "watering": "Allow the soil to dry slightly between waterings.",
+        "commonIssues": "Yellowing leaves often point to overwatering or too little direct sun."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "calathea-orbifolia",
+      "name": "Calathea Orbifolia",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Low-Light Favorite",
+      "collections": [
+        "low-light",
+        "statement"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "calathea-orbifolia-4",
+          "size": "4\"",
+          "sku": "CAL-4",
+          "price": 54,
+          "inStock": true
+        },
+        {
+          "id": "calathea-orbifolia-6",
+          "size": "6\"",
+          "sku": "CAL-6",
+          "price": 72,
+          "inStock": true
+        },
+        {
+          "id": "calathea-orbifolia-10",
+          "size": "10\"",
+          "sku": "CAL-10",
+          "price": 104,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Low Stock",
+      "description": "Broad patterned foliage with soft silver bands for a lush, gallery-like feel.",
+      "care": {
+        "light": "Prefers medium to bright indirect light.",
+        "watering": "Keep soil lightly moist and use filtered water when possible.",
+        "commonIssues": "Brown edges can appear if the air is too dry or the water quality is harsh."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "ficus-altissima",
+      "name": "Ficus Altissima",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Tree Form",
+      "collections": [
+        "trees",
+        "statement"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "ficus-altissima-4",
+          "size": "4\"",
+          "sku": "FIC-4",
+          "price": 88,
+          "inStock": true
+        },
+        {
+          "id": "ficus-altissima-6",
+          "size": "6\"",
+          "sku": "FIC-6",
+          "price": 110,
+          "inStock": true
+        },
+        {
+          "id": "ficus-altissima-10",
+          "size": "10\"",
+          "sku": "FIC-10",
+          "price": 148,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Studio Pick",
+      "description": "Variegated leaves and an airy shape designed to anchor a room with understated drama.",
+      "care": {
+        "light": "Bright filtered light keeps the variegation crisp.",
+        "watering": "Water when the upper layer of soil dries out.",
+        "commonIssues": "Leaf drop is common after sudden moves, drafts, or irregular watering."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "bird-of-paradise",
+      "name": "Bird of Paradise",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Statement Foliage",
+      "collections": [
+        "statement",
+        "trees",
+        "palms"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "bird-of-paradise-4",
+          "size": "4\"",
+          "sku": "BOP-4",
+          "price": 70,
+          "inStock": true
+        },
+        {
+          "id": "bird-of-paradise-6",
+          "size": "6\"",
+          "sku": "BOP-6",
+          "price": 86,
+          "inStock": true
+        },
+        {
+          "id": "bird-of-paradise-10",
+          "size": "10\"",
+          "sku": "BOP-10",
+          "price": 112,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Sunroom Favorite",
+      "description": "Bird of Paradise is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "rubber-plant-burgundy",
+      "name": "Rubber Plant Burgundy",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Architectural Tree",
+      "collections": [
+        "statement",
+        "trees"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "rubber-plant-burgundy-4",
+          "size": "4\"",
+          "sku": "RPB-4",
+          "price": 76,
+          "inStock": true
+        },
+        {
+          "id": "rubber-plant-burgundy-6",
+          "size": "6\"",
+          "sku": "RPB-6",
+          "price": 92,
+          "inStock": true
+        },
+        {
+          "id": "rubber-plant-burgundy-10",
+          "size": "10\"",
+          "sku": "RPB-10",
+          "price": 118,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Design Favorite",
+      "description": "Rubber Plant Burgundy is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "zz-plant-raven",
+      "name": "ZZ Plant Raven",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Low-Light Favorite",
+      "collections": [
+        "low-light",
+        "collector"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "zz-plant-raven-4",
+          "size": "4\"",
+          "sku": "ZPR-4",
+          "price": 68,
+          "inStock": true
+        },
+        {
+          "id": "zz-plant-raven-6",
+          "size": "6\"",
+          "sku": "ZPR-6",
+          "price": 84,
+          "inStock": true
+        },
+        {
+          "id": "zz-plant-raven-10",
+          "size": "10\"",
+          "sku": "ZPR-10",
+          "price": 110,
+          "inStock": false
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Easy Care",
+      "description": "ZZ Plant Raven is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "pothos-marble-queen",
+      "name": "Pothos Marble Queen",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Trailing Vine",
+      "collections": [
+        "low-light",
+        "trailing"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "pothos-marble-queen-4",
+          "size": "4\"",
+          "sku": "PMQ-4",
+          "price": 64,
+          "inStock": true
+        },
+        {
+          "id": "pothos-marble-queen-6",
+          "size": "6\"",
+          "sku": "PMQ-6",
+          "price": 80,
+          "inStock": true
+        },
+        {
+          "id": "pothos-marble-queen-10",
+          "size": "10\"",
+          "sku": "PMQ-10",
+          "price": 106,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Shelf Styling",
+      "description": "Pothos Marble Queen is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "snake-plant-laurentii",
+      "name": "Snake Plant Laurentii",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Air-Purifying Accent",
+      "collections": [
+        "statement",
+        "low-light"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "snake-plant-laurentii-4",
+          "size": "4\"",
+          "sku": "SPL-4",
+          "price": 80,
+          "inStock": true
+        },
+        {
+          "id": "snake-plant-laurentii-6",
+          "size": "6\"",
+          "sku": "SPL-6",
+          "price": 96,
+          "inStock": true
+        },
+        {
+          "id": "snake-plant-laurentii-10",
+          "size": "10\"",
+          "sku": "SPL-10",
+          "price": 122,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Studio Essential",
+      "description": "Snake Plant Laurentii is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "peace-lily-domino",
+      "name": "Peace Lily Domino",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Blooming Accent",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "peace-lily-domino-4",
+          "size": "4\"",
+          "sku": "PLD-4",
+          "price": 86,
+          "inStock": true
+        },
+        {
+          "id": "peace-lily-domino-6",
+          "size": "6\"",
+          "sku": "PLD-6",
+          "price": 102,
+          "inStock": true
+        },
+        {
+          "id": "peace-lily-domino-10",
+          "size": "10\"",
+          "sku": "PLD-10",
+          "price": 128,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Calm Favorite",
+      "description": "Peace Lily Domino is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "philodendron-micans",
+      "name": "Philodendron Micans",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Velvet Trailing Plant",
+      "collections": [
+        "statement",
+        "trailing",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "philodendron-micans-4",
+          "size": "4\"",
+          "sku": "PM-4",
+          "price": 82,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-micans-6",
+          "size": "6\"",
+          "sku": "PM-6",
+          "price": 98,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-micans-10",
+          "size": "10\"",
+          "sku": "PM-10",
+          "price": 124,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Collector Pick",
+      "description": "Philodendron Micans is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "philodendron-birkin",
+      "name": "Philodendron Birkin",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Patterned Statement",
+      "collections": [
+        "statement",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "philodendron-birkin-4",
+          "size": "4\"",
+          "sku": "PB-4",
+          "price": 88,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-birkin-6",
+          "size": "6\"",
+          "sku": "PB-6",
+          "price": 104,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-birkin-10",
+          "size": "10\"",
+          "sku": "PB-10",
+          "price": 130,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "New Arrival",
+      "description": "Philodendron Birkin is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "anthurium-clarinervium",
+      "name": "Anthurium Clarinervium",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Collector Leaf",
+      "collections": [
+        "statement",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "anthurium-clarinervium-4",
+          "size": "4\"",
+          "sku": "AC-4",
+          "price": 46,
+          "inStock": true
+        },
+        {
+          "id": "anthurium-clarinervium-6",
+          "size": "6\"",
+          "sku": "AC-6",
+          "price": 62,
+          "inStock": true
+        },
+        {
+          "id": "anthurium-clarinervium-10",
+          "size": "10\"",
+          "sku": "AC-10",
+          "price": 88,
+          "inStock": false
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Rare Find",
+      "description": "Anthurium Clarinervium is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "alocasia-polly",
+      "name": "Alocasia Polly",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Graphic Foliage",
+      "collections": [
+        "statement",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "alocasia-polly-4",
+          "size": "4\"",
+          "sku": "AP-4",
+          "price": 52,
+          "inStock": true
+        },
+        {
+          "id": "alocasia-polly-6",
+          "size": "6\"",
+          "sku": "AP-6",
+          "price": 68,
+          "inStock": true
+        },
+        {
+          "id": "alocasia-polly-10",
+          "size": "10\"",
+          "sku": "AP-10",
+          "price": 94,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Editor Pick",
+      "description": "Alocasia Polly is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "alocasia-regal-shields",
+      "name": "Alocasia Regal Shields",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Statement Foliage",
+      "collections": [
+        "statement",
+        "collector"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "alocasia-regal-shields-4",
+          "size": "4\"",
+          "sku": "ARS-4",
+          "price": 82,
+          "inStock": true
+        },
+        {
+          "id": "alocasia-regal-shields-6",
+          "size": "6\"",
+          "sku": "ARS-6",
+          "price": 98,
+          "inStock": true
+        },
+        {
+          "id": "alocasia-regal-shields-10",
+          "size": "10\"",
+          "sku": "ARS-10",
+          "price": 124,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Showstopper",
+      "description": "Alocasia Regal Shields is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "dracaena-marginata",
+      "name": "Dracaena Marginata",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Architectural Tree",
+      "collections": [
+        "trees"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "dracaena-marginata-4",
+          "size": "4\"",
+          "sku": "DM-4",
+          "price": 88,
+          "inStock": true
+        },
+        {
+          "id": "dracaena-marginata-6",
+          "size": "6\"",
+          "sku": "DM-6",
+          "price": 104,
+          "inStock": true
+        },
+        {
+          "id": "dracaena-marginata-10",
+          "size": "10\"",
+          "sku": "DM-10",
+          "price": 130,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Tall Accent",
+      "description": "Dracaena Marginata is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "dracaena-lisa",
+      "name": "Dracaena Lisa",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Sculptural Cane Plant",
+      "collections": [
+        "trees"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "dracaena-lisa-4",
+          "size": "4\"",
+          "sku": "DL-4",
+          "price": 94,
+          "inStock": true
+        },
+        {
+          "id": "dracaena-lisa-6",
+          "size": "6\"",
+          "sku": "DL-6",
+          "price": 110,
+          "inStock": true
+        },
+        {
+          "id": "dracaena-lisa-10",
+          "size": "10\"",
+          "sku": "DL-10",
+          "price": 136,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Studio Pick",
+      "description": "Dracaena Lisa is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "parlor-palm",
+      "name": "Parlor Palm",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Classic Palm",
+      "collections": [
+        "low-light",
+        "palms"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "parlor-palm-4",
+          "size": "4\"",
+          "sku": "PP-4",
+          "price": 86,
+          "inStock": true
+        },
+        {
+          "id": "parlor-palm-6",
+          "size": "6\"",
+          "sku": "PP-6",
+          "price": 102,
+          "inStock": true
+        },
+        {
+          "id": "parlor-palm-10",
+          "size": "10\"",
+          "sku": "PP-10",
+          "price": 128,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Timeless",
+      "description": "Parlor Palm is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "kentia-palm",
+      "name": "Kentia Palm",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Premium Palm",
+      "collections": [
+        "trees",
+        "statement",
+        "palms",
+        "collector"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "kentia-palm-4",
+          "size": "4\"",
+          "sku": "KP-4",
+          "price": 106,
+          "inStock": true
+        },
+        {
+          "id": "kentia-palm-6",
+          "size": "6\"",
+          "sku": "KP-6",
+          "price": 122,
+          "inStock": true
+        },
+        {
+          "id": "kentia-palm-10",
+          "size": "10\"",
+          "sku": "KP-10",
+          "price": 148,
+          "inStock": false
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Luxury Leaf",
+      "description": "Kentia Palm is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "majesty-palm",
+      "name": "Majesty Palm",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Resort Palm",
+      "collections": [
+        "trees",
+        "palms"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "majesty-palm-4",
+          "size": "4\"",
+          "sku": "MP-4",
+          "price": 112,
+          "inStock": true
+        },
+        {
+          "id": "majesty-palm-6",
+          "size": "6\"",
+          "sku": "MP-6",
+          "price": 128,
+          "inStock": true
+        },
+        {
+          "id": "majesty-palm-10",
+          "size": "10\"",
+          "sku": "MP-10",
+          "price": 154,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Sunlit Rooms",
+      "description": "Majesty Palm is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "money-tree",
+      "name": "Money Tree",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Braided Tree",
+      "collections": [
+        "trees"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "money-tree-4",
+          "size": "4\"",
+          "sku": "MT-4",
+          "price": 56,
+          "inStock": true
+        },
+        {
+          "id": "money-tree-6",
+          "size": "6\"",
+          "sku": "MT-6",
+          "price": 72,
+          "inStock": true
+        },
+        {
+          "id": "money-tree-10",
+          "size": "10\"",
+          "sku": "MT-10",
+          "price": 98,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Gift Favorite",
+      "description": "Money Tree is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "jade-plant",
+      "name": "Jade Plant",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Desert Classic",
+      "collections": [
+        "low-light",
+        "succulents"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "jade-plant-4",
+          "size": "4\"",
+          "sku": "JP-4",
+          "price": 52,
+          "inStock": true
+        },
+        {
+          "id": "jade-plant-6",
+          "size": "6\"",
+          "sku": "JP-6",
+          "price": 68,
+          "inStock": true
+        },
+        {
+          "id": "jade-plant-10",
+          "size": "10\"",
+          "sku": "JP-10",
+          "price": 94,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Easy Care",
+      "description": "Jade Plant is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "string-of-pearls",
+      "name": "String of Pearls",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Trailing Succulent",
+      "collections": [
+        "statement",
+        "trailing",
+        "succulents",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "string-of-pearls-4",
+          "size": "4\"",
+          "sku": "SOP-4",
+          "price": 58,
+          "inStock": true
+        },
+        {
+          "id": "string-of-pearls-6",
+          "size": "6\"",
+          "sku": "SOP-6",
+          "price": 74,
+          "inStock": true
+        },
+        {
+          "id": "string-of-pearls-10",
+          "size": "10\"",
+          "sku": "SOP-10",
+          "price": 100,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Shelf Favorite",
+      "description": "String of Pearls is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "burros-tail",
+      "name": "Burro's Tail",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Trailing Succulent",
+      "collections": [
+        "statement",
+        "trailing",
+        "succulents"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "burros-tail-4",
+          "size": "4\"",
+          "sku": "BT-4",
+          "price": 64,
+          "inStock": true
+        },
+        {
+          "id": "burros-tail-6",
+          "size": "6\"",
+          "sku": "BT-6",
+          "price": 80,
+          "inStock": true
+        },
+        {
+          "id": "burros-tail-10",
+          "size": "10\"",
+          "sku": "BT-10",
+          "price": 106,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Soft Texture",
+      "description": "Burro's Tail is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "hoya-carnosa",
+      "name": "Hoya Carnosa",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Wax Plant",
+      "collections": [
+        "low-light",
+        "trailing"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "hoya-carnosa-4",
+          "size": "4\"",
+          "sku": "HC-4",
+          "price": 70,
+          "inStock": true
+        },
+        {
+          "id": "hoya-carnosa-6",
+          "size": "6\"",
+          "sku": "HC-6",
+          "price": 86,
+          "inStock": true
+        },
+        {
+          "id": "hoya-carnosa-10",
+          "size": "10\"",
+          "sku": "HC-10",
+          "price": 112,
+          "inStock": false
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Slow Grower",
+      "description": "Hoya Carnosa is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "hoya-krimson-queen",
+      "name": "Hoya Krimson Queen",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Variegated Wax Plant",
+      "collections": [
+        "statement",
+        "trailing",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "hoya-krimson-queen-4",
+          "size": "4\"",
+          "sku": "HKQ-4",
+          "price": 76,
+          "inStock": true
+        },
+        {
+          "id": "hoya-krimson-queen-6",
+          "size": "6\"",
+          "sku": "HKQ-6",
+          "price": 92,
+          "inStock": true
+        },
+        {
+          "id": "hoya-krimson-queen-10",
+          "size": "10\"",
+          "sku": "HKQ-10",
+          "price": 118,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Collector Favorite",
+      "description": "Hoya Krimson Queen is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "begonia-maculata",
+      "name": "Begonia Maculata",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Patterned Accent",
+      "collections": [
+        "statement",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "begonia-maculata-4",
+          "size": "4\"",
+          "sku": "BM-4",
+          "price": 82,
+          "inStock": true
+        },
+        {
+          "id": "begonia-maculata-6",
+          "size": "6\"",
+          "sku": "BM-6",
+          "price": 98,
+          "inStock": true
+        },
+        {
+          "id": "begonia-maculata-10",
+          "size": "10\"",
+          "sku": "BM-10",
+          "price": 124,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Polka Dot",
+      "description": "Begonia Maculata is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "boston-fern",
+      "name": "Boston Fern",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Classic Fern",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "boston-fern-4",
+          "size": "4\"",
+          "sku": "BF-4",
+          "price": 98,
+          "inStock": true
+        },
+        {
+          "id": "boston-fern-6",
+          "size": "6\"",
+          "sku": "BF-6",
+          "price": 114,
+          "inStock": true
+        },
+        {
+          "id": "boston-fern-10",
+          "size": "10\"",
+          "sku": "BF-10",
+          "price": 140,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Humidity Lover",
+      "description": "Boston Fern is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "staghorn-fern",
+      "name": "Staghorn Fern",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Mounted Statement",
+      "collections": [
+        "statement",
+        "collector"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "staghorn-fern-4",
+          "size": "4\"",
+          "sku": "SF-4",
+          "price": 56,
+          "inStock": true
+        },
+        {
+          "id": "staghorn-fern-6",
+          "size": "6\"",
+          "sku": "SF-6",
+          "price": 72,
+          "inStock": true
+        },
+        {
+          "id": "staghorn-fern-10",
+          "size": "10\"",
+          "sku": "SF-10",
+          "price": 98,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Gallery Pick",
+      "description": "Staghorn Fern is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "asparagus-fern",
+      "name": "Asparagus Fern",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Airy Texture",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "asparagus-fern-4",
+          "size": "4\"",
+          "sku": "AF-4",
+          "price": 52,
+          "inStock": true
+        },
+        {
+          "id": "asparagus-fern-6",
+          "size": "6\"",
+          "sku": "AF-6",
+          "price": 68,
+          "inStock": true
+        },
+        {
+          "id": "asparagus-fern-10",
+          "size": "10\"",
+          "sku": "AF-10",
+          "price": 94,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Soft Detail",
+      "description": "Asparagus Fern is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "aglaonema-silver-bay",
+      "name": "Aglaonema Silver Bay",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Low-Light Foliage",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "aglaonema-silver-bay-4",
+          "size": "4\"",
+          "sku": "ASB-4",
+          "price": 68,
+          "inStock": true
+        },
+        {
+          "id": "aglaonema-silver-bay-6",
+          "size": "6\"",
+          "sku": "ASB-6",
+          "price": 84,
+          "inStock": true
+        },
+        {
+          "id": "aglaonema-silver-bay-10",
+          "size": "10\"",
+          "sku": "ASB-10",
+          "price": 110,
+          "inStock": false
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Apartment Friendly",
+      "description": "Aglaonema Silver Bay is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "aglaonema-red-siam",
+      "name": "Aglaonema Red Siam",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Color Accent",
+      "collections": [
+        "statement",
+        "low-light"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "aglaonema-red-siam-4",
+          "size": "4\"",
+          "sku": "ARS-4",
+          "price": 74,
+          "inStock": true
+        },
+        {
+          "id": "aglaonema-red-siam-6",
+          "size": "6\"",
+          "sku": "ARS-6",
+          "price": 90,
+          "inStock": true
+        },
+        {
+          "id": "aglaonema-red-siam-10",
+          "size": "10\"",
+          "sku": "ARS-10",
+          "price": 116,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Color Pop",
+      "description": "Aglaonema Red Siam is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "croton-petra",
+      "name": "Croton Petra",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Color Statement",
+      "collections": [
+        "statement",
+        "collector"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "croton-petra-4",
+          "size": "4\"",
+          "sku": "CP-4",
+          "price": 80,
+          "inStock": true
+        },
+        {
+          "id": "croton-petra-6",
+          "size": "6\"",
+          "sku": "CP-6",
+          "price": 96,
+          "inStock": true
+        },
+        {
+          "id": "croton-petra-10",
+          "size": "10\"",
+          "sku": "CP-10",
+          "price": 122,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Bold Leaves",
+      "description": "Croton Petra is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "ctenanthe-setosa",
+      "name": "Ctenanthe Setosa",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Striped Foliage",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "ctenanthe-setosa-4",
+          "size": "4\"",
+          "sku": "CS-4",
+          "price": 86,
+          "inStock": true
+        },
+        {
+          "id": "ctenanthe-setosa-6",
+          "size": "6\"",
+          "sku": "CS-6",
+          "price": 102,
+          "inStock": true
+        },
+        {
+          "id": "ctenanthe-setosa-10",
+          "size": "10\"",
+          "sku": "CS-10",
+          "price": 128,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Soft Motion",
+      "description": "Ctenanthe Setosa is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "maranta-lemon-lime",
+      "name": "Maranta Lemon Lime",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Prayer Plant",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "maranta-lemon-lime-4",
+          "size": "4\"",
+          "sku": "MLL-4",
+          "price": 82,
+          "inStock": true
+        },
+        {
+          "id": "maranta-lemon-lime-6",
+          "size": "6\"",
+          "sku": "MLL-6",
+          "price": 98,
+          "inStock": true
+        },
+        {
+          "id": "maranta-lemon-lime-10",
+          "size": "10\"",
+          "sku": "MLL-10",
+          "price": 124,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Evening Ritual",
+      "description": "Maranta Lemon Lime is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "caladium-white-queen",
+      "name": "Caladium White Queen",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Seasonal Accent",
+      "collections": [
+        "statement",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "caladium-white-queen-4",
+          "size": "4\"",
+          "sku": "CWQ-4",
+          "price": 88,
+          "inStock": true
+        },
+        {
+          "id": "caladium-white-queen-6",
+          "size": "6\"",
+          "sku": "CWQ-6",
+          "price": 104,
+          "inStock": true
+        },
+        {
+          "id": "caladium-white-queen-10",
+          "size": "10\"",
+          "sku": "CWQ-10",
+          "price": 130,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Seasonal Pick",
+      "description": "Caladium White Queen is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "pilea-peperomioides",
+      "name": "Pilea Peperomioides",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Coin Plant",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "pilea-peperomioides-4",
+          "size": "4\"",
+          "sku": "PP-4",
+          "price": 46,
+          "inStock": true
+        },
+        {
+          "id": "pilea-peperomioides-6",
+          "size": "6\"",
+          "sku": "PP-6",
+          "price": 62,
+          "inStock": true
+        },
+        {
+          "id": "pilea-peperomioides-10",
+          "size": "10\"",
+          "sku": "PP-10",
+          "price": 88,
+          "inStock": false
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Desk Favorite",
+      "description": "Pilea Peperomioides is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "peperomia-watermelon",
+      "name": "Peperomia Watermelon",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Compact Patterned Plant",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "peperomia-watermelon-4",
+          "size": "4\"",
+          "sku": "PW-4",
+          "price": 52,
+          "inStock": true
+        },
+        {
+          "id": "peperomia-watermelon-6",
+          "size": "6\"",
+          "sku": "PW-6",
+          "price": 68,
+          "inStock": true
+        },
+        {
+          "id": "peperomia-watermelon-10",
+          "size": "10\"",
+          "sku": "PW-10",
+          "price": 94,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Compact Choice",
+      "description": "Peperomia Watermelon is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "peperomia-rosso",
+      "name": "Peperomia Rosso",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Textured Accent",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "peperomia-rosso-4",
+          "size": "4\"",
+          "sku": "PR-4",
+          "price": 58,
+          "inStock": true
+        },
+        {
+          "id": "peperomia-rosso-6",
+          "size": "6\"",
+          "sku": "PR-6",
+          "price": 74,
+          "inStock": true
+        },
+        {
+          "id": "peperomia-rosso-10",
+          "size": "10\"",
+          "sku": "PR-10",
+          "price": 100,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Moody Leaf",
+      "description": "Peperomia Rosso is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "schefflera-arboricola",
+      "name": "Schefflera Arboricola",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Umbrella Tree",
+      "collections": [
+        "trees"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "schefflera-arboricola-4",
+          "size": "4\"",
+          "sku": "SA-4",
+          "price": 88,
+          "inStock": true
+        },
+        {
+          "id": "schefflera-arboricola-6",
+          "size": "6\"",
+          "sku": "SA-6",
+          "price": 104,
+          "inStock": true
+        },
+        {
+          "id": "schefflera-arboricola-10",
+          "size": "10\"",
+          "sku": "SA-10",
+          "price": 130,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Bright Corner",
+      "description": "Schefflera Arboricola is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "ficus-elastica-tineke",
+      "name": "Ficus Elastica Tineke",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Variegated Rubber Plant",
+      "collections": [
+        "statement",
+        "trees",
+        "collector"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "ficus-elastica-tineke-4",
+          "size": "4\"",
+          "sku": "FET-4",
+          "price": 94,
+          "inStock": true
+        },
+        {
+          "id": "ficus-elastica-tineke-6",
+          "size": "6\"",
+          "sku": "FET-6",
+          "price": 110,
+          "inStock": true
+        },
+        {
+          "id": "ficus-elastica-tineke-10",
+          "size": "10\"",
+          "sku": "FET-10",
+          "price": 136,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Designer Pick",
+      "description": "Ficus Elastica Tineke is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "ficus-benjamina",
+      "name": "Ficus Benjamina",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Classic Weeping Fig",
+      "collections": [
+        "trees"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "ficus-benjamina-4",
+          "size": "4\"",
+          "sku": "FB-4",
+          "price": 100,
+          "inStock": true
+        },
+        {
+          "id": "ficus-benjamina-6",
+          "size": "6\"",
+          "sku": "FB-6",
+          "price": 116,
+          "inStock": true
+        },
+        {
+          "id": "ficus-benjamina-10",
+          "size": "10\"",
+          "sku": "FB-10",
+          "price": 142,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Elegant Height",
+      "description": "Ficus Benjamina is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "yucca-cane",
+      "name": "Yucca Cane",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Desert Tree",
+      "collections": [
+        "trees",
+        "statement"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "yucca-cane-4",
+          "size": "4\"",
+          "sku": "YC-4",
+          "price": 106,
+          "inStock": true
+        },
+        {
+          "id": "yucca-cane-6",
+          "size": "6\"",
+          "sku": "YC-6",
+          "price": 122,
+          "inStock": true
+        },
+        {
+          "id": "yucca-cane-10",
+          "size": "10\"",
+          "sku": "YC-10",
+          "price": 148,
+          "inStock": false
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Sun Lover",
+      "description": "Yucca Cane is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "ponytail-palm",
+      "name": "Ponytail Palm",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Sculptural Accent",
+      "collections": [
+        "statement",
+        "palms",
+        "succulents"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "ponytail-palm-4",
+          "size": "4\"",
+          "sku": "PP-4",
+          "price": 98,
+          "inStock": true
+        },
+        {
+          "id": "ponytail-palm-6",
+          "size": "6\"",
+          "sku": "PP-6",
+          "price": 114,
+          "inStock": true
+        },
+        {
+          "id": "ponytail-palm-10",
+          "size": "10\"",
+          "sku": "PP-10",
+          "price": 140,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Character Piece",
+      "description": "Ponytail Palm is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "norfolk-island-pine",
+      "name": "Norfolk Island Pine",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Soft Evergreen",
+      "collections": [
+        "trees"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "norfolk-island-pine-4",
+          "size": "4\"",
+          "sku": "NIP-4",
+          "price": 70,
+          "inStock": true
+        },
+        {
+          "id": "norfolk-island-pine-6",
+          "size": "6\"",
+          "sku": "NIP-6",
+          "price": 86,
+          "inStock": true
+        },
+        {
+          "id": "norfolk-island-pine-10",
+          "size": "10\"",
+          "sku": "NIP-10",
+          "price": 112,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Holiday Favorite",
+      "description": "Norfolk Island Pine is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "dieffenbachia-camille",
+      "name": "Dieffenbachia Camille",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Patterned Foliage",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "dieffenbachia-camille-4",
+          "size": "4\"",
+          "sku": "DC-4",
+          "price": 62,
+          "inStock": true
+        },
+        {
+          "id": "dieffenbachia-camille-6",
+          "size": "6\"",
+          "sku": "DC-6",
+          "price": 78,
+          "inStock": true
+        },
+        {
+          "id": "dieffenbachia-camille-10",
+          "size": "10\"",
+          "sku": "DC-10",
+          "price": 104,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Lounge Pick",
+      "description": "Dieffenbachia Camille is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "syngonium-podophyllum",
+      "name": "Syngonium Podophyllum",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Arrowhead Vine",
+      "collections": [
+        "low-light",
+        "trailing"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "syngonium-podophyllum-4",
+          "size": "4\"",
+          "sku": "SP-4",
+          "price": 58,
+          "inStock": true
+        },
+        {
+          "id": "syngonium-podophyllum-6",
+          "size": "6\"",
+          "sku": "SP-6",
+          "price": 74,
+          "inStock": true
+        },
+        {
+          "id": "syngonium-podophyllum-10",
+          "size": "10\"",
+          "sku": "SP-10",
+          "price": 100,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Layering Plant",
+      "description": "Syngonium Podophyllum is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "syngonium-neon",
+      "name": "Syngonium Neon",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Blush Arrowhead",
+      "collections": [
+        "statement",
+        "trailing",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "syngonium-neon-4",
+          "size": "4\"",
+          "sku": "SN-4",
+          "price": 64,
+          "inStock": true
+        },
+        {
+          "id": "syngonium-neon-6",
+          "size": "6\"",
+          "sku": "SN-6",
+          "price": 80,
+          "inStock": true
+        },
+        {
+          "id": "syngonium-neon-10",
+          "size": "10\"",
+          "sku": "SN-10",
+          "price": 106,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Soft Color",
+      "description": "Syngonium Neon is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "raphidophora-tetrasperma",
+      "name": "Raphidophora Tetrasperma",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Mini Climber",
+      "collections": [
+        "statement"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "raphidophora-tetrasperma-4",
+          "size": "4\"",
+          "sku": "RT-4",
+          "price": 80,
+          "inStock": true
+        },
+        {
+          "id": "raphidophora-tetrasperma-6",
+          "size": "6\"",
+          "sku": "RT-6",
+          "price": 96,
+          "inStock": true
+        },
+        {
+          "id": "raphidophora-tetrasperma-10",
+          "size": "10\"",
+          "sku": "RT-10",
+          "price": 122,
+          "inStock": false
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Urban Jungle",
+      "description": "Raphidophora Tetrasperma is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "monstera-adansonii",
+      "name": "Monstera Adansonii",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Swiss Cheese Vine",
+      "collections": [
+        "statement",
+        "trailing",
+        "collector"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "monstera-adansonii-4",
+          "size": "4\"",
+          "sku": "MA-4",
+          "price": 86,
+          "inStock": true
+        },
+        {
+          "id": "monstera-adansonii-6",
+          "size": "6\"",
+          "sku": "MA-6",
+          "price": 102,
+          "inStock": true
+        },
+        {
+          "id": "monstera-adansonii-10",
+          "size": "10\"",
+          "sku": "MA-10",
+          "price": 128,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Trailing Favorite",
+      "description": "Monstera Adansonii is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "phlebodium-blue-star",
+      "name": "Blue Star Fern",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Blue-Green Fern",
+      "collections": [
+        "low-light"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "phlebodium-blue-star-4",
+          "size": "4\"",
+          "sku": "PBS-4",
+          "price": 92,
+          "inStock": true
+        },
+        {
+          "id": "phlebodium-blue-star-6",
+          "size": "6\"",
+          "sku": "PBS-6",
+          "price": 108,
+          "inStock": true
+        },
+        {
+          "id": "phlebodium-blue-star-10",
+          "size": "10\"",
+          "sku": "PBS-10",
+          "price": 134,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Textural Pick",
+      "description": "Blue Star Fern is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "calathea-medallion",
+      "name": "Calathea Medallion",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Patterned Calathea",
+      "collections": [
+        "low-light",
+        "statement",
+        "collector"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "calathea-medallion-4",
+          "size": "4\"",
+          "sku": "CM-4",
+          "price": 98,
+          "inStock": true
+        },
+        {
+          "id": "calathea-medallion-6",
+          "size": "6\"",
+          "sku": "CM-6",
+          "price": 114,
+          "inStock": true
+        },
+        {
+          "id": "calathea-medallion-10",
+          "size": "10\"",
+          "sku": "CM-10",
+          "price": 140,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Pattern Play",
+      "description": "Calathea Medallion is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "calathea-freddie",
+      "name": "Calathea Freddie",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Striped Calathea",
+      "collections": [
+        "low-light",
+        "collector"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "calathea-freddie-4",
+          "size": "4\"",
+          "sku": "CF-4",
+          "price": 46,
+          "inStock": true
+        },
+        {
+          "id": "calathea-freddie-6",
+          "size": "6\"",
+          "sku": "CF-6",
+          "price": 62,
+          "inStock": true
+        },
+        {
+          "id": "calathea-freddie-10",
+          "size": "10\"",
+          "sku": "CF-10",
+          "price": 88,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Studio Favorite",
+      "description": "Calathea Freddie is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "calathea-rattlesnake",
+      "name": "Calathea Rattlesnake",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Narrow Leaf Calathea",
+      "collections": [
+        "low-light",
+        "collector"
+      ],
+      "plantSize": "Medium",
+      "variants": [
+        {
+          "id": "calathea-rattlesnake-4",
+          "size": "4\"",
+          "sku": "CR-4",
+          "price": 62,
+          "inStock": true
+        },
+        {
+          "id": "calathea-rattlesnake-6",
+          "size": "6\"",
+          "sku": "CR-6",
+          "price": 78,
+          "inStock": true
+        },
+        {
+          "id": "calathea-rattlesnake-10",
+          "size": "10\"",
+          "sku": "CR-10",
+          "price": 104,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Leaf Movement",
+      "description": "Calathea Rattlesnake is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "philodendron-xanadu",
+      "name": "Philodendron Xanadu",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Lush Foliage",
+      "collections": [
+        "statement"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "philodendron-xanadu-4",
+          "size": "4\"",
+          "sku": "PX-4",
+          "price": 82,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-xanadu-6",
+          "size": "6\"",
+          "sku": "PX-6",
+          "price": 98,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-xanadu-10",
+          "size": "10\"",
+          "sku": "PX-10",
+          "price": 124,
+          "inStock": false
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Full Texture",
+      "description": "Philodendron Xanadu is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "philodendron-congo-green",
+      "name": "Philodendron Congo Green",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Broad Leaf Plant",
+      "collections": [
+        "statement"
+      ],
+      "plantSize": "Large",
+      "variants": [
+        {
+          "id": "philodendron-congo-green-4",
+          "size": "4\"",
+          "sku": "PCG-4",
+          "price": 88,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-congo-green-6",
+          "size": "6\"",
+          "sku": "PCG-6",
+          "price": 104,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-congo-green-10",
+          "size": "10\"",
+          "sku": "PCG-10",
+          "price": 130,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Clean Lines",
+      "description": "Philodendron Congo Green is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    },
+    {
+      "id": "philodendron-prince-of-orange",
+      "name": "Philodendron Prince of Orange",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Color Shift Foliage",
+      "collections": [
+        "statement"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "philodendron-prince-of-orange-4",
+          "size": "4\"",
+          "sku": "PPO-4",
+          "price": 70,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-prince-of-orange-6",
+          "size": "6\"",
+          "sku": "PPO-6",
+          "price": 86,
+          "inStock": true
+        },
+        {
+          "id": "philodendron-prince-of-orange-10",
+          "size": "10\"",
+          "sku": "PPO-10",
+          "price": 112,
+          "inStock": true
+        }
+      ],
+      "condition": "fragile",
+      "tag": "Warm Tones",
+      "description": "Philodendron Prince of Orange is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Thrives in bright, indirect light with a little room to breathe.",
+        "watering": "Water when the top layer of soil dries out, then drain fully.",
+        "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
+      },
+      "images": [
+        "/products/monstera-main.svg",
+        "/products/monstera-detail.svg",
+        "/products/monstera-room.svg"
+      ]
+    },
+    {
+      "id": "cactus-fairy-castle",
+      "name": "Fairy Castle Cactus",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Desert Accent",
+      "collections": [
+        "low-light",
+        "succulents"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "cactus-fairy-castle-4",
+          "size": "4\"",
+          "sku": "CFC-4",
+          "price": 76,
+          "inStock": true
+        },
+        {
+          "id": "cactus-fairy-castle-6",
+          "size": "6\"",
+          "sku": "CFC-6",
+          "price": 92,
+          "inStock": true
+        },
+        {
+          "id": "cactus-fairy-castle-10",
+          "size": "10\"",
+          "sku": "CFC-10",
+          "price": 118,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Easy Watering",
+      "description": "Fairy Castle Cactus is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Prefers medium to bright filtered light and a consistent spot.",
+        "watering": "Keep the soil lightly moist but never soggy.",
+        "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
+      },
+      "images": [
+        "/products/olive-main.svg",
+        "/products/olive-detail.svg",
+        "/products/olive-room.svg"
+      ]
+    },
+    {
+      "id": "echeveria-lola",
+      "name": "Echeveria Lola",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Rosette Succulent",
+      "collections": [
+        "low-light",
+        "succulents"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "echeveria-lola-4",
+          "size": "4\"",
+          "sku": "EL-4",
+          "price": 82,
+          "inStock": true
+        },
+        {
+          "id": "echeveria-lola-6",
+          "size": "6\"",
+          "sku": "EL-6",
+          "price": 98,
+          "inStock": true
+        },
+        {
+          "id": "echeveria-lola-10",
+          "size": "10\"",
+          "sku": "EL-10",
+          "price": 124,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Windowsill Pick",
+      "description": "Echeveria Lola is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Handles lower light well but appreciates a bright room.",
+        "watering": "Let the soil dry slightly between waterings.",
+        "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
+      },
+      "images": [
+        "/products/calathea-main.svg",
+        "/products/calathea-detail.svg",
+        "/products/calathea-room.svg"
+      ]
+    },
+    {
+      "id": "haworthia-zebra",
+      "name": "Haworthia Zebra",
+      "type": "plant",
+      "category": "plant",
+      "displayCategory": "Striped Succulent",
+      "collections": [
+        "low-light",
+        "succulents"
+      ],
+      "plantSize": "Small",
+      "variants": [
+        {
+          "id": "haworthia-zebra-4",
+          "size": "4\"",
+          "sku": "HZ-4",
+          "price": 88,
+          "inStock": true
+        },
+        {
+          "id": "haworthia-zebra-6",
+          "size": "6\"",
+          "sku": "HZ-6",
+          "price": 104,
+          "inStock": true
+        },
+        {
+          "id": "haworthia-zebra-10",
+          "size": "10\"",
+          "sku": "HZ-10",
+          "price": 130,
+          "inStock": true
+        }
+      ],
+      "condition": "hardy",
+      "tag": "Compact Accent",
+      "description": "Haworthia Zebra is styled for calm, premium interiors with a sculptural profile and layered foliage presence.",
+      "care": {
+        "light": "Bright light keeps the foliage color and shape at its best.",
+        "watering": "Water deeply when needed and let excess moisture escape.",
+        "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
+      },
+      "images": [
+        "/products/ficus-main.svg",
+        "/products/ficus-detail.svg",
+        "/products/ficus-room.svg"
+      ]
+    }
+  ],
+  "pots": [
+    {
+      "id": "linen-ceramic-pot",
+      "name": "Linen Ceramic Pot",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Medium"
+      ],
+      "price": 26,
+      "images": [
+        "/instagram/ceramic-pairing.svg"
+      ]
+    },
+    {
+      "id": "terracotta-studio-pot",
+      "name": "Terracotta Studio Pot",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Medium",
+        "Large"
+      ],
+      "price": 34,
+      "images": [
+        "/instagram/terracotta-note.svg"
+      ]
+    },
+    {
+      "id": "stone-ribbed-planter",
+      "name": "Stone Ribbed Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Large"
+      ],
+      "price": 39,
+      "images": [
+        "/instagram/atelier-corner.svg"
+      ]
+    },
+    {
+      "id": "chalk-cylinder-planter",
+      "name": "Chalk Cylinder Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Medium"
+      ],
+      "price": 24,
+      "images": [
+        "/instagram/atelier-corner.svg"
+      ]
+    },
+    {
+      "id": "moss-studio-planter",
+      "name": "Moss Studio Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Medium",
+        "Large"
+      ],
+      "price": 36,
+      "images": [
+        "/instagram/ceramic-pairing.svg"
+      ]
+    },
+    {
+      "id": "sand-dune-vessel",
+      "name": "Sand Dune Vessel",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Large"
+      ],
+      "price": 42,
+      "images": [
+        "/instagram/green-shelfie.svg"
+      ]
+    },
+    {
+      "id": "charcoal-curve-pot",
+      "name": "Charcoal Curve Pot",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Medium"
+      ],
+      "price": 29,
+      "images": [
+        "/instagram/quiet-morning.svg"
+      ]
+    },
+    {
+      "id": "oat-speckle-planter",
+      "name": "Oat Speckle Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Medium"
+      ],
+      "price": 31,
+      "images": [
+        "/instagram/sunroom-stack.svg"
+      ]
+    },
+    {
+      "id": "sage-footed-planter",
+      "name": "Sage Footed Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Medium"
+      ],
+      "price": 33,
+      "images": [
+        "/instagram/terracotta-note.svg"
+      ]
+    },
+    {
+      "id": "ash-column-planter",
+      "name": "Ash Column Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Large"
+      ],
+      "price": 48,
+      "images": [
+        "/instagram/atelier-corner.svg"
+      ]
+    },
+    {
+      "id": "bone-minimal-pot",
+      "name": "Bone Minimal Pot",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small"
+      ],
+      "price": 22,
+      "images": [
+        "/instagram/ceramic-pairing.svg"
+      ]
+    },
+    {
+      "id": "river-stone-planter",
+      "name": "River Stone Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Medium",
+        "Large"
+      ],
+      "price": 44,
+      "images": [
+        "/instagram/green-shelfie.svg"
+      ]
+    },
+    {
+      "id": "ink-ceramic-cachepot",
+      "name": "Ink Ceramic Cachepot",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Medium"
+      ],
+      "price": 30,
+      "images": [
+        "/instagram/quiet-morning.svg"
+      ]
+    },
+    {
+      "id": "pebble-bowl-planter",
+      "name": "Pebble Bowl Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small"
+      ],
+      "price": 20,
+      "images": [
+        "/instagram/sunroom-stack.svg"
+      ]
+    },
+    {
+      "id": "ivory-arched-planter",
+      "name": "Ivory Arched Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Medium",
+        "Large"
+      ],
+      "price": 38,
+      "images": [
+        "/instagram/terracotta-note.svg"
+      ]
+    },
+    {
+      "id": "forest-ribbed-pot",
+      "name": "Forest Ribbed Pot",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Medium"
+      ],
+      "price": 32,
+      "images": [
+        "/instagram/atelier-corner.svg"
+      ]
+    },
+    {
+      "id": "clay-bell-planter",
+      "name": "Clay Bell Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Medium"
+      ],
+      "price": 27,
+      "images": [
+        "/instagram/ceramic-pairing.svg"
+      ]
+    },
+    {
+      "id": "linen-pedestal-planter",
+      "name": "Linen Pedestal Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Large"
+      ],
+      "price": 52,
+      "images": [
+        "/instagram/green-shelfie.svg"
+      ]
+    },
+    {
+      "id": "smoke-satin-pot",
+      "name": "Smoke Satin Pot",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Medium"
+      ],
+      "price": 28,
+      "images": [
+        "/instagram/quiet-morning.svg"
+      ]
+    },
+    {
+      "id": "sage-drum-planter",
+      "name": "Sage Drum Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Medium",
+        "Large"
+      ],
+      "price": 41,
+      "images": [
+        "/instagram/sunroom-stack.svg"
+      ]
+    },
+    {
+      "id": "terrace-trough-planter",
+      "name": "Terrace Trough Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Large"
+      ],
+      "price": 55,
+      "images": [
+        "/instagram/terracotta-note.svg"
+      ]
+    },
+    {
+      "id": "cream-fluted-cachepot",
+      "name": "Cream Fluted Cachepot",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Medium"
+      ],
+      "price": 34,
+      "images": [
+        "/instagram/atelier-corner.svg"
+      ]
+    },
+    {
+      "id": "dune-speckled-planter",
+      "name": "Dune Speckled Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Small",
+        "Large"
+      ],
+      "price": 40,
+      "images": [
+        "/instagram/ceramic-pairing.svg"
+      ]
+    },
+    {
+      "id": "travertine-look-planter",
+      "name": "Travertine Look Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Medium",
+        "Large"
+      ],
+      "price": 46,
+      "images": [
+        "/instagram/green-shelfie.svg"
+      ]
+    },
+    {
+      "id": "obsidian-floor-planter",
+      "name": "Obsidian Floor Planter",
+      "type": "pot",
+      "category": "pot",
+      "fits": [
+        "Large"
+      ],
+      "price": 58,
+      "images": [
+        "/instagram/quiet-morning.svg"
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "soil",
+      "name": "Soil",
+      "type": "extra",
+      "category": "extra",
+      "price": 12,
+      "images": [
+        "/instagram/green-shelfie.svg"
+      ]
+    },
+    {
+      "id": "fertilizer",
+      "name": "Fertilizer",
+      "type": "extra",
+      "category": "extra",
+      "price": 18,
+      "images": [
+        "/instagram/quiet-morning.svg"
+      ]
+    },
+    {
+      "id": "moisture-meter",
+      "name": "Moisture Meter",
+      "type": "extra",
+      "category": "extra",
+      "price": 16,
+      "images": [
+        "/instagram/sunroom-stack.svg"
+      ]
+    },
+    {
+      "id": "heat-pack",
+      "name": "Heat Pack",
+      "type": "extra",
+      "category": "extra",
+      "price": 8,
+      "images": [
+        "/instagram/terracotta-note.svg"
+      ]
+    },
+    {
+      "id": "leaf-shine",
+      "name": "Leaf Shine",
+      "type": "extra",
+      "category": "extra",
+      "price": 14,
+      "images": [
+        "/instagram/green-shelfie.svg"
+      ]
+    },
+    {
+      "id": "pruning-shears",
+      "name": "Pruning Shears",
+      "type": "extra",
+      "category": "extra",
+      "price": 22,
+      "images": [
+        "/instagram/quiet-morning.svg"
+      ]
+    },
+    {
+      "id": "orchid-bark",
+      "name": "Orchid Bark",
+      "type": "extra",
+      "category": "extra",
+      "price": 15,
+      "images": [
+        "/instagram/sunroom-stack.svg"
+      ]
+    },
+    {
+      "id": "humidity-tray",
+      "name": "Humidity Tray",
+      "type": "extra",
+      "category": "extra",
+      "price": 18,
+      "images": [
+        "/instagram/terracotta-note.svg"
+      ]
+    },
+    {
+      "id": "plant-food-spikes",
+      "name": "Plant Food Spikes",
+      "type": "extra",
+      "category": "extra",
+      "price": 13,
+      "images": [
+        "/instagram/atelier-corner.svg"
+      ]
+    },
+    {
+      "id": "moss-pole",
+      "name": "Moss Pole",
+      "type": "extra",
+      "category": "extra",
+      "price": 19,
+      "images": [
+        "/instagram/ceramic-pairing.svg"
+      ]
+    },
+    {
+      "id": "watering-can",
+      "name": "Watering Can",
+      "type": "extra",
+      "category": "extra",
+      "price": 28,
+      "images": [
+        "/instagram/green-shelfie.svg"
+      ]
+    },
+    {
+      "id": "propagation-vase",
+      "name": "Propagation Vase",
+      "type": "extra",
+      "category": "extra",
+      "price": 24,
+      "images": [
+        "/instagram/quiet-morning.svg"
+      ]
+    },
+    {
+      "id": "insecticidal-soap",
+      "name": "Insecticidal Soap",
+      "type": "extra",
+      "category": "extra",
+      "price": 16,
+      "images": [
+        "/instagram/sunroom-stack.svg"
+      ]
+    },
+    {
+      "id": "microfiber-leaf-cloth",
+      "name": "Microfiber Leaf Cloth",
+      "type": "extra",
+      "category": "extra",
+      "price": 9,
+      "images": [
+        "/instagram/terracotta-note.svg"
+      ]
+    },
+    {
+      "id": "root-booster",
+      "name": "Root Booster",
+      "type": "extra",
+      "category": "extra",
+      "price": 17,
+      "images": [
+        "/instagram/atelier-corner.svg"
+      ]
+    }
+  ]
+}

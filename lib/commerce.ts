@@ -6,10 +6,13 @@ import { ProductModel } from "@/models/Product";
 type ProductRecord = {
   id: string;
   type: "plant" | "pot" | "extra";
+  category?: string;
+  displayCategory?: string;
   name?: string;
   plantSize?: "Small" | "Medium" | "Large";
   fits?: Array<"Small" | "Medium" | "Large">;
   condition?: "hardy" | "fragile";
+  images?: string[];
   variants?: Array<{
     id: string;
     size: '4"' | '6"' | '10"';

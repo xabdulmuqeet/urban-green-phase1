@@ -7,6 +7,7 @@ import type { ApiCartItem } from "@/lib/api-types";
 import { getAppBaseUrl, getStripe, isStripeConfigured } from "@/lib/stripe";
 import { getCurrentSessionEmail, requireCurrentUser } from "@/lib/session";
 import { isDatabaseConfigured } from "@/lib/mongoose";
+import { rateLimit } from "@/lib/security/rate-limit";
 import { CheckoutSessionModel } from "@/models/CheckoutSession";
 import { validateShippingSelection } from "@/lib/services/shipping-service";
 
@@ -28,6 +29,17 @@ function buildBundleDescription(item: Extract<ApiCartItem, { type: "bundle" }>, 
 }
 
 export async function POST(request: Request) {
+  const limitedResponse = rateLimit(request, {
+    keyPrefix: "checkout-create",
+    limit: 12,
+    windowMs: 10 * 60 * 1000,
+    message: "Too many checkout attempts. Please wait a moment and try again."
+  });
+
+  if (limitedResponse) {
+    return limitedResponse;
+  }
+
   try {
     if (!isDatabaseConfigured()) {
       return NextResponse.json(

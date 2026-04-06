@@ -2,11 +2,23 @@ import { NextResponse } from "next/server";
 import type { ApiCartItem } from "@/lib/api-types";
 import { normalizeAndMergeCartItems } from "@/lib/commerce";
 import { isDatabaseConfigured } from "@/lib/mongoose";
+import { rateLimit } from "@/lib/security/rate-limit";
 import { buildShippingQuote } from "@/lib/services/shipping-service";
 import { isWeatherConfigured } from "@/lib/services/weather-service";
 import { shippingQuoteSchema } from "@/lib/validators";
 
 export async function POST(request: Request) {
+  const limitedResponse = rateLimit(request, {
+    keyPrefix: "checkout-quote",
+    limit: 20,
+    windowMs: 5 * 60 * 1000,
+    message: "Too many delivery quote requests. Please wait a moment and try again."
+  });
+
+  if (limitedResponse) {
+    return limitedResponse;
+  }
+
   try {
     if (!isDatabaseConfigured()) {
       return NextResponse.json({ error: "Database not configured." }, { status: 503 });

@@ -10,7 +10,7 @@ export function CartNavButton() {
     <Link
       href="/cart"
       aria-label={`Cart with ${totalItems} item${totalItems === 1 ? "" : "s"}`}
-      className="relative flex h-11 w-11 items-center justify-center rounded-full border border-sage/30 bg-sage/10 text-sage transition hover:border-sage/50"
+      className="relative flex h-10 w-10 items-center justify-center text-[#516448] transition-transform duration-200 hover:scale-95"
     >
       <svg
         aria-hidden="true"
@@ -26,7 +26,7 @@ export function CartNavButton() {
         <circle cx="18" cy="20" r="1.5" />
         <path d="M3 4h2.2l2.4 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 8H7.1" />
       </svg>
-      <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-terracotta px-1 text-[10px] font-semibold text-white">
+      <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#516448] px-1 text-[10px] font-semibold text-white">
         {totalItems}
       </span>
     </Link>

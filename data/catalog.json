@@ -42,9 +42,12 @@
         "commonIssues": "Wipe leaves monthly, rotate weekly, and watch for drooping caused by inconsistent watering."
       },
       "images": [
-        "/products/monstera-main.svg",
-        "/products/monstera-detail.svg",
-        "/products/monstera-room.svg"
+        "/products/generated/monstera-deliciosa-main.png",
+        "/products/generated/monstera-deliciosa-alt-2.png",
+        "/products/generated/monstera-deliciosa-alt-3.png",
+        "/products/real/monstera-deliciosa-1.webp",
+        "/products/real/monstera-deliciosa-2.jpg",
+        "/products/real/monstera-deliciosa-3.png"
       ]
     },
     {
@@ -54,7 +57,7 @@
       "category": "plant",
       "displayCategory": "Mediterranean Tree",
       "collections": [
-        "trees"
+        "tropicals"
       ],
       "plantSize": "Large",
       "variants": [
@@ -89,9 +92,12 @@
         "commonIssues": "Yellowing leaves often point to overwatering or too little direct sun."
       },
       "images": [
-        "/products/olive-main.svg",
-        "/products/olive-detail.svg",
-        "/products/olive-room.svg"
+        "/products/generated/olive-tree-main.png",
+        "/products/generated/olive-tree-alt-2.png",
+        "/products/generated/olive-tree-alt-3.png",
+        "/products/real/olive-tree-1.jpg",
+        "/products/real/olive-tree-2.jpg",
+        "/products/real/olive-tree-3.jpg"
       ]
     },
     {
@@ -137,9 +143,12 @@
         "commonIssues": "Brown edges can appear if the air is too dry or the water quality is harsh."
       },
       "images": [
-        "/products/calathea-main.svg",
-        "/products/calathea-detail.svg",
-        "/products/calathea-room.svg"
+        "/products/generated/calathea-orbifolia-main.png",
+        "/products/generated/calathea-orbifolia-alt-2.png",
+        "/products/generated/calathea-orbifolia-alt-3.png",
+        "/products/real/calathea-orbifolia-1.jpg",
+        "/products/real/calathea-orbifolia-2.jpg",
+        "/products/real/calathea-orbifolia-3.jpg"
       ]
     },
     {
@@ -149,7 +158,7 @@
       "category": "plant",
       "displayCategory": "Tree Form",
       "collections": [
-        "trees",
+        "tropicals",
         "statement"
       ],
       "plantSize": "Large",
@@ -185,9 +194,11 @@
         "commonIssues": "Leaf drop is common after sudden moves, drafts, or irregular watering."
       },
       "images": [
-        "/products/ficus-main.svg",
-        "/products/ficus-detail.svg",
-        "/products/ficus-room.svg"
+        "/products/generated/ficus-altissima-main.png",
+        "/products/generated/ficus-altissima-alt-2.png",
+        "/products/real/ficus-altissima-1.webp",
+        "/products/real/ficus-altissima-2.webp",
+        "/products/real/ficus-altissima-3.webp"
       ]
     },
     {
@@ -198,8 +209,7 @@
       "displayCategory": "Statement Foliage",
       "collections": [
         "statement",
-        "trees",
-        "palms"
+        "tropicals"
       ],
       "plantSize": "Large",
       "variants": [
@@ -234,9 +244,12 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
-        "/products/monstera-main.svg",
-        "/products/monstera-detail.svg",
-        "/products/monstera-room.svg"
+        "/products/generated/bird-of-paradise-main.png",
+        "/products/generated/bird-of-paradise-alt-2.png",
+        "/products/generated/bird-of-paradise-alt-3.png",
+        "/products/real/bird-of-paradise-1.jpg",
+        "/products/real/bird-of-paradise-2.jpg",
+        "/products/real/bird-of-paradise-3.jpg"
       ]
     },
     {
@@ -247,7 +260,7 @@
       "displayCategory": "Architectural Tree",
       "collections": [
         "statement",
-        "trees"
+        "tropicals"
       ],
       "plantSize": "Large",
       "variants": [
@@ -282,9 +295,12 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
-        "/products/olive-main.svg",
-        "/products/olive-detail.svg",
-        "/products/olive-room.svg"
+        "/products/generated/rubber-plant-burgundy-main.png",
+        "/products/generated/rubber-plant-burgundy-alt-2.png",
+        "/products/generated/rubber-plant-burgundy-alt-3.png",
+        "/products/real/rubber-plant-burgundy-1.webp",
+        "/products/real/rubber-plant-burgundy-2.webp",
+        "/products/real/rubber-plant-burgundy-3.jpg"
       ]
     },
     {
@@ -295,7 +311,7 @@
       "displayCategory": "Low-Light Favorite",
       "collections": [
         "low-light",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Medium",
       "variants": [
@@ -330,6 +346,9 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/zz-plant-raven-main.png",
+        "/products/generated/zz-plant-raven-alt-2.png",
+        "/products/generated/zz-plant-raven-alt-3.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -343,7 +362,7 @@
       "displayCategory": "Trailing Vine",
       "collections": [
         "low-light",
-        "trailing"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -378,6 +397,9 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/pothos-marble-queen-main.png",
+        "/products/generated/pothos-marble-queen-alt-2.png",
+        "/products/generated/pothos-marble-queen-alt-3.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -426,6 +448,9 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/snake-plant-laurentii-main.png",
+        "/products/generated/snake-plant-laurentii-alt-2.png",
+        "/products/generated/snake-plant-laurentii-alt-3.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -473,6 +498,9 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/peace-lily-domino-main.png",
+        "/products/generated/peace-lily-domino-alt-2.png",
+        "/products/generated/peace-lily-domino-alt-3.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -486,8 +514,7 @@
       "displayCategory": "Velvet Trailing Plant",
       "collections": [
         "statement",
-        "trailing",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -522,6 +549,9 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/philodendron-micans-main.png",
+        "/products/generated/philodendron-micans-alt-2.png",
+        "/products/generated/philodendron-micans-alt-3.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -535,7 +565,7 @@
       "displayCategory": "Patterned Statement",
       "collections": [
         "statement",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -570,6 +600,9 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/philodendron-birkin-main.png",
+        "/products/generated/philodendron-birkin-alt-2.png",
+        "/products/generated/philodendron-birkin-alt-3.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -583,7 +616,7 @@
       "displayCategory": "Collector Leaf",
       "collections": [
         "statement",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -618,6 +651,9 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/anthurium-clarinervium-main.png",
+        "/products/generated/anthurium-clarinervium-alt-2.png",
+        "/products/generated/anthurium-clarinervium-alt-3.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -631,7 +667,7 @@
       "displayCategory": "Graphic Foliage",
       "collections": [
         "statement",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -666,6 +702,9 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/alocasia-polly-main.png",
+        "/products/generated/alocasia-polly-alt-2.png",
+        "/products/generated/alocasia-polly-alt-3.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -679,7 +718,7 @@
       "displayCategory": "Statement Foliage",
       "collections": [
         "statement",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Large",
       "variants": [
@@ -714,6 +753,9 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/alocasia-regal-shields-main.png",
+        "/products/generated/alocasia-regal-shields-alt-2.png",
+        "/products/generated/alocasia-regal-shields-alt-3.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -726,7 +768,7 @@
       "category": "plant",
       "displayCategory": "Architectural Tree",
       "collections": [
-        "trees"
+        "tropicals"
       ],
       "plantSize": "Large",
       "variants": [
@@ -761,6 +803,9 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/dracaena-marginata-main.png",
+        "/products/generated/dracaena-marginata-alt-2.png",
+        "/products/generated/dracaena-marginata-alt-3.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -773,7 +818,7 @@
       "category": "plant",
       "displayCategory": "Sculptural Cane Plant",
       "collections": [
-        "trees"
+        "tropicals"
       ],
       "plantSize": "Large",
       "variants": [
@@ -808,6 +853,9 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/dracaena-lisa-main.png",
+        "/products/generated/dracaena-lisa-alt-2.png",
+        "/products/generated/dracaena-lisa-alt-3.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -821,7 +869,7 @@
       "displayCategory": "Classic Palm",
       "collections": [
         "low-light",
-        "palms"
+        "tropicals"
       ],
       "plantSize": "Medium",
       "variants": [
@@ -856,6 +904,9 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/parlor-palm-main.png",
+        "/products/generated/parlor-palm-alt-2.png",
+        "/products/generated/parlor-palm-alt-3.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -868,10 +919,9 @@
       "category": "plant",
       "displayCategory": "Premium Palm",
       "collections": [
-        "trees",
+        "tropicals",
         "statement",
-        "palms",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Large",
       "variants": [
@@ -906,6 +956,9 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/kentia-palm-main.png",
+        "/products/generated/kentia-palm-alt-2.png",
+        "/products/generated/kentia-palm-alt-3.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -918,8 +971,7 @@
       "category": "plant",
       "displayCategory": "Resort Palm",
       "collections": [
-        "trees",
-        "palms"
+        "tropicals"
       ],
       "plantSize": "Large",
       "variants": [
@@ -954,6 +1006,9 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/majesty-palm-main.png",
+        "/products/generated/majesty-palm-alt-2.png",
+        "/products/generated/majesty-palm-alt-3.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -966,7 +1021,7 @@
       "category": "plant",
       "displayCategory": "Braided Tree",
       "collections": [
-        "trees"
+        "tropicals"
       ],
       "plantSize": "Medium",
       "variants": [
@@ -1001,6 +1056,9 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/money-tree-main.png",
+        "/products/generated/money-tree-alt-2.png",
+        "/products/generated/money-tree-alt-3.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -1014,7 +1072,7 @@
       "displayCategory": "Desert Classic",
       "collections": [
         "low-light",
-        "succulents"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -1049,6 +1107,9 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/jade-plant-main.png",
+        "/products/generated/jade-plant-alt-2.png",
+        "/products/generated/jade-plant-alt-3.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -1062,9 +1123,7 @@
       "displayCategory": "Trailing Succulent",
       "collections": [
         "statement",
-        "trailing",
-        "succulents",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -1099,6 +1158,9 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/string-of-pearls-main.png",
+        "/products/generated/string-of-pearls-alt-2.png",
+        "/products/generated/string-of-pearls-alt-3.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -1112,8 +1174,7 @@
       "displayCategory": "Trailing Succulent",
       "collections": [
         "statement",
-        "trailing",
-        "succulents"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -1148,6 +1209,9 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/burros-tail-main.png",
+        "/products/generated/burros-tail-alt-2.png",
+        "/products/generated/burros-tail-alt-3.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -1161,7 +1225,7 @@
       "displayCategory": "Wax Plant",
       "collections": [
         "low-light",
-        "trailing"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -1196,6 +1260,9 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/hoya-carnosa-main.png",
+        "/products/generated/hoya-carnosa-alt-2.png",
+        "/products/generated/hoya-carnosa-alt-3.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -1209,8 +1276,7 @@
       "displayCategory": "Variegated Wax Plant",
       "collections": [
         "statement",
-        "trailing",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -1245,6 +1311,9 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/hoya-krimson-queen-main.png",
+        "/products/generated/hoya-krimson-queen-alt-2.png",
+        "/products/generated/hoya-krimson-queen-alt-3.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -1258,7 +1327,7 @@
       "displayCategory": "Patterned Accent",
       "collections": [
         "statement",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -1293,6 +1362,9 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/begonia-maculata-main.png",
+        "/products/generated/begonia-maculata-alt-2.png",
+        "/products/generated/begonia-maculata-alt-3.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -1340,6 +1412,9 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/boston-fern-main.png",
+        "/products/generated/boston-fern-alt-2.png",
+        "/products/generated/boston-fern-alt-3.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -1353,7 +1428,7 @@
       "displayCategory": "Mounted Statement",
       "collections": [
         "statement",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Medium",
       "variants": [
@@ -1388,6 +1463,9 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/staghorn-fern-main.png",
+        "/products/generated/staghorn-fern-alt-2.png",
+        "/products/generated/staghorn-fern-alt-3.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -1435,6 +1513,9 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/asparagus-fern-main.png",
+        "/products/generated/asparagus-fern-alt-2.png",
+        "/products/generated/asparagus-fern-alt-3.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -1482,6 +1563,9 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/aglaonema-silver-bay-main.png",
+        "/products/generated/aglaonema-silver-bay-alt-2.png",
+        "/products/generated/aglaonema-silver-bay-alt-3.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -1530,6 +1614,9 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/aglaonema-red-siam-main.png",
+        "/products/generated/aglaonema-red-siam-alt-2.png",
+        "/products/generated/aglaonema-red-siam-alt-3.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -1543,7 +1630,7 @@
       "displayCategory": "Color Statement",
       "collections": [
         "statement",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Medium",
       "variants": [
@@ -1578,6 +1665,9 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/croton-petra-main.png",
+        "/products/generated/croton-petra-alt-2.png",
+        "/products/generated/croton-petra-alt-3.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -1625,6 +1715,9 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/ctenanthe-setosa-main.png",
+        "/products/generated/ctenanthe-setosa-alt-2.png",
+        "/products/generated/ctenanthe-setosa-alt-3.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -1672,6 +1765,9 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/maranta-lemon-lime-main.png",
+        "/products/generated/maranta-lemon-lime-alt-2.png",
+        "/products/generated/maranta-lemon-lime-alt-3.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -1685,7 +1781,7 @@
       "displayCategory": "Seasonal Accent",
       "collections": [
         "statement",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -1720,6 +1816,9 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/caladium-white-queen-main.png",
+        "/products/generated/caladium-white-queen-alt-2.png",
+        "/products/generated/caladium-white-queen-alt-3.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -1767,6 +1866,9 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/pilea-peperomioides-main.png",
+        "/products/generated/pilea-peperomioides-alt-2.png",
+        "/products/generated/pilea-peperomioides-alt-3.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -1814,6 +1916,9 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/peperomia-watermelon-main.png",
+        "/products/generated/peperomia-watermelon-alt-2.png",
+        "/products/generated/peperomia-watermelon-alt-3.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -1861,6 +1966,9 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/peperomia-rosso-main.png",
+        "/products/generated/peperomia-rosso-alt-2.png",
+        "/products/generated/peperomia-rosso-alt-3.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -1873,7 +1981,7 @@
       "category": "plant",
       "displayCategory": "Umbrella Tree",
       "collections": [
-        "trees"
+        "tropicals"
       ],
       "plantSize": "Large",
       "variants": [
@@ -1908,6 +2016,9 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/schefflera-arboricola-main.png",
+        "/products/generated/schefflera-arboricola-alt-2.png",
+        "/products/generated/schefflera-arboricola-alt-3.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -1921,8 +2032,8 @@
       "displayCategory": "Variegated Rubber Plant",
       "collections": [
         "statement",
-        "trees",
-        "collector"
+        "tropicals",
+        "rare-finds"
       ],
       "plantSize": "Large",
       "variants": [
@@ -1957,6 +2068,9 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/ficus-elastica-tineke-main.png",
+        "/products/generated/ficus-elastica-tineke-alt-2.png",
+        "/products/generated/ficus-elastica-tineke-alt-3.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -1969,7 +2083,7 @@
       "category": "plant",
       "displayCategory": "Classic Weeping Fig",
       "collections": [
-        "trees"
+        "tropicals"
       ],
       "plantSize": "Large",
       "variants": [
@@ -2004,6 +2118,8 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/ficus-benjamina-main.png",
+        "/products/generated/ficus-benjamina-alt-2.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -2016,7 +2132,7 @@
       "category": "plant",
       "displayCategory": "Desert Tree",
       "collections": [
-        "trees",
+        "tropicals",
         "statement"
       ],
       "plantSize": "Large",
@@ -2052,6 +2168,8 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/yucca-cane-main.png",
+        "/products/generated/yucca-cane-alt-2.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -2065,8 +2183,8 @@
       "displayCategory": "Sculptural Accent",
       "collections": [
         "statement",
-        "palms",
-        "succulents"
+        "tropicals",
+        "rare-finds"
       ],
       "plantSize": "Medium",
       "variants": [
@@ -2101,6 +2219,8 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/ponytail-palm-main.png",
+        "/products/generated/ponytail-palm-alt-2.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -2113,7 +2233,7 @@
       "category": "plant",
       "displayCategory": "Soft Evergreen",
       "collections": [
-        "trees"
+        "tropicals"
       ],
       "plantSize": "Large",
       "variants": [
@@ -2148,6 +2268,8 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/norfolk-island-pine-main.png",
+        "/products/generated/norfolk-island-pine-alt-2.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -2195,6 +2317,8 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/dieffenbachia-camille-main.png",
+        "/products/generated/dieffenbachia-camille-alt-2.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -2208,7 +2332,7 @@
       "displayCategory": "Arrowhead Vine",
       "collections": [
         "low-light",
-        "trailing"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -2243,6 +2367,8 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/syngonium-podophyllum-main.png",
+        "/products/generated/syngonium-podophyllum-alt-2.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -2256,8 +2382,7 @@
       "displayCategory": "Blush Arrowhead",
       "collections": [
         "statement",
-        "trailing",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -2292,6 +2417,8 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/syngonium-neon-main.png",
+        "/products/generated/syngonium-neon-alt-2.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -2339,6 +2466,8 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/raphidophora-tetrasperma-main.png",
+        "/products/generated/raphidophora-tetrasperma-alt-2.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -2352,8 +2481,7 @@
       "displayCategory": "Swiss Cheese Vine",
       "collections": [
         "statement",
-        "trailing",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Medium",
       "variants": [
@@ -2388,6 +2516,8 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/monstera-adansonii-main.png",
+        "/products/generated/monstera-adansonii-alt-2.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -2435,6 +2565,8 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/phlebodium-blue-star-main.png",
+        "/products/generated/phlebodium-blue-star-alt-2.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -2449,7 +2581,7 @@
       "collections": [
         "low-light",
         "statement",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Medium",
       "variants": [
@@ -2484,6 +2616,8 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/calathea-medallion-main.png",
+        "/products/generated/calathea-medallion-alt-2.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -2497,7 +2631,7 @@
       "displayCategory": "Striped Calathea",
       "collections": [
         "low-light",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -2532,6 +2666,8 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/calathea-freddie-main.png",
+        "/products/generated/calathea-freddie-alt-2.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -2545,7 +2681,7 @@
       "displayCategory": "Narrow Leaf Calathea",
       "collections": [
         "low-light",
-        "collector"
+        "rare-finds"
       ],
       "plantSize": "Medium",
       "variants": [
@@ -2580,6 +2716,8 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/calathea-rattlesnake-main.png",
+        "/products/generated/calathea-rattlesnake-alt-2.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -2627,6 +2765,8 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/philodendron-xanadu-main.png",
+        "/products/generated/philodendron-xanadu-alt-2.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -2674,6 +2814,8 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/philodendron-congo-green-main.png",
+        "/products/generated/philodendron-congo-green-alt-2.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -2721,6 +2863,8 @@
         "commonIssues": "Rotate weekly and avoid cold drafts to keep growth balanced."
       },
       "images": [
+        "/products/generated/philodendron-prince-of-orange-main.png",
+        "/products/generated/philodendron-prince-of-orange-alt-2.png",
         "/products/monstera-main.svg",
         "/products/monstera-detail.svg",
         "/products/monstera-room.svg"
@@ -2734,7 +2878,7 @@
       "displayCategory": "Desert Accent",
       "collections": [
         "low-light",
-        "succulents"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -2769,6 +2913,8 @@
         "commonIssues": "Brown edges usually mean the air is dry or watering has been inconsistent."
       },
       "images": [
+        "/products/generated/cactus-fairy-castle-main.png",
+        "/products/generated/cactus-fairy-castle-alt-2.png",
         "/products/olive-main.svg",
         "/products/olive-detail.svg",
         "/products/olive-room.svg"
@@ -2782,7 +2928,7 @@
       "displayCategory": "Rosette Succulent",
       "collections": [
         "low-light",
-        "succulents"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -2817,6 +2963,8 @@
         "commonIssues": "Yellow leaves often point to overwatering or poor drainage."
       },
       "images": [
+        "/products/generated/echeveria-lola-main.png",
+        "/products/generated/echeveria-lola-alt-2.png",
         "/products/calathea-main.svg",
         "/products/calathea-detail.svg",
         "/products/calathea-room.svg"
@@ -2830,7 +2978,7 @@
       "displayCategory": "Striped Succulent",
       "collections": [
         "low-light",
-        "succulents"
+        "rare-finds"
       ],
       "plantSize": "Small",
       "variants": [
@@ -2865,6 +3013,8 @@
         "commonIssues": "Sudden temperature shifts can slow growth or cause leaf drop."
       },
       "images": [
+        "/products/generated/haworthia-zebra-main.png",
+        "/products/generated/haworthia-zebra-alt-2.png",
         "/products/ficus-main.svg",
         "/products/ficus-detail.svg",
         "/products/ficus-room.svg"
@@ -2883,6 +3033,7 @@
       ],
       "price": 26,
       "images": [
+        "/products/generated/linen-ceramic-pot-main.png",
         "/instagram/ceramic-pairing.svg"
       ]
     },
@@ -2897,6 +3048,7 @@
       ],
       "price": 34,
       "images": [
+        "/products/generated/terracotta-studio-pot-main.png",
         "/instagram/terracotta-note.svg"
       ]
     },
@@ -2911,6 +3063,7 @@
       ],
       "price": 39,
       "images": [
+        "/products/generated/stone-ribbed-planter-main.png",
         "/instagram/atelier-corner.svg"
       ]
     },
@@ -2925,6 +3078,7 @@
       ],
       "price": 24,
       "images": [
+        "/products/generated/chalk-cylinder-planter-main.png",
         "/instagram/atelier-corner.svg"
       ]
     },
@@ -2939,6 +3093,7 @@
       ],
       "price": 36,
       "images": [
+        "/products/generated/moss-studio-planter-main.png",
         "/instagram/ceramic-pairing.svg"
       ]
     },
@@ -2953,6 +3108,7 @@
       ],
       "price": 42,
       "images": [
+        "/products/generated/sand-dune-vessel-main.png",
         "/instagram/green-shelfie.svg"
       ]
     },
@@ -2967,6 +3123,7 @@
       ],
       "price": 29,
       "images": [
+        "/products/generated/charcoal-curve-pot-main.png",
         "/instagram/quiet-morning.svg"
       ]
     },
@@ -2980,6 +3137,7 @@
       ],
       "price": 31,
       "images": [
+        "/products/generated/oat-speckle-planter-main.png",
         "/instagram/sunroom-stack.svg"
       ]
     },
@@ -2994,6 +3152,7 @@
       ],
       "price": 33,
       "images": [
+        "/products/generated/sage-footed-planter-main.png",
         "/instagram/terracotta-note.svg"
       ]
     },
@@ -3007,6 +3166,7 @@
       ],
       "price": 48,
       "images": [
+        "/products/generated/ash-column-planter-main.png",
         "/instagram/atelier-corner.svg"
       ]
     },
@@ -3020,6 +3180,7 @@
       ],
       "price": 22,
       "images": [
+        "/products/generated/bone-minimal-pot-main.png",
         "/instagram/ceramic-pairing.svg"
       ]
     },
@@ -3034,6 +3195,7 @@
       ],
       "price": 44,
       "images": [
+        "/products/generated/river-stone-planter-main.png",
         "/instagram/green-shelfie.svg"
       ]
     },
@@ -3048,6 +3210,7 @@
       ],
       "price": 30,
       "images": [
+        "/products/generated/ink-ceramic-cachepot-main.png",
         "/instagram/quiet-morning.svg"
       ]
     },
@@ -3061,6 +3224,7 @@
       ],
       "price": 20,
       "images": [
+        "/products/generated/pebble-bowl-planter-main.png",
         "/instagram/sunroom-stack.svg"
       ]
     },
@@ -3075,6 +3239,7 @@
       ],
       "price": 38,
       "images": [
+        "/products/generated/ivory-arched-planter-main.png",
         "/instagram/terracotta-note.svg"
       ]
     },
@@ -3088,6 +3253,7 @@
       ],
       "price": 32,
       "images": [
+        "/products/generated/forest-ribbed-pot-main.png",
         "/instagram/atelier-corner.svg"
       ]
     },
@@ -3102,6 +3268,7 @@
       ],
       "price": 27,
       "images": [
+        "/products/generated/clay-bell-planter-main.png",
         "/instagram/ceramic-pairing.svg"
       ]
     },
@@ -3115,6 +3282,7 @@
       ],
       "price": 52,
       "images": [
+        "/products/generated/linen-pedestal-planter-main.png",
         "/instagram/green-shelfie.svg"
       ]
     },
@@ -3129,6 +3297,7 @@
       ],
       "price": 28,
       "images": [
+        "/products/generated/smoke-satin-pot-main.png",
         "/instagram/quiet-morning.svg"
       ]
     },
@@ -3143,6 +3312,7 @@
       ],
       "price": 41,
       "images": [
+        "/products/generated/sage-drum-planter-main.png",
         "/instagram/sunroom-stack.svg"
       ]
     },
@@ -3156,6 +3326,7 @@
       ],
       "price": 55,
       "images": [
+        "/products/generated/terrace-trough-planter-main.png",
         "/instagram/terracotta-note.svg"
       ]
     },
@@ -3170,6 +3341,7 @@
       ],
       "price": 34,
       "images": [
+        "/products/generated/cream-fluted-cachepot-main.png",
         "/instagram/atelier-corner.svg"
       ]
     },
@@ -3184,6 +3356,7 @@
       ],
       "price": 40,
       "images": [
+        "/products/generated/dune-speckled-planter-main.png",
         "/instagram/ceramic-pairing.svg"
       ]
     },
@@ -3198,6 +3371,7 @@
       ],
       "price": 46,
       "images": [
+        "/products/generated/travertine-look-planter-main.png",
         "/instagram/green-shelfie.svg"
       ]
     },
@@ -3211,6 +3385,7 @@
       ],
       "price": 58,
       "images": [
+        "/products/generated/obsidian-floor-planter-main.png",
         "/instagram/quiet-morning.svg"
       ]
     }
@@ -3223,6 +3398,7 @@
       "category": "extra",
       "price": 12,
       "images": [
+        "/products/generated/soil-main.png",
         "/instagram/green-shelfie.svg"
       ]
     },
@@ -3233,6 +3409,7 @@
       "category": "extra",
       "price": 18,
       "images": [
+        "/products/generated/fertilizer-main.png",
         "/instagram/quiet-morning.svg"
       ]
     },
@@ -3243,6 +3420,7 @@
       "category": "extra",
       "price": 16,
       "images": [
+        "/products/generated/moisture-meter-main.png",
         "/instagram/sunroom-stack.svg"
       ]
     },
@@ -3253,6 +3431,7 @@
       "category": "extra",
       "price": 8,
       "images": [
+        "/products/generated/heat-pack-main.png",
         "/instagram/terracotta-note.svg"
       ]
     },
@@ -3263,6 +3442,7 @@
       "category": "extra",
       "price": 14,
       "images": [
+        "/products/generated/leaf-shine-main.png",
         "/instagram/green-shelfie.svg"
       ]
     },
@@ -3273,6 +3453,7 @@
       "category": "extra",
       "price": 22,
       "images": [
+        "/products/generated/pruning-shears-main.png",
         "/instagram/quiet-morning.svg"
       ]
     },
@@ -3283,6 +3464,7 @@
       "category": "extra",
       "price": 15,
       "images": [
+        "/products/generated/orchid-bark-main.png",
         "/instagram/sunroom-stack.svg"
       ]
     },
@@ -3293,6 +3475,7 @@
       "category": "extra",
       "price": 18,
       "images": [
+        "/products/generated/humidity-tray-main.png",
         "/instagram/terracotta-note.svg"
       ]
     },
@@ -3303,6 +3486,7 @@
       "category": "extra",
       "price": 13,
       "images": [
+        "/products/generated/plant-food-spikes-main.png",
         "/instagram/atelier-corner.svg"
       ]
     },
@@ -3313,6 +3497,7 @@
       "category": "extra",
       "price": 19,
       "images": [
+        "/products/generated/moss-pole-main.png",
         "/instagram/ceramic-pairing.svg"
       ]
     },
@@ -3323,6 +3508,7 @@
       "category": "extra",
       "price": 28,
       "images": [
+        "/products/generated/watering-can-main.png",
         "/instagram/green-shelfie.svg"
       ]
     },
@@ -3333,6 +3519,7 @@
       "category": "extra",
       "price": 24,
       "images": [
+        "/products/generated/propagation-vase-main.png",
         "/instagram/quiet-morning.svg"
       ]
     },
@@ -3343,6 +3530,7 @@
       "category": "extra",
       "price": 16,
       "images": [
+        "/products/generated/insecticidal-soap-main.png",
         "/instagram/sunroom-stack.svg"
       ]
     },
@@ -3353,6 +3541,7 @@
       "category": "extra",
       "price": 9,
       "images": [
+        "/products/generated/microfiber-leaf-cloth-main.png",
         "/instagram/terracotta-note.svg"
       ]
     },
@@ -3363,6 +3552,7 @@
       "category": "extra",
       "price": 17,
       "images": [
+        "/products/generated/root-booster-main.png",
         "/instagram/atelier-corner.svg"
       ]
     }

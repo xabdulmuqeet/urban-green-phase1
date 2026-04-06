@@ -5,40 +5,50 @@ type BundleProgressProps = {
 };
 
 const steps = [
-  { id: 1, label: "Select Plant" },
-  { id: 2, label: "Select Pot" },
-  { id: 3, label: "Extras" }
+  { id: 1, eyebrow: "Step 01", label: "Select Specimen" },
+  { id: 2, eyebrow: "Step 02", label: "Choose Vessel" },
+  { id: 3, eyebrow: "Step 03", label: "Final Review" }
 ];
 
 export function BundleProgress({ currentStep, canAccessStep, onStepClick }: BundleProgressProps) {
   return (
-    <div className="grid gap-4 md:grid-cols-3">
-      {steps.map((step) => {
-        const isActive = step.id === currentStep;
-        const isComplete = step.id < currentStep;
-        const isClickable = canAccessStep(step.id);
+    <section className="mb-12 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-wrap items-center gap-4 md:gap-0">
+        {steps.map((step, index) => {
+          const isActive = step.id === currentStep;
+          const isClickable = canAccessStep(step.id);
 
-        return (
-          <button
-            type="button"
-            key={step.id}
-            onClick={() => onStepClick(step.id)}
-            disabled={!isClickable}
-            className={`rounded-[1.75rem] border px-5 py-4 transition ${
-              isActive
-                ? "border-sage bg-sage/10"
-                : isComplete
-                  ? "border-terracotta/30 bg-terracotta/10"
-                  : "border-black/5 bg-white"
-            } ${isClickable ? "text-left hover:border-sage/40" : "cursor-not-allowed text-left opacity-60"}`}
-          >
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-bark/60">
-              Step {step.id}
-            </p>
-            <p className="mt-2 font-[family:var(--font-heading)] text-2xl">{step.label}</p>
-          </button>
-        );
-      })}
-    </div>
+          return (
+            <div key={step.id} className="flex items-center">
+              <button
+                type="button"
+                onClick={() => onStepClick(step.id)}
+                disabled={!isClickable}
+                className={`text-left transition ${
+                  isClickable ? "hover:opacity-100" : "cursor-not-allowed"
+                } ${isActive ? "opacity-100" : "opacity-40"}`}
+              >
+                <span className="block font-[family:var(--font-body)] text-[10px] uppercase tracking-[0.22em] text-[#516448]/60">
+                  {step.eyebrow}
+                </span>
+                <span className="mt-1 block font-[family:var(--font-heading)] text-xl tracking-[-0.03em] text-[#486730]">
+                  {step.label}
+                </span>
+              </button>
+              {index < steps.length - 1 ? (
+                <div className="mx-4 h-px w-12 bg-[#486730]/30 md:mx-6" />
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="h-1 w-full overflow-hidden rounded-full bg-[#ecefea] md:w-64">
+        <div
+          className="h-full bg-[#486730] transition-all duration-700 ease-in-out"
+          style={{ width: `${(currentStep / steps.length) * 100}%` }}
+        />
+      </div>
+    </section>
   );
 }

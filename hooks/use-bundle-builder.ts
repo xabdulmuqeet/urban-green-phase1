@@ -108,7 +108,7 @@ export function useBundleBuilder({
           current.potId && pots.find((pot) => pot.id === current.potId)?.fits.includes(toFitSize(size))
             ? current.potId
             : null,
-        step: 2
+        step: current.step
       })),
     [pots, setValue, toFitSize]
   );
@@ -118,7 +118,7 @@ export function useBundleBuilder({
       setValue((current) => ({
         ...current,
         potId: pot.id,
-        step: 3
+        step: current.step
       })),
     [setValue]
   );

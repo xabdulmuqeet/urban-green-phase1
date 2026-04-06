@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { guestOrderLookupSchema } from "@/lib/validators";
 import { OrderModel, type OrderHydratedDocument } from "@/models/Order";
 import { isDatabaseConfigured } from "@/lib/mongoose";
+import { rateLimit } from "@/lib/security/rate-limit";
 
 function toOrderResponse(order: OrderHydratedDocument | null) {
   if (!order) {
@@ -23,6 +24,16 @@ function toOrderResponse(order: OrderHydratedDocument | null) {
 }
 
 export async function GET(request: Request) {
+  const limitedResponse = rateLimit(request, {
+    keyPrefix: "order-lookup-session",
+    limit: 20,
+    windowMs: 5 * 60 * 1000
+  });
+
+  if (limitedResponse) {
+    return limitedResponse;
+  }
+
   try {
     if (!isDatabaseConfigured()) {
       return NextResponse.json({ error: "Database not configured." }, { status: 503 });
@@ -52,6 +63,17 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const limitedResponse = rateLimit(request, {
+    keyPrefix: "order-lookup-guest",
+    limit: 8,
+    windowMs: 10 * 60 * 1000,
+    message: "Too many order lookups. Please wait a bit and try again."
+  });
+
+  if (limitedResponse) {
+    return limitedResponse;
+  }
+
   try {
     if (!isDatabaseConfigured()) {
       return NextResponse.json({ error: "Database not configured." }, { status: 503 });
@@ -66,7 +88,7 @@ export async function POST(request: Request) {
 
     if (!response) {
       return NextResponse.json(
-        { error: "We could not find an order with that email and order number." },
+        { error: "We could not find a matching order." },
         { status: 404 }
       );
     }

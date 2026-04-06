@@ -100,7 +100,7 @@ export function AuthControls({ mobile = false, onNavigate }: AuthControlsProps) 
         <button
           type="button"
           onClick={() => void signOut({ callbackUrl: "http://localhost:8090" })}
-          className="rounded-full bg-terracotta px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#cd624b]"
+          className="bg-terracotta px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#486730]"
         >
           Sign Out
         </button>
@@ -113,97 +113,166 @@ export function AuthControls({ mobile = false, onNavigate }: AuthControlsProps) 
       <button
         type="button"
         onClick={() => setIsOpen((current) => !current)}
-        className="rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-foreground transition hover:border-sage hover:text-sage"
+        className={
+          mobile
+            ? "rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-foreground transition hover:border-sage hover:text-sage"
+            : "inline-flex h-10 w-10 items-center justify-center text-[#516448] transition-transform duration-200 hover:scale-95"
+        }
       >
-        Sign In
+        {mobile ? (
+          "Sign In"
+        ) : (
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M20 21a8 8 0 0 0-16 0" />
+            <circle cx="12" cy="8" r="4" />
+          </svg>
+        )}
       </button>
 
       {isOpen ? (
         <div
           className={`${
-            mobile ? "mt-3 w-full rounded-[1.75rem]" : "absolute right-0 top-full mt-3 w-[22rem] rounded-[1.9rem]"
-          } border border-black/8 bg-[#fcfbf7] p-5 shadow-[0_24px_60px_rgba(36,48,32,0.14)]`}
+            mobile
+              ? "mt-3 w-full"
+              : "absolute right-0 top-full mt-4 w-[23rem]"
+          } border border-[#eceee7] bg-[#fdfdf9] p-10 shadow-[0_28px_70px_rgba(53,73,42,0.12)]`}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-bark/55">
-            Your Account
-          </p>
-          <p className="mt-2 text-sm leading-6 text-bark/72">
-            Sign in to save favorites, track orders, and return to your picks anytime.
+          <h2 className="font-[family:var(--font-heading)] text-[2.15rem] leading-none tracking-[-0.04em] text-[#41473a]">
+            {mode === "signup" ? "Create Account" : "Welcome Back"}
+          </h2>
+          <p className="mt-3 font-[family:var(--font-body)] text-[15px] leading-6 text-[#7b8373]">
+            {mode === "signup"
+              ? "Join the archive and keep your curated plant selections close."
+              : "Access your curated botanical archive."}
           </p>
 
-          <div className="mt-5 flex items-center gap-2">
+          <div className="mt-10">
+            {mode === "signup" ? (
+              <div className="mb-7">
+                <label className="block font-[family:var(--font-body)] text-[11px] font-semibold uppercase tracking-[0.24em] text-[#7f9177]">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  placeholder="Your name"
+                  className="mt-3 h-11 w-full border-0 border-b border-[#e4e7dd] bg-transparent px-0 pb-1 font-[family:var(--font-body)] text-[17px] text-[#4c5444] outline-none transition placeholder:text-[#a4ab9d] focus:border-[#7f9177]"
+                />
+              </div>
+            ) : null}
+
+            <div className="mb-7">
+              <label className="block font-[family:var(--font-body)] text-[11px] font-semibold uppercase tracking-[0.24em] text-[#7f9177]">
+                Email Address
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="archivist@verdant.com"
+                className="mt-3 h-11 w-full border-0 border-b border-[#e4e7dd] bg-transparent px-0 pb-1 font-[family:var(--font-body)] text-[17px] text-[#4c5444] outline-none transition placeholder:text-[#a4ab9d] focus:border-[#7f9177]"
+              />
+            </div>
+
+            <div className="mb-8">
+              <div className="flex items-center justify-between">
+                <label className="block font-[family:var(--font-body)] text-[11px] font-semibold uppercase tracking-[0.24em] text-[#7f9177]">
+                  Password
+                </label>
+                {mode === "signin" ? (
+                  <button
+                    type="button"
+                    onClick={() => setMessage("Password reset isn't available yet.")}
+                    className="font-[family:var(--font-body)] text-[11px] text-[#b1b7a7] transition hover:text-[#7f9177]"
+                  >
+                    Forgot?
+                  </button>
+                ) : null}
+              </div>
+              <input
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="••••••••"
+                className="mt-3 h-11 w-full border-0 border-b border-[#e4e7dd] bg-transparent px-0 pb-1 font-[family:var(--font-body)] text-[17px] text-[#4c5444] outline-none transition placeholder:text-[#4c5444] focus:border-[#7f9177]"
+              />
+            </div>
+
             <button
               type="button"
-              onClick={() => setMode("signin")}
-              className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${mode === "signin" ? "bg-sage text-white" : "bg-cream text-bark/70"}`}
+              onClick={() => void handlePasswordAuth()}
+              disabled={isSubmitting}
+              className="w-full bg-[#536b4a] px-5 py-4 font-[family:var(--font-body)] text-[11px] uppercase tracking-[0.24em] text-white transition hover:bg-[#486730] disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Sign In
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode("signup")}
-              className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${mode === "signup" ? "bg-sage text-white" : "bg-cream text-bark/70"}`}
-            >
-              Create Account
+              {isSubmitting
+                ? mode === "signup"
+                  ? "Creating Account..."
+                  : "Signing In..."
+                : mode === "signup"
+                  ? "Create Account"
+                  : "Sign In"}
             </button>
           </div>
 
-          <div className="mt-5 rounded-[1.5rem] bg-cream/35 p-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-bark/60">
-            {mode === "signup" ? "Create your account" : "Password sign in"}
-          </p>
-          {mode === "signup" ? (
-            <input
-              type="text"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              placeholder="Your name"
-              className="mt-3 w-full rounded-2xl border border-black/10 bg-cream/40 px-4 py-3 text-sm outline-none transition focus:border-sage"
-            />
-          ) : null}
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="you@example.com"
-            className="mt-3 w-full rounded-2xl border border-black/10 bg-cream/40 px-4 py-3 text-sm outline-none transition focus:border-sage"
-          />
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="Password"
-            className="mt-3 w-full rounded-2xl border border-black/10 bg-cream/40 px-4 py-3 text-sm outline-none transition focus:border-sage"
-          />
+          <div className="mt-5 text-center">
+            <p className="font-[family:var(--font-body)] text-[10px] uppercase tracking-[0.22em] text-[#b0b7a7]">
+              Or
+            </p>
+          </div>
+
           <button
             type="button"
-            onClick={() => void handlePasswordAuth()}
-            disabled={isSubmitting}
-            className="mt-3 w-full rounded-full bg-terracotta px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#cd624b] disabled:cursor-not-allowed disabled:opacity-40"
+            onClick={() => {
+              setMode((current) => (current === "signin" ? "signup" : "signin"));
+              setMessage("");
+            }}
+            className="mt-5 w-full border border-[#e1e5da] bg-transparent px-5 py-4 font-[family:var(--font-body)] text-[11px] uppercase tracking-[0.24em] text-[#a0a89a] transition hover:border-[#cdd5c5] hover:text-[#516448]"
           >
-            {isSubmitting
-              ? mode === "signup"
-                ? "Creating Account..."
-                : "Signing In..."
-              : mode === "signup"
-                ? "Create Account"
-                : "Sign In With Password"}
+            {mode === "signup" ? "Back To Sign In" : "Create An Account"}
           </button>
-          </div>
 
-          <div className="mt-4 border-t border-black/5 pt-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bark/55">
-              Prefer to browse first?
-            </p>
           <button
             type="button"
             onClick={handleContinueAsGuest}
-            className="mt-3 w-full rounded-full border border-black/10 px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition hover:border-sage hover:text-sage"
+            className="mt-6 flex w-full items-center justify-center gap-2 font-[family:var(--font-body)] text-[10px] uppercase tracking-[0.22em] text-[#b0b7a7] transition hover:text-[#7f9177]"
           >
-            Continue As Guest
+            <span>Continue As Guest</span>
+            <span aria-hidden="true" className="material-symbols-outlined text-sm">
+              arrow_forward
+            </span>
           </button>
+
+          {message ? (
+            <p className="mt-5 font-[family:var(--font-body)] text-sm leading-6 text-[#516448]/78">
+              {message}
+            </p>
+          ) : null}
+
+          <div className="mt-10 border-t border-[#eef0e8] pt-7">
+            <div className="flex items-center gap-3">
+              <div className="flex -space-x-2">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#d39f7a] text-[11px] font-semibold text-white ring-2 ring-[#fdfdf9]">
+                  A
+                </span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#7f9177] text-[11px] font-semibold text-white ring-2 ring-[#fdfdf9]">
+                  B
+                </span>
+              </div>
+              <p className="font-[family:var(--font-body)] text-[11px] leading-5 text-[#9da596]">
+                Join over 12,000+ botanical enthusiasts archiving their urban jungles.
+              </p>
+            </div>
           </div>
-          {message ? <p className="mt-3 text-sm text-bark/70">{message}</p> : null}
         </div>
       ) : null}
     </div>

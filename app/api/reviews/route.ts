@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createReviewSchema } from "@/lib/validators";
 import { connectToDatabase, isDatabaseConfigured } from "@/lib/mongoose";
 import { getProductReviewsSummary } from "@/lib/reviews";
+import { rateLimit } from "@/lib/security/rate-limit";
 import { getCurrentSessionEmail, requireCurrentUser } from "@/lib/session";
 import { ProductModel } from "@/models/Product";
 import { ReviewModel } from "@/models/Review";
@@ -33,6 +34,17 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const limitedResponse = rateLimit(request, {
+    keyPrefix: "reviews-post",
+    limit: 10,
+    windowMs: 10 * 60 * 1000,
+    message: "Too many review submissions. Please wait before trying again."
+  });
+
+  if (limitedResponse) {
+    return limitedResponse;
+  }
+
   try {
     if (!isDatabaseConfigured()) {
       return NextResponse.json({ error: "Database not configured." }, { status: 503 });

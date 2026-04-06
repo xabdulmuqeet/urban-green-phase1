@@ -1,54 +1,62 @@
-import { ProductCardSkeleton } from "@/components/product-card-skeleton";
-import { SectionHeading } from "@/components/section-heading";
 import { Skeleton } from "@/components/skeleton";
+
+function ShopEditorialCardSkeleton({ offset = false }: { offset?: boolean }) {
+  return (
+    <article className={`group ${offset ? "md:mt-24" : ""}`}>
+      <Skeleton className="mb-6 aspect-[4/5] w-full rounded-none bg-[#ecefea]" />
+      <Skeleton className="h-8 w-2/3 rounded-none" />
+      <Skeleton className="mt-3 h-4 w-36 rounded-none" />
+      <Skeleton className="mt-4 h-6 w-24 rounded-none" />
+    </article>
+  );
+}
 
 export default function ShopLoading() {
   return (
-    <section className="section-space">
-      <div className="page-shell space-y-10">
-        <SectionHeading
-          eyebrow="Shop All"
-          title="Design-led plants for elevated everyday living."
-          description="Browse our curated plant collection, then narrow the view by mood, form, or light needs."
-        />
-
-        <div className="space-y-4 rounded-[1.75rem] border border-black/6 bg-white/88 p-4 shadow-[0_10px_30px_rgba(36,48,32,0.04)] backdrop-blur-sm sm:p-5">
+    <main className="min-h-screen pt-32">
+      <header className="mx-auto mb-10 max-w-screen-2xl px-[80px]">
+        <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-2">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-bark/55">
-              Search The Collection
-            </p>
-            <Skeleton className="mt-3 h-12 w-full rounded-full" />
+            <Skeleton className="h-20 w-full max-w-[36rem] rounded-none" />
+            <Skeleton className="mt-6 h-5 w-full max-w-md rounded-none" />
+            <Skeleton className="mt-3 h-5 w-full max-w-sm rounded-none" />
           </div>
-          <div className="hidden gap-3 lg:grid lg:grid-cols-[1.3fr_repeat(4,minmax(0,1fr))] lg:items-end">
+
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center border-b border-[#516448] py-4">
+              <Skeleton className="mr-4 h-6 w-6 rounded-full" />
+              <Skeleton className="h-5 w-full rounded-none" />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section className="mb-6 bg-[#ecefea] py-3">
+        <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between gap-8 px-[80px]">
+          <div className="flex gap-10 overflow-x-auto py-2">
             {Array.from({ length: 5 }).map((_, index) => (
-              <div key={index} className="space-y-2">
-                <Skeleton className="h-3 w-20" />
-                <Skeleton className="h-11 w-full rounded-full" />
-              </div>
+              <Skeleton key={index} className="h-4 w-24 rounded-none" />
             ))}
           </div>
-          <div className="flex flex-wrap items-center gap-3 border-t border-black/5 pt-4">
-            <Skeleton className="h-11 w-32 rounded-full" />
-            <Skeleton className="h-11 w-24 rounded-full" />
-            <Skeleton className="h-4 w-24" />
-          </div>
-        </div>
 
-        <div className="space-y-5 border-t border-black/5 pt-8">
-          <Skeleton className="h-3 w-20" />
-          <div className="flex flex-wrap gap-3">
-            {Array.from({ length: 6 }).map((_, index) => (
-              <Skeleton key={index} className="h-10 w-24 rounded-full" />
+          <div className="flex gap-4">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <Skeleton key={index} className="h-10 w-36 rounded-none bg-white" />
             ))}
           </div>
         </div>
+      </section>
 
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <ProductCardSkeleton key={index} />
-          ))}
+      <section className="mx-auto max-w-screen-2xl px-[80px]">
+        <div className="grid gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+          <ShopEditorialCardSkeleton />
+          <ShopEditorialCardSkeleton offset />
+          <ShopEditorialCardSkeleton />
+          <ShopEditorialCardSkeleton />
+          <ShopEditorialCardSkeleton offset />
+          <ShopEditorialCardSkeleton />
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }

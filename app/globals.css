@@ -1,19 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Serif:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #f8f7f1;
-  --foreground: #243020;
-  --sage: #87a96b;
-  --cream: #f5f5dc;
-  --terracotta: #e2725b;
-  --bark: #5e5249;
+  --background: #f8faf5;
+  --foreground: #2d3d28;
+  --sage: #8da184;
+  --cream: #eef1ea;
+  --terracotta: #516448;
+  --bark: #65705f;
   --line: rgba(36, 48, 32, 0.1);
-  --font-body: "Montserrat", sans-serif;
-  --font-heading: "Playfair Display", serif;
+  --font-body: "Manrope", sans-serif;
+  --font-heading: "Noto Serif", serif;
 }
 
 html {
@@ -22,31 +23,50 @@ html {
 
 body {
   background:
-    radial-gradient(circle at top, rgba(135, 169, 107, 0.12), transparent 30%),
-    linear-gradient(180deg, #fbfaf5 0%, var(--background) 100%);
+    radial-gradient(circle at top left, rgba(141, 161, 132, 0.16), transparent 28%),
+    linear-gradient(180deg, #fbfcf8 0%, var(--background) 100%);
   color: var(--foreground);
 }
 
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
 ::selection {
-  background: rgba(226, 114, 91, 0.22);
+  background: rgba(81, 100, 72, 0.2);
 }
 
 .page-shell {
-  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
 }
 
 .section-space {
-  @apply pb-16 pt-10 sm:pb-20 sm:pt-12 lg:pb-24 lg:pt-14;
+  @apply pb-20 pt-10 sm:pb-24 sm:pt-12 lg:pb-28 lg:pt-14;
 }
 
 .card-surface {
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(18px);
+  background: rgba(251, 252, 248, 0.84);
+  backdrop-filter: blur(16px);
 }
 
 .soft-grid {
-  background-image: radial-gradient(rgba(135, 169, 107, 0.15) 1px, transparent 1px);
-  background-size: 16px 16px;
+  background-image: linear-gradient(180deg, rgba(236, 239, 234, 0.45), rgba(248, 250, 245, 0.96));
 }
 
 .fade-up {

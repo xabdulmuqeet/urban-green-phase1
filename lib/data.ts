@@ -20,14 +20,11 @@ export const catalog = catalogData as CatalogData;
 export const instagramPosts = instagramData as InstagramPost[];
 
 const SHOP_FILTER_OPTIONS: Array<{ key: ShopFilterKey; label: string }> = [
-  { key: "all", label: "All Plants" },
+  { key: "all", label: "All Species" },
   { key: "statement", label: "Statement" },
-  { key: "trees", label: "Trees" },
   { key: "low-light", label: "Low Light" },
-  { key: "trailing", label: "Trailing" },
-  { key: "succulents", label: "Succulents" },
-  { key: "collector", label: "Collector" },
-  { key: "palms", label: "Palms" }
+  { key: "tropicals", label: "Tropicals" },
+  { key: "rare-finds", label: "Rare Finds" }
 ];
 
 const SHOP_SORT_OPTIONS: Array<{ key: ShopSortKey; label: string }> = [
@@ -95,7 +92,7 @@ export const getPotsByPlantSize = (plantSize: PlantSizeLabel): CatalogPot[] =>
 
 export const products: Product[] = getAllPlants();
 
-export const getFeaturedProducts = () => getAllPlants().slice(0, 3);
+export const getFeaturedProducts = () => getAllPlants().slice(0, 4);
 export const getProductById = (id: string) => getPlantById(id);
 
 export const getVariantBySize = (

@@ -60,21 +60,23 @@ export function SuccessPageClient() {
   }
 
   return (
-    <div className="mt-6 rounded-[1.5rem] border border-black/5 bg-cream/70 p-4 text-center">
+    <div className="border border-[#ecefea] bg-[#f2f4ef] px-6 py-8 text-center md:px-10 md:py-9">
       {orderNumber ? (
         <>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bark/60">
+          <p className="font-[family:var(--font-body)] text-xs font-semibold uppercase tracking-[0.24em] text-[#777777]">
             Order Number
           </p>
-          <p className="mt-2 font-[family:var(--font-heading)] text-3xl text-foreground">
+          <p className="mt-3 font-[family:var(--font-heading)] text-[2.8rem] leading-none text-[#191c1a] md:text-[4rem]">
             {orderNumber}
           </p>
-          <p className="mt-2 text-sm text-bark/70">
+          <p className="mx-auto mt-3 max-w-2xl font-[family:var(--font-body)] text-sm leading-6 text-[#516448]/75">
             Use this with your email on the orders page if you checked out as a guest.
           </p>
         </>
       ) : (
-        <p className="text-sm text-bark/70">{lookupError}</p>
+        <p className="font-[family:var(--font-body)] text-sm leading-7 text-[#516448]/75">
+          {lookupError}
+        </p>
       )}
     </div>
   );

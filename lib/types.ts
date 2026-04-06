@@ -3,12 +3,9 @@ export type ProductSizeLabel = '4"' | '6"' | '10"';
 export type ShopFilterKey =
   | "all"
   | "statement"
-  | "trees"
   | "low-light"
-  | "trailing"
-  | "succulents"
-  | "collector"
-  | "palms";
+  | "tropicals"
+  | "rare-finds";
 export type ShopSortKey = "featured" | "newest" | "price-low" | "price-high" | "name";
 export type ShopConditionFilter = "all" | "hardy" | "fragile";
 export type ShopSizeFilter = "all" | PlantSizeLabel;

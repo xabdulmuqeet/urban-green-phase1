@@ -32,6 +32,7 @@ function getTransporter() {
 type OrderEmailSummary = {
   text: string;
   html: string;
+  subtotal: number;
 };
 
 function escapeHtml(value: string) {
@@ -48,6 +49,18 @@ function formatShippingType(type: OrderHydratedDocument["shippingType"]) {
     .split("_")
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+}
+
+function formatConditionLabel(condition?: string) {
+  if (!condition) {
+    return null;
+  }
+
+  return condition === "fragile" ? "Air Purifying" : "Low Light";
+}
+
+function formatClassificationLabel(category?: string, displayCategory?: string) {
+  return (displayCategory ?? category ?? "Specimen").toUpperCase();
 }
 
 async function buildOrderSummary(order: OrderHydratedDocument): Promise<OrderEmailSummary> {
@@ -70,41 +83,88 @@ async function buildOrderSummary(order: OrderHydratedDocument): Promise<OrderEma
 
   const entries = order.items.map((item) => {
       if (item.type === "single" && item.productId) {
-        const productName = productsById.get(item.productId)?.name ?? item.productId;
+        const product = productsById.get(item.productId);
+        const productName = product?.name ?? item.productId;
         const sizeLabel = item.size ?? "Selected size";
+        const detailTags = [
+          formatConditionLabel(product?.condition),
+          product?.plantSize ? `${product.plantSize} Specimen` : null
+        ].filter(Boolean);
+
         return {
           text: `• ${productName} (${sizeLabel}) x${item.quantity}`,
           html: `
-            <div style="padding:16px 0;border-top:1px solid #ece6df;">
-              <p style="margin:0 0 6px;font-size:16px;font-weight:600;color:#1f1f1f;">${escapeHtml(productName)}</p>
-              <p style="margin:0;color:#6f675f;font-size:14px;">Size ${escapeHtml(sizeLabel)} · Qty ${item.quantity}</p>
+            <div style="display:table;width:100%;padding:20px 0;border-top:1px solid #e5eadf;">
+              <div style="display:table-cell;width:92px;vertical-align:top;">
+                <img src="${escapeHtml(product?.images?.[0] ?? "")}" alt="${escapeHtml(productName)}" width="80" height="80" style="display:block;width:80px;height:80px;object-fit:cover;background:#eef1ea;" />
+              </div>
+              <div style="display:table-cell;vertical-align:top;padding-left:18px;">
+                <p style="margin:0 0 4px;font-size:16px;line-height:1.3;font-weight:600;color:#4f6f37;font-family:Georgia,'Times New Roman',serif;">${escapeHtml(productName)}</p>
+                <p style="margin:0 0 8px;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#9aa18f;">Classification · ${escapeHtml(formatClassificationLabel(product?.category, product?.displayCategory))}</p>
+                <div style="font-size:0;">
+                  ${detailTags
+                    .map(
+                      (tag) =>
+                        `<span style="display:inline-block;margin:0 6px 6px 0;padding:4px 8px;background:#eef1ea;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8f9882;">${escapeHtml(tag!)}</span>`
+                    )
+                    .join("")}
+                </div>
+                <p style="margin:2px 0 0;font-size:12px;color:#7c8570;">Size ${escapeHtml(sizeLabel)} · Qty ${item.quantity}</p>
+              </div>
+              <div style="display:table-cell;width:96px;vertical-align:top;text-align:right;">
+                <p style="margin:0;font-size:14px;font-weight:600;color:#7f896f;">$${((item.price ?? 0) * item.quantity).toFixed(2)}</p>
+              </div>
             </div>
-          `
+          `,
+          subtotal: (item.price ?? 0) * item.quantity
         };
       }
 
-      const plantName = item.bundle?.plant ? productsById.get(item.bundle.plant)?.name ?? item.bundle.plant : "Plant";
-      const potName = item.bundle?.pot ? productsById.get(item.bundle.pot)?.name ?? item.bundle.pot : "Pot";
+      const plant = item.bundle?.plant ? productsById.get(item.bundle.plant) : null;
+      const plantName = plant?.name ?? item.bundle?.plant ?? "Plant";
       const extrasLabel =
         item.bundle?.extras?.length
           ? item.bundle.extras.map((extraId) => productsById.get(extraId)?.name ?? extraId).join(", ")
           : "No extras";
+      const detailTags = [
+        formatConditionLabel(plant?.condition),
+        plant?.plantSize ? `${plant.plantSize} Specimen` : null
+      ].filter(Boolean);
 
         return {
-        text: `• Custom Plant Bundle: ${plantName} (${item.bundle?.size ?? "6\""}) + ${potName} + ${extrasLabel} x${item.quantity}`,
+        text: `• Custom Plant Bundle: ${plantName} (${item.bundle?.size ?? "6\""}) + ${extrasLabel} x${item.quantity}`,
         html: `
-          <div style="padding:16px 0;border-top:1px solid #ece6df;">
-            <p style="margin:0 0 6px;font-size:16px;font-weight:600;color:#1f1f1f;">Custom Plant Bundle</p>
-            <p style="margin:0;color:#6f675f;font-size:14px;">${escapeHtml(plantName)} (${escapeHtml(item.bundle?.size ?? '6"')}) + ${escapeHtml(potName)}</p>
-            <p style="margin:6px 0 0;color:#6f675f;font-size:14px;">Extras: ${escapeHtml(extrasLabel)} · Qty ${item.quantity}</p>
+          <div style="display:table;width:100%;padding:20px 0;border-top:1px solid #e5eadf;">
+            <div style="display:table-cell;width:92px;vertical-align:top;">
+              <img src="${escapeHtml(plant?.images?.[0] ?? "")}" alt="${escapeHtml(plantName)}" width="80" height="80" style="display:block;width:80px;height:80px;object-fit:cover;background:#eef1ea;" />
+            </div>
+            <div style="display:table-cell;vertical-align:top;padding-left:18px;">
+              <p style="margin:0 0 4px;font-size:16px;line-height:1.3;font-weight:600;color:#4f6f37;font-family:Georgia,'Times New Roman',serif;">${escapeHtml(plantName)}</p>
+              <p style="margin:0 0 8px;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#9aa18f;">Classification · ${escapeHtml(formatClassificationLabel(plant?.category, plant?.displayCategory))}</p>
+              <div style="font-size:0;">
+                ${detailTags
+                  .map(
+                    (tag) =>
+                      `<span style="display:inline-block;margin:0 6px 6px 0;padding:4px 8px;background:#eef1ea;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8f9882;">${escapeHtml(tag!)}</span>`
+                  )
+                  .join("")}
+              </div>
+              <p style="margin:2px 0 0;font-size:12px;color:#7c8570;">Bundle Size ${escapeHtml(item.bundle?.size ?? '6"')} · Qty ${item.quantity}</p>
+              <p style="margin:6px 0 0;font-size:12px;color:#7c8570;">Extras: ${escapeHtml(extrasLabel)}</p>
+            </div>
+            <div style="display:table-cell;width:96px;vertical-align:top;text-align:right;">
+              <p style="margin:0;font-size:14px;font-weight:600;color:#7f896f;">$${((item.bundle?.totalPrice ?? 0) * item.quantity).toFixed(2)}</p>
+            </div>
           </div>
-        `
+        `,
+        subtotal: (item.bundle?.totalPrice ?? 0) * item.quantity
       };
     })
 
   return {
     text: entries.map((entry) => entry.text).join("\n"),
-    html: entries.map((entry) => entry.html).join("")
+    html: entries.map((entry) => entry.html).join(""),
+    subtotal: entries.reduce((sum, entry) => sum + entry.subtotal, 0)
   };
 }
 
@@ -133,7 +193,7 @@ function buildAddressHtml(order: OrderHydratedDocument) {
     address.deliveryNotes ? `Notes: ${escapeHtml(address.deliveryNotes)}` : null
   ]
     .filter(Boolean)
-    .map((line) => `<p style="margin:0 0 6px;font-size:14px;color:#4f463f;">${line}</p>`)
+    .map((line) => `<p style="margin:0 0 6px;font-size:13px;line-height:1.7;color:#66705f;">${line}</p>`)
     .join("");
 }
 
@@ -143,6 +203,7 @@ function buildEmailShell({
   intro,
   order,
   summaryHtml,
+  summarySubtotal,
   addressHtml,
   ctaLabel,
   ctaHref,
@@ -153,59 +214,55 @@ function buildEmailShell({
   intro: string;
   order: OrderHydratedDocument;
   summaryHtml: string;
+  summarySubtotal: number;
   addressHtml: string;
   ctaLabel: string;
   ctaHref: string;
   footerNote: string;
 }) {
   return `
-    <div style="margin:0;padding:48px 20px;background:
-      radial-gradient(circle at top left,#efe4d6 0%,rgba(239,228,214,0) 34%),
-      radial-gradient(circle at bottom right,#d8e1d3 0%,rgba(216,225,211,0) 28%),
-      linear-gradient(180deg,#f5efe7 0%,#efe6db 100%);
-      font-family:Georgia,'Times New Roman',serif;">
-      <div style="max-width:680px;margin:0 auto;background:#fffdf9;border-radius:36px;overflow:hidden;border:1px solid #e9dfd3;box-shadow:0 28px 70px rgba(91,72,54,0.12);">
-        <div style="position:relative;padding:44px 40px 30px;background:
-          linear-gradient(145deg,#fbf6ef 0%,#f4eadf 52%,#eef3ea 100%);
-          border-bottom:1px solid #eadfd3;">
-          <div style="position:relative;">
-            <p style="margin:0 0 16px;font-size:10px;font-weight:700;letter-spacing:0.34em;text-transform:uppercase;color:#8b7766;">${escapeHtml(eyebrow)}</p>
-            <h1 style="margin:0;font-size:30px;line-height:1.15;color:#1e1b18;font-weight:600;">${escapeHtml(title)}</h1>
-            <p style="margin:16px 0 0;max-width:520px;font-size:15px;line-height:1.75;color:#64584d;">${escapeHtml(intro)}</p>
-          </div>
+    <div style="margin:0;padding:36px 20px;background:#f8faf5;font-family:Manrope,Arial,sans-serif;">
+      <div style="max-width:680px;margin:0 auto;">
+        <div style="padding:0 0 28px;text-align:center;">
+          <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:#9aa18f;">${escapeHtml(eyebrow)}</p>
+          <h1 style="margin:0 auto;max-width:440px;font-size:32px;line-height:0.95;color:#4f6f37;font-weight:700;font-family:Georgia,'Times New Roman',serif;text-align:center;">${escapeHtml(title)}</h1>
+          <p style="margin:18px auto 0;max-width:500px;font-size:15px;line-height:1.8;color:#7c8570;text-align:center;">${escapeHtml(intro)}</p>
         </div>
 
-        <div style="padding:34px 40px 18px;">
-          <div style="margin-bottom:28px;padding:24px 26px;border-radius:26px;background:linear-gradient(180deg,#fbf7f1 0%,#f7f0e7 100%);border:1px solid #ece1d5;">
-            <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:#8b7766;">Order Number</p>
-            <p style="margin:0;font-size:22px;line-height:1.2;color:#1f1c18;">${escapeHtml(order.orderNumber)}</p>
-          </div>
-
+        <div style="padding:34px 40px;background:#fffefb;border:1px solid #e5eadf;">
           <div style="padding:0 0 4px;">
-            <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:#8b7766;">Order Summary</p>
+            <p style="margin:0 0 18px;font-size:14px;line-height:1.3;font-weight:700;color:#6e7565;font-family:Georgia,'Times New Roman',serif;">Acquisition Details</p>
             ${summaryHtml}
           </div>
 
-          <div style="margin-top:28px;padding:24px 26px;border-radius:26px;background:linear-gradient(180deg,#f9f5ee 0%,#f4ece2 100%);border:1px solid #ece1d5;">
-            <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:#8b7766;">Delivery Details</p>
-            ${addressHtml}
-            <div style="margin-top:18px;padding-top:16px;border-top:1px solid #e8dbcd;">
-              <p style="margin:0 0 8px;font-size:14px;color:#4f463f;"><strong>Shipping:</strong> ${escapeHtml(formatShippingType(order.shippingType))} ($${order.shippingCost.toFixed(2)})</p>
-              <p style="margin:0;font-size:16px;color:#2a241f;"><strong>Total:</strong> $${order.totalAmount.toFixed(2)}</p>
-            </div>
-          </div>
-
-          <div style="margin-top:32px;text-align:center;">
-            <a href="${escapeHtml(ctaHref)}" style="display:inline-block;padding:15px 28px;border-radius:999px;background:linear-gradient(180deg,#cf7459 0%,#c15e46 100%);box-shadow:0 14px 28px rgba(193,94,70,0.24);color:#ffffff;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;">${escapeHtml(ctaLabel)}</a>
+          <div style="padding-top:18px;text-align:right;">
+            <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9aa18f;">Subtotal <span style="display:inline-block;min-width:90px;text-align:right;color:#7c8570;">$${summarySubtotal.toFixed(2)}</span></p>
+            <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9aa18f;">Archive Shipping <span style="display:inline-block;min-width:90px;text-align:right;color:#7c8570;">$${order.shippingCost.toFixed(2)}</span></p>
+            <p style="margin:12px 0 0;font-size:18px;line-height:1.3;color:#6d8a4f;font-style:italic;font-family:Georgia,'Times New Roman',serif;">Total Investment <span style="display:inline-block;min-width:90px;text-align:right;font-style:normal;font-weight:700;">$${order.totalAmount.toFixed(2)}</span></p>
           </div>
         </div>
 
-        <div style="padding:24px 40px 30px;border-top:1px solid #ece1d5;background:linear-gradient(180deg,#fffaf5 0%,#f7efe5 100%);">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-            <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;color:#8b7766;">The Urban Green</p>
-            <p style="margin:0;font-size:12px;color:#8b7766;">Curated plants, thoughtful care, calm interiors.</p>
+        <div style="margin-top:34px;display:table;width:100%;border-spacing:0;">
+          <div style="display:table-cell;width:50%;vertical-align:top;padding:0 18px 0 0;">
+            <div style="border-left:3px solid #6d8a4f;padding-left:16px;">
+              <p style="margin:0 0 12px;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#9aa18f;">Archive Destination</p>
+              ${addressHtml}
+            </div>
           </div>
-          <p style="margin:14px 0 0;font-size:13px;line-height:1.8;color:#7a7068;">${escapeHtml(footerNote)}</p>
+          <div style="display:table-cell;width:50%;vertical-align:top;padding:0 0 0 18px;">
+            <p style="margin:0 0 12px;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#9aa18f;">Transit Window</p>
+            <p style="margin:0 0 10px;font-size:14px;line-height:1.7;color:#7c8570;">Shipping method</p>
+            <p style="margin:0 0 18px;font-size:20px;line-height:1.3;color:#6d8a4f;font-style:italic;font-family:Georgia,'Times New Roman',serif;">${escapeHtml(formatShippingType(order.shippingType))}</p>
+            <p style="margin:0;font-size:11px;line-height:1.7;color:#8c9480;">Order Number · ${escapeHtml(order.orderNumber)}</p>
+            <div style="margin-top:16px;">
+              <a href="${escapeHtml(ctaHref)}" style="display:inline-block;padding:11px 18px;background:#556f41;color:#ffffff;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;">${escapeHtml(ctaLabel)}</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:42px 20px 0;text-align:center;">
+          <p style="margin:0;font-size:26px;line-height:1.2;color:#6d8a4f;font-style:italic;font-family:Georgia,'Times New Roman',serif;">A Living Record</p>
+          <p style="margin:14px auto 0;max-width:520px;font-size:13px;line-height:1.8;color:#8a927e;">${escapeHtml(footerNote)}</p>
         </div>
       </div>
     </div>
@@ -238,14 +295,15 @@ export async function sendOrderConfirmationEmail(order: OrderHydratedDocument) {
   const text = `Thank you for your order.\n\nOrder number: ${order.orderNumber}\n\nOrder summary:\n${summary.text}\n\nDelivery address:\n${addressBlock}\n\nShipping: ${formatShippingType(order.shippingType)} ($${order.shippingCost.toFixed(2)})\nTotal: $${order.totalAmount.toFixed(2)}\n\nCare guide: ${careGuideLink}`;
   const html = buildEmailShell({
     eyebrow: "The Urban Green",
-    title: "Your order is confirmed",
-    intro: "We’ve received your order and your plants are being prepared with care.",
+    title: "Your Botanical Journey Begins",
+    intro: `Hello ${order.deliveryAddress.recipientName.split(" ")[0] ?? "there"}, your new specimens are being prepared for their journey. Each plant has been meticulously inspected and documented in our archive before being carefully packaged for relocation.`,
     order,
     summaryHtml: summary.html,
+    summarySubtotal: summary.subtotal,
     addressHtml,
-    ctaLabel: "Open Care Guide",
+    ctaLabel: "Track Specimens",
     ctaHref: careGuideLink,
-    footerNote: "Thank you for choosing The Urban Green. We’ll follow up with care tips once your order has had time to settle in."
+    footerNote: "As part of our commitment to the Botanical Archivist philosophy, your plants come with a unique digital passport. Log into your account to access care historical data and seasonal growth projections for these specific specimens."
   });
 
   const sent = await sendEmail(
@@ -281,10 +339,11 @@ export async function sendDueFollowUpEmails() {
     const text = `We hope your order is settling in beautifully.\n\nOrder number: ${order.orderNumber}\n\nOrder recap:\n${summary.text}\n\nDelivery address:\n${addressBlock}\n\nCare guide: ${careGuideLink}`;
     const html = buildEmailShell({
       eyebrow: "Plant Care Follow-Up",
-      title: "How is your order settling in?",
-      intro: "A little check-in from The Urban Green with care guidance for the plants and bundle pieces you brought home.",
+      title: "A Living Botanical Record",
+      intro: "A little check-in from The Urban Green with care guidance for the plants and bundle pieces now settling into your space.",
       order,
       summaryHtml: summary.html,
+      summarySubtotal: summary.subtotal,
       addressHtml,
       ctaLabel: "View Care Guide",
       ctaHref: careGuideLink,

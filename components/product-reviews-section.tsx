@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/skeleton";
 import type { ProductReviewsResponse } from "@/lib/api-types";
 
@@ -26,6 +26,41 @@ export function ProductReviewsSection({
   const [comment, setComment] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoadingReviews, setIsLoadingReviews] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadReviews = async () => {
+      setIsLoadingReviews(true);
+
+      try {
+        const response = await fetch(`/api/reviews?productId=${encodeURIComponent(productId)}`, {
+          cache: "no-store"
+        });
+
+        const payload = (await response.json().catch(() => null)) as ProductReviewsResponse | null;
+
+        if (!response.ok || !payload || !isMounted) {
+          return;
+        }
+
+        setReviewData(payload);
+      } catch {
+        // Preserve the default empty state if reviews fail to load.
+      } finally {
+        if (isMounted) {
+          setIsLoadingReviews(false);
+        }
+      }
+    };
+
+    void loadReviews();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [productId, status]);
 
   const handleSubmit = async () => {
     if (status !== "authenticated") {
@@ -70,58 +105,84 @@ export function ProductReviewsSection({
   };
 
   return (
-    <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-card">
+    <section className="border-t border-[#777777]/20 pt-12">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage">Reviews</p>
+          <p className="font-[family:var(--font-body)] text-[10px] font-semibold uppercase tracking-[0.24em] text-[#516448]/55">
+            Reviews
+          </p>
           <div className="mt-2 flex flex-wrap items-center gap-3">
-            <h2 className="font-[family:var(--font-heading)] text-3xl">Customer Notes</h2>
+            <h2 className="font-[family:var(--font-heading)] text-4xl leading-none text-[#486730]">
+              Customer Notes
+            </h2>
             {reviewData.reviewCount > 0 ? (
-              <div className="text-lg tracking-[0.16em] text-terracotta">
+              <div className="text-lg tracking-[0.16em] text-[#7a9163]">
                 {renderStars(reviewData.averageRating)}
               </div>
             ) : null}
           </div>
-          <p className="mt-2 text-sm text-bark/75">
-            {reviewData.reviewCount > 0
+          <p className="mt-3 max-w-2xl font-[family:var(--font-body)] text-sm leading-6 text-[#474747]/72">
+            {isLoadingReviews
+              ? "Loading recent customer notes."
+              : reviewData.reviewCount > 0
               ? `${reviewData.averageRating.toFixed(1)} out of 5 from ${reviewData.reviewCount} review${reviewData.reviewCount === 1 ? "" : "s"}`
               : "Be the first to review this plant."}
           </p>
         </div>
         {reviewData.reviewCount === 0 ? (
-          <p className="text-xl tracking-[0.2em] text-bark/20">{renderStars(0)}</p>
+          <p className="text-xl tracking-[0.2em] text-[#516448]/18">{renderStars(0)}</p>
         ) : null}
       </div>
 
       <div className="mt-6 space-y-4">
-        {reviewData.reviews.length > 0 ? (
+        {isLoadingReviews ? (
+          <>
+            {Array.from({ length: 2 }).map((_, index) => (
+              <div key={index} className="border border-[#777777]/10 bg-[#f2f4ef] p-5">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="space-y-2">
+                    <Skeleton className="h-5 w-28" />
+                    <Skeleton className="h-3 w-24" />
+                  </div>
+                  <Skeleton className="h-4 w-24" />
+                </div>
+                <Skeleton className="mt-4 h-4 w-full" />
+                <Skeleton className="mt-2 h-4 w-4/5" />
+              </div>
+            ))}
+          </>
+        ) : reviewData.reviews.length > 0 ? (
           reviewData.reviews.map((review) => (
-            <div key={review.id} className="rounded-[1.5rem] border border-black/5 bg-cream/50 p-4">
+            <div key={review.id} className="border border-[#777777]/10 bg-[#f2f4ef] p-5">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="font-medium text-foreground">{review.userName}</p>
-                  <p className="text-xs uppercase tracking-[0.18em] text-bark/60">
+                  <p className="font-[family:var(--font-body)] text-sm font-semibold text-[#191c1a]">
+                    {review.userName}
+                  </p>
+                  <p className="mt-1 font-[family:var(--font-body)] text-[10px] uppercase tracking-[0.18em] text-[#516448]/55">
                     {new Date(review.createdAt).toLocaleDateString()}
                   </p>
                 </div>
-                  <div className="text-sm tracking-[0.16em] text-terracotta">
-                    {renderStars(review.rating)}
-                  </div>
+                <div className="text-sm tracking-[0.16em] text-[#7a9163]">
+                  {renderStars(review.rating)}
+                </div>
               </div>
               {review.comment ? (
-                <p className="mt-3 text-sm leading-6 text-bark/80">{review.comment}</p>
+                <p className="mt-4 max-w-3xl font-[family:var(--font-body)] text-sm leading-7 text-[#474747]/82">
+                  {review.comment}
+                </p>
               ) : null}
             </div>
           ))
         ) : (
-          <div className="rounded-[1.5rem] border border-black/5 bg-cream/40 p-5 text-sm text-bark/75">
+          <div className="border border-[#777777]/10 bg-[#f2f4ef] p-5 font-[family:var(--font-body)] text-sm leading-6 text-[#474747]/72">
             No reviews yet. This product is waiting for its first note from a customer.
           </div>
         )}
       </div>
 
-      <div className="mt-8 rounded-[1.75rem] border border-black/5 bg-cream/50 p-5">
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-bark/70">
+      <div className="mt-24 border border-[#777777]/10 bg-[#eef1ea] p-6 sm:mt-28">
+        <p className="font-[family:var(--font-body)] text-[11px] font-semibold uppercase tracking-[0.22em] text-[#474747]/68">
           Leave a Review
         </p>
         {status === "loading" ? (
@@ -132,23 +193,28 @@ export function ProductReviewsSection({
           </div>
         ) : status !== "authenticated" ? (
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-bark/75">Sign in to leave a rating and comment for this plant.</p>
+            <p className="font-[family:var(--font-body)] text-sm text-[#474747]/75">
+              Sign in to leave a rating and comment for this plant.
+            </p>
             <button
               type="button"
               onClick={() => void signIn()}
-              className="rounded-full bg-sage px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#6b866e]"
+              className="bg-[#516448] px-5 py-3 font-[family:var(--font-body)] text-sm font-semibold uppercase tracking-[0.18em] text-[#d4e9c5] transition hover:bg-[#486730]"
             >
               Sign In
             </button>
           </div>
         ) : reviewData.userReview ? (
-          <p className="mt-4 text-sm text-bark/75">
+          <p className="mt-4 font-[family:var(--font-body)] text-sm text-[#474747]/75">
             You&apos;ve already reviewed this product. Thanks for sharing your experience.
           </p>
         ) : (
           <div className="mt-4 space-y-4">
             <div>
-              <label className="text-sm font-medium text-foreground" htmlFor="review-rating">
+              <label
+                className="font-[family:var(--font-body)] text-sm font-medium text-[#191c1a]"
+                htmlFor="review-rating"
+              >
                 Rating
               </label>
               <div className="relative mt-2">
@@ -156,7 +222,7 @@ export function ProductReviewsSection({
                   id="review-rating"
                   value={rating}
                   onChange={(event) => setRating(Number(event.target.value))}
-                  className="w-full appearance-none rounded-full border border-black/10 bg-white px-5 py-3 pr-11 text-sm text-foreground outline-none transition focus:border-sage"
+                  className="w-full appearance-none border border-[#777777]/15 bg-white px-5 py-3 pr-11 font-[family:var(--font-body)] text-sm text-[#191c1a] outline-none transition focus:border-[#516448]"
                 >
                   {[5, 4, 3, 2, 1].map((value) => (
                     <option key={value} value={value}>
@@ -164,7 +230,7 @@ export function ProductReviewsSection({
                     </option>
                   ))}
                 </select>
-                <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-bark/45">
+                <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[#474747]/45">
                   <svg
                     width="12"
                     height="12"
@@ -185,7 +251,10 @@ export function ProductReviewsSection({
               </div>
             </div>
             <div>
-              <label className="text-sm font-medium text-foreground" htmlFor="review-comment">
+              <label
+                className="font-[family:var(--font-body)] text-sm font-medium text-[#191c1a]"
+                htmlFor="review-comment"
+              >
                 Comment
               </label>
               <textarea
@@ -193,21 +262,25 @@ export function ProductReviewsSection({
                 value={comment}
                 onChange={(event) => setComment(event.target.value)}
                 placeholder="Optional: tell us how this plant feels in your space."
-                className="mt-2 min-h-32 w-full rounded-[1.5rem] border border-black/10 bg-white px-5 py-4 text-sm text-foreground outline-none transition focus:border-sage"
+                className="mt-2 min-h-32 w-full border border-[#777777]/15 bg-white px-5 py-4 font-[family:var(--font-body)] text-sm text-[#191c1a] outline-none transition focus:border-[#516448]"
               />
             </div>
             <button
               type="button"
               onClick={() => void handleSubmit()}
               disabled={isSubmitting}
-              className="rounded-full bg-terracotta px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#cd624b] disabled:cursor-not-allowed disabled:opacity-40"
+              className="bg-[#516448] px-5 py-3 font-[family:var(--font-body)] text-sm font-semibold uppercase tracking-[0.18em] text-[#d4e9c5] transition hover:bg-[#486730] disabled:cursor-not-allowed disabled:opacity-40"
             >
               {isSubmitting ? "Submitting..." : "Submit Review"}
             </button>
           </div>
         )}
-        {message ? <p className="mt-4 text-sm text-bark/75">{message}</p> : null}
+        {message ? (
+          <p className="mt-4 font-[family:var(--font-body)] text-sm text-[#474747]/75">{message}</p>
+        ) : null}
       </div>
-    </div>
+
+      <div className="h-10 sm:h-14" aria-hidden="true" />
+    </section>
   );
 }

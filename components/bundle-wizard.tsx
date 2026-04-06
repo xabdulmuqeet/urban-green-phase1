@@ -13,6 +13,17 @@ import { calculateBundlePricing } from "@/lib/bundle";
 import { formatCurrency } from "@/lib/format";
 import type { PlantSizeLabel, Product } from "@/lib/types";
 
+const specimenImageMap: Record<string, string> = {
+  "monstera-deliciosa":
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuDTc-ENHJ317dD18eyA_b-thdVUhBmgvwyQ0pDXbBMYzeiYeVR-0TT_f94ujIVvhjnmmOxSBrewj4rrh7-atqEbBHhLNuYbec2YYgVpcUt6chLUn4LFkusWhWRwQW47yJOA0nyVJwMs2yK2_OuKTEGzg-V79IKj6sCbLMtF4ITWNrv3_nUNDGAnFWXDdu21lw0Zb3_BUJkS-WT7B8ylLkqi7zkLmp6UBJyP9MFRFIAMQMTppa9mhtuOl6qGnojAA5TYjIO7BYnECmpX",
+  "ficus-lyrata":
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuDxAGqYB2uQfXJzochHCsNDuK9B9GHcnYAEicPxJ_tWTZKgQixWcyfYKrSYbwbpmHbzTRlX0PzlBKwfxaPqK9QSZihUo5TiPQ7OANEboqWJqLhoHWS5d05r1WO4ytKnDBziBszXDxxlzbjFLROiFfuy4uixzKNljel4dIB7EqQoOdzPcrILoWRp1Xz9n8z0kew_Fc87l81h60Y6WExzPfv_m_HvkYI8pEdR2Iz4jC8nddpu2L6qUDkTAtR9sTLTvv0h8shtWl6LWOmL",
+  "snake-plant-laurentii":
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuD_4YMwK9NC2rY2dFH3A04ycjVnYMw1qJabUoaEM5PMwbKN2tKV41dgNnxFdtQo8R08Bi7pEyvDNOyXH6nfOeqq-r3bbu7P28ZtXSZoEt6ZxEznBJI-VYB646NmLTBp3I67_kcymd69ZmKdwNYMHvhV0JR1dEwRgGzaKzfR0QpoZlhLGzni_twl1zUbLSxKk42etrmZ0uZmmnIxIEXbL6xk8HBQPaNAEns7bz5keAqCFtHett8gMLnuTsl6I-egnkSZitl4LYolAXaO",
+  "olive-tree":
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuAXfkPUN7OutkW8V9aQSZGkFhCrCgNg5L1GLgYpVTKI95bsAZDiPfIMlPwfP1TIJglSBPtMl-jk-uXmM5YUVMrm5c_BN1OCH6bD8j5BHX4pfkjr_XrEax0PNuMCXgLF9Rzw4W00ZqQixpTiAFz544ueBNrKVGAD1e4ynE_50cB_Jz8-RJT_IqfH3xkjcbNn_imKzI6WwpHqkBCA10GVjdSit_e6AqgG8aT9eRMwm42YAYRJ9jItktbrVXo7doqmmNgPnAnbY9CFHlPy"
+};
+
 type BundleWizardProps = {
   plants: Product[];
   editKey?: string | null;
@@ -94,11 +105,11 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
       recommended.add("heat-pack");
     }
 
-    if (selectedPlant.collections.includes("trailing")) {
+    if (selectedPlant.collections.includes("rare-finds")) {
       recommended.add("fertilizer");
     }
 
-    if (selectedPlant.collections.includes("collector")) {
+    if (selectedPlant.collections.includes("tropicals")) {
       recommended.add("soil");
       recommended.add("moisture-meter");
     }
@@ -241,39 +252,53 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
         }}
       />
 
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div className="grid gap-12 lg:grid-cols-[0.66fr_0.34fr] lg:items-start">
         <div className="space-y-8">
           {step === 1 ? (
             <section className="space-y-5">
-              <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-sage">
-                  Step 1
-                </p>
-                <h2 className="font-[family:var(--font-heading)] text-4xl leading-tight">
-                  Pick the plant that sets the tone.
-                </h2>
-                <p className="text-sm leading-7 text-bark/80">
-                  Choose a plant first. We will match the next step’s pot options to its size automatically.
-                </p>
+              <div className="flex items-end justify-between gap-6">
+                <div className="space-y-2">
+                  <h2 className="font-[family:var(--font-heading)] text-3xl leading-tight tracking-[-0.03em] text-[#486730]">
+                    The Living Archive
+                  </h2>
+                  <p className="max-w-md text-sm leading-7 text-bark/80">
+                    Filter through our catalog of curated species. Each plant is selected and
+                    staged specifically for collectors.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="flex items-center gap-2 border-b border-[#777777]/35 pb-1 font-[family:var(--font-body)] text-xs uppercase tracking-[0.2em] text-[#474747] transition hover:text-[#486730]"
+                >
+                  <span>Filters</span>
+                  <span className="material-symbols-outlined text-sm">tune</span>
+                </button>
               </div>
 
               <div className="grid gap-6 md:grid-cols-2">
                 {plants.map((plant) => (
                   <BundleOptionCard
                     key={plant.id}
-                    title={plant.name}
-                    subtitle={`${plant.plantSize} plant · ${plant.condition}`}
+                    title={plant.name === "Indoor Olive Tree" ? "Olea Europaea" : plant.name}
+                    subtitle={`Level: ${
+                      plant.condition === "fragile"
+                        ? plant.plantSize === "Large"
+                          ? "Enthusiast"
+                          : "Intermediate"
+                        : plant.plantSize === "Small"
+                          ? "Beginner"
+                          : "Intermediate"
+                    }`}
                     priceLabel={formatCurrency(getPriceForSize(plant, plant.sizes[0]))}
-                    image={plant.images[0]}
-                    badge={plant.tag}
-                    metaChips={plant.variants.filter((variant) => variant.inStock).map((variant) => variant.size)}
+                    image={specimenImageMap[plant.id] ?? plant.images[0]}
+                    badge={plant.tag === "Best Seller" ? "Rare Find" : plant.tag}
                     selected={selectedPlant?.id === plant.id}
                     onClick={() => selectPlant(plant)}
                     expandedContent={
                       selectedPlant?.id === plant.id ? (
                         <div className="space-y-3">
-                          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-bark/60">
-                            Choose Size
+                          <p className="font-[family:var(--font-body)] text-[10px] font-semibold uppercase tracking-[0.2em] text-[#474747]/60">
+                            Select Size
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {plant.variants
@@ -286,10 +311,10 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
                                     event.stopPropagation();
                                     selectPlantVariantSize(variant.size);
                                   }}
-                                  className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition ${
+                                  className={`px-3 py-2 font-[family:var(--font-body)] text-[10px] uppercase tracking-[0.18em] transition ${
                                     selectedPlantVariantSize === variant.size
-                                      ? "border-sage bg-sage text-white"
-                                      : "border-black/10 bg-white text-foreground hover:border-sage hover:text-sage"
+                                      ? "bg-[#486730] text-white"
+                                      : "border border-[#777777]/20 bg-white text-[#474747] hover:border-[#486730]"
                                   }`}
                                 >
                                   {variant.size} · {formatCurrency(variant.price)}
@@ -308,11 +333,8 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
           {step === 2 ? (
             <section className="space-y-5">
               <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-sage">
-                  Step 2
-                </p>
-                <h2 className="font-[family:var(--font-heading)] text-4xl leading-tight">
-                  Pair it with a matching pot.
+                <h2 className="font-[family:var(--font-heading)] text-3xl leading-tight tracking-[-0.03em] text-[#486730]">
+                  Choose Vessel
                 </h2>
                 <p className="text-sm leading-7 text-bark/80">
                   Only compatible pots are shown for your selected {selectedPlantVariantSize ?? selectedPlant?.sizes[0]} plant.
@@ -343,11 +365,8 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
           {step === 3 ? (
             <section className="space-y-5">
               <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-sage">
-                  Step 3
-                </p>
-                <h2 className="font-[family:var(--font-heading)] text-4xl leading-tight">
-                  Finish with thoughtful extras.
+                <h2 className="font-[family:var(--font-heading)] text-3xl leading-tight tracking-[-0.03em] text-[#486730]">
+                  Final Review
                 </h2>
                 <p className="text-sm leading-7 text-bark/80">
                   Add finishing extras to complete the bundle. Recommended items float to the top based on your plant style, and any extra still triggers the 10% bundle discount.
@@ -378,6 +397,7 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
         </div>
 
         <BundleSummary
+          currentStep={step}
           plant={selectedPlant}
           plantVariantSize={selectedPlantVariantSize}
           pot={selectedPot}
@@ -385,7 +405,17 @@ export function BundleWizard({ plants, editKey = null }: BundleWizardProps) {
           pricing={pricing}
           canAddBundle={canAddBundle}
           editingCartKey={editingCartKey}
-          onAddBundle={() => {
+          onPrimaryAction={() => {
+            if (step === 1 && selectedPlant) {
+              setStep(2);
+              return;
+            }
+
+            if (step === 2 && selectedPlant && selectedPot) {
+              setStep(3);
+              return;
+            }
+
             void saveSelectedBundle();
           }}
           onAddBundleAndViewCart={() => {

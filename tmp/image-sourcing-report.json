@@ -1,0 +1,54 @@
+{
+  "updated": [
+    {
+      "id": "bird-of-paradise",
+      "name": "Bird of Paradise",
+      "urls": [
+        "https://bloomscape.com/wp-content/uploads/2019/03/0004_bloomscape_product-bird-of-paradise-indigo.jpg",
+        "https://bloomscape.com/wp-content/uploads/2019/03/bloomscape_product-large-bird-of-paradise_stone.jpg",
+        "https://bloomscape.com/wp-content/uploads/2020/12/bloomscape_bird-of-paradise_slate-resize-e1625252881455.jpg?ver=372942"
+      ]
+    },
+    {
+      "id": "rubber-plant-burgundy",
+      "name": "Rubber Plant Burgundy",
+      "urls": [
+        "https://greenkin.in/cdn/shop/products/rubber-plant-burgundy-large-growpot-greenkin.jpg?v=1668108333",
+        "https://cdn.shopify.com/s/files/1/0574/8736/0174/files/Ficus-Burgundy-Rubber-Indoor-Plant.jpg?v=1627442849",
+        "https://indoorhomegarden.com/wp-content/uploads/2021/07/Burgundy-Rubber-Plant.jpg"
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "zz-plant-raven",
+      "name": "ZZ Plant Raven",
+      "reason": "fetch failed"
+    },
+    {
+      "id": "pothos-marble-queen",
+      "name": "Pothos Marble Queen",
+      "reason": "Downloaded only 2 images"
+    },
+    {
+      "id": "snake-plant-laurentii",
+      "name": "Snake Plant Laurentii",
+      "reason": "Downloaded only 0 images"
+    },
+    {
+      "id": "peace-lily-domino",
+      "name": "Peace Lily Domino",
+      "reason": "Downloaded only 0 images"
+    },
+    {
+      "id": "philodendron-micans",
+      "name": "Philodendron Micans",
+      "reason": "Downloaded only 0 images"
+    },
+    {
+      "id": "philodendron-birkin",
+      "name": "Philodendron Birkin",
+      "reason": "Downloaded only 0 images"
+    }
+  ]
+}

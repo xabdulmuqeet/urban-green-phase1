@@ -7,6 +7,7 @@ import Link from "next/link";
 const links = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
+  { href: "/care-guide", label: "Care Guides" },
   { href: "/bundle", label: "Bundle" },
   { href: "/cart", label: "Cart" },
   { href: "/orders", label: "Orders" },
@@ -23,7 +24,7 @@ export function MobileNav() {
         aria-label="Toggle navigation menu"
         aria-expanded={isOpen}
         onClick={() => setIsOpen((open) => !open)}
-        className="flex h-11 w-11 items-center justify-center rounded-full border border-sage/30 bg-sage/10 text-sage transition"
+        className="flex h-11 w-11 items-center justify-center rounded-full bg-cream/80 text-foreground transition"
       >
         <span className="relative block h-4 w-5">
           <span
@@ -45,17 +46,17 @@ export function MobileNav() {
       </button>
 
       <div
-        className={`absolute left-0 right-0 top-full overflow-hidden border-b border-black/5 bg-[rgba(248,247,241,0.96)] backdrop-blur-xl transition-all duration-300 ${
-          isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+        className={`absolute left-0 right-0 top-full overflow-hidden bg-[rgba(248,250,245,0.98)] shadow-[0_18px_45px_rgba(62,79,55,0.08)] backdrop-blur-xl transition-all duration-300 ${
+          isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="page-shell flex flex-col gap-4 py-5 text-xs font-medium uppercase tracking-[0.18em]">
+        <nav className="page-shell flex flex-col gap-4 py-6 text-sm text-foreground">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="transition hover:text-sage"
+              className="transition hover:text-[#486730]"
             >
               {link.label}
             </Link>

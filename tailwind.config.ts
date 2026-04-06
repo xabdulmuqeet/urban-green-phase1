@@ -8,14 +8,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        sage: "#87a96b",
-        cream: "#f5f5dc",
-        terracotta: "#e2725b",
-        forest: "#243020",
-        bark: "#5e5249"
+        sage: "#8da184",
+        cream: "#eef1ea",
+        terracotta: "#516448",
+        forest: "#2d3d28",
+        bark: "#65705f"
       },
       boxShadow: {
-        card: "0 18px 45px rgba(36, 48, 32, 0.12)"
+        card: "0 24px 50px rgba(62, 79, 55, 0.08)"
       },
       backgroundImage: {
         grain:

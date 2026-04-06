@@ -26,21 +26,21 @@ export function CartItemRow({
   const bundleDiscountTotal = isBundle ? item.bundle.discount * item.quantity : 0;
 
   return (
-    <div className="grid gap-4 rounded-[2rem] border border-black/5 bg-white p-4 shadow-card sm:grid-cols-[120px_1fr]">
+    <div className="grid gap-4 rounded-[0.2rem] bg-white p-4 shadow-card sm:grid-cols-[120px_1fr]">
       <Image
         src={item.image}
         alt={itemName}
         width={240}
         height={240}
-        className="h-28 w-full rounded-[1.5rem] object-cover"
+        className="h-28 w-full rounded-[0.2rem] object-cover"
       />
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2">
-          <p className="font-[family:var(--font-heading)] text-2xl">{itemName}</p>
+          <p className="font-[family:var(--font-heading)] text-[1.85rem] tracking-[-0.03em]">{itemName}</p>
           {isBundle ? (
             <>
-              <p className="text-xs uppercase tracking-[0.24em] text-bark/60">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-bark/60">
                 Bundle · {item.bundle.plantVariantSize}
               </p>
               <p className="text-sm text-bark/75">
@@ -67,7 +67,7 @@ export function CartItemRow({
             type="button"
             disabled={item.quantity <= 1}
             onClick={() => onUpdateQuantity(item.cartKey, Math.max(0, item.quantity - 1))}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-cream text-bark disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-cream text-bark disabled:cursor-not-allowed disabled:opacity-40"
           >
             -
           </button>
@@ -75,7 +75,7 @@ export function CartItemRow({
           <button
             type="button"
             onClick={() => onUpdateQuantity(item.cartKey, item.quantity + 1)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-cream text-bark"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-cream text-bark"
           >
             +
           </button>
@@ -96,7 +96,7 @@ export function CartItemRow({
           <button
             type="button"
             onClick={() => onRemove(item.cartKey)}
-            className="text-sm font-medium text-bark/70 transition hover:text-terracotta"
+            className="text-sm font-medium text-bark/70 transition hover:text-[#486730]"
           >
             Remove
           </button>

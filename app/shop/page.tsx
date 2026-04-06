@@ -1,13 +1,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ProductGrid } from "@/components/product-grid";
-import { SectionHeading } from "@/components/section-heading";
+import { ShopEditorialCard } from "@/components/shop-editorial-card";
 import {
   getPlantsForShopQuery,
   getShopConditionFromSearchParam,
   getShopConditionOptions,
   getShopFilterFromSearchParam,
-  getShopFilterOptions,
   getShopPriceFromSearchParam,
   getShopPriceOptions,
   getShopSizeFromSearchParam,
@@ -16,35 +14,34 @@ import {
   getShopSortOptions
 } from "@/lib/data";
 
+const editorialCategories = [
+  { label: "All Species", key: "all" },
+  { label: "Statement", key: "statement" },
+  { label: "Low Light", key: "low-light" },
+  { label: "Tropicals", key: "tropicals" },
+  { label: "Rare Finds", key: "rare-finds" }
+] as const;
+
 function FilterSelect({
   name,
   defaultValue,
-  children,
-  className = ""
+  children
 }: {
   name: string;
   defaultValue: string;
   children: ReactNode;
-  className?: string;
 }) {
   return (
     <div className="relative">
       <select
         name={name}
         defaultValue={defaultValue}
-        className={`w-full appearance-none rounded-full border border-black/10 bg-white px-4 py-3 pr-11 text-sm text-foreground outline-none transition focus:border-sage ${className}`}
+        className="appearance-none border border-[#516448]/20 bg-white px-4 py-2 pr-10 font-[family:var(--font-body)] text-[10px] uppercase tracking-[0.2em] text-[#486730] outline-none"
       >
         {children}
       </select>
-      <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-bark/45">
-        <svg
-          width="12"
-          height="12"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
+      <span className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[#486730]">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <path
             d="M2.25 4.5L6 8.25L9.75 4.5"
             stroke="currentColor"
@@ -77,6 +74,7 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
   const activePrice = getShopPriceFromSearchParam(resolvedSearchParams?.price);
   const activeSort = getShopSortFromSearchParam(resolvedSearchParams?.sort);
   const searchQuery = resolvedSearchParams?.search?.trim() ?? "";
+
   const plants = getPlantsForShopQuery({
     filter: activeFilter,
     search: searchQuery,
@@ -85,277 +83,134 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
     price: activePrice,
     sort: activeSort
   });
-  const filterOptions = getShopFilterOptions();
+
+  const priceOptions = getShopPriceOptions();
   const conditionOptions = getShopConditionOptions();
   const sizeOptions = getShopSizeOptions();
-  const priceOptions = getShopPriceOptions();
   const sortOptions = getShopSortOptions();
 
   const buildFilterHref = (filterKey: string) => {
     const params = new URLSearchParams();
 
-    if (filterKey !== "all") {
-      params.set("filter", filterKey);
-    }
-    if (searchQuery) {
-      params.set("search", searchQuery);
-    }
-    if (activeCondition !== "all") {
-      params.set("condition", activeCondition);
-    }
-    if (activeSize !== "all") {
-      params.set("size", activeSize);
-    }
-    if (activePrice !== "all") {
-      params.set("price", activePrice);
-    }
-    if (activeSort !== "featured") {
-      params.set("sort", activeSort);
-    }
+    if (filterKey !== "all") params.set("filter", filterKey);
+    if (searchQuery) params.set("search", searchQuery);
+    if (activeCondition !== "all") params.set("condition", activeCondition);
+    if (activeSize !== "all") params.set("size", activeSize);
+    if (activePrice !== "all") params.set("price", activePrice);
+    if (activeSort !== "featured") params.set("sort", activeSort);
 
     const queryString = params.toString();
     return queryString ? `/shop?${queryString}` : "/shop";
   };
 
   return (
-    <section className="section-space">
-      <div className="page-shell space-y-10">
-        <SectionHeading
-          eyebrow="Shop All"
-          title="Design-led plants for elevated everyday living."
-          description="Browse our curated plant collection, then narrow the view by mood, form, or light needs."
-        />
-
-        <div className="space-y-4">
-          <form className="space-y-4 rounded-[1.75rem] border border-black/6 bg-white/88 p-4 shadow-[0_10px_30px_rgba(36,48,32,0.04)] backdrop-blur-sm sm:p-5">
-            <label className="block">
-              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-bark/55">
-                Search The Collection
-              </span>
-              <input
-                type="text"
-                name="search"
-                defaultValue={searchQuery}
-                placeholder="Search by plant name, look, or room feel"
-                className="mt-3 w-full rounded-full border border-black/10 bg-white px-5 py-3.5 text-sm text-foreground shadow-[0_8px_24px_rgba(36,48,32,0.05)] outline-none transition focus:border-sage"
-              />
-            </label>
-
-            <details className="rounded-[1.35rem] border border-black/6 bg-cream/25 px-4 py-3.5 lg:hidden">
-              <summary className="cursor-pointer list-none text-sm font-semibold uppercase tracking-[0.18em] text-bark/70">
-                Refine
-              </summary>
-              <div className="mt-4 space-y-4">
-                <div className="space-y-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Category</p>
-                  <FilterSelect name="filter" defaultValue={activeFilter}>
-                    {filterOptions.map((option) => (
-                      <option key={option.key} value={option.key}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </FilterSelect>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="block">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">
-                      Price
-                    </span>
-                    <div className="mt-2">
-                    <FilterSelect name="price" defaultValue={activePrice}>
-                      {priceOptions.map((option) => (
-                        <option key={option.key} value={option.key}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </FilterSelect>
-                    </div>
-                  </label>
-
-                  <label className="block">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">
-                      Condition
-                    </span>
-                    <div className="mt-2">
-                    <FilterSelect name="condition" defaultValue={activeCondition}>
-                      {conditionOptions.map((option) => (
-                        <option key={option.key} value={option.key}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </FilterSelect>
-                    </div>
-                  </label>
-
-                  <label className="block">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">
-                      Plant Size
-                    </span>
-                    <div className="mt-2">
-                    <FilterSelect name="size" defaultValue={activeSize}>
-                      {sizeOptions.map((option) => (
-                        <option key={option.key} value={option.key}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </FilterSelect>
-                    </div>
-                  </label>
-
-                  <label className="block">
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">
-                      Sort
-                    </span>
-                    <div className="mt-2">
-                    <FilterSelect name="sort" defaultValue={activeSort}>
-                      {sortOptions.map((option) => (
-                        <option key={option.key} value={option.key}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </FilterSelect>
-                    </div>
-                  </label>
-                </div>
-              </div>
-            </details>
-
-            <div className="hidden gap-3 lg:grid lg:grid-cols-[1.3fr_repeat(4,minmax(0,1fr))] lg:items-end">
-              <div className="space-y-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Category</p>
-                <FilterSelect
-                  name="filter"
-                  defaultValue={activeFilter}
-                  className="bg-cream/25"
-                >
-                  {filterOptions.map((option) => (
-                    <option key={option.key} value={option.key}>
-                      {option.label}
-                    </option>
-                  ))}
-                </FilterSelect>
-              </div>
-              <div className="space-y-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Price</p>
-                <label className="block">
-                  <span className="sr-only">Price</span>
-                  <FilterSelect
-                    name="price"
-                    defaultValue={activePrice}
-                    className="bg-cream/25"
-                  >
-                    {priceOptions.map((option) => (
-                      <option key={option.key} value={option.key}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </FilterSelect>
-                </label>
-              </div>
-              <div className="space-y-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Condition</p>
-                <label className="block">
-                  <span className="sr-only">Condition</span>
-                  <FilterSelect
-                    name="condition"
-                    defaultValue={activeCondition}
-                    className="bg-cream/25"
-                  >
-                    {conditionOptions.map((option) => (
-                      <option key={option.key} value={option.key}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </FilterSelect>
-                </label>
-              </div>
-              <div className="space-y-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Plant Size</p>
-                <label className="block">
-                  <span className="sr-only">Plant Size</span>
-                  <FilterSelect
-                    name="size"
-                    defaultValue={activeSize}
-                    className="bg-cream/25"
-                  >
-                    {sizeOptions.map((option) => (
-                      <option key={option.key} value={option.key}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </FilterSelect>
-                </label>
-              </div>
-              <div className="space-y-2">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-bark/55">Sort</p>
-                <label className="block">
-                  <span className="sr-only">Sort</span>
-                  <FilterSelect
-                    name="sort"
-                    defaultValue={activeSort}
-                    className="bg-cream/25"
-                  >
-                    {sortOptions.map((option) => (
-                      <option key={option.key} value={option.key}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </FilterSelect>
-                </label>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3 border-t border-black/5 pt-4">
-              <button
-                type="submit"
-                className="rounded-full bg-sage px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[#6b866e]"
-              >
-                Apply Filters
-              </button>
-              <Link
-                href="/shop"
-                className="rounded-full border border-black/10 px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition hover:border-sage hover:text-sage"
-              >
-                Reset
-              </Link>
-              <p className="text-sm text-bark/70">
-                {plants.length} {plants.length === 1 ? "plant" : "plants"} found
+    <>
+      <main className="min-h-screen pt-32">
+        <header className="mx-auto mb-10 max-w-screen-2xl px-[80px]">
+          <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-2">
+            <div>
+              <h1 className="font-[family:var(--font-heading)] text-5xl leading-none tracking-[-0.05em] text-[#486730] md:text-7xl">
+                Curated Specimens
+              </h1>
+              <p className="mt-6 max-w-md font-[family:var(--font-body)] leading-relaxed text-[#516448] opacity-80">
+                A digital herbarium of rare and resilient flora, sourced for the contemporary
+                collector. Each plant is hand-selected for its architectural silhouette.
               </p>
             </div>
-          </form>
-        </div>
 
-        <div className="space-y-5 border-t border-black/5 pt-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-bark/55">Category</p>
-          <div className="flex flex-wrap items-center gap-3">
-          {filterOptions.map((filter) => (
-            <Link
-              key={filter.key}
-              href={buildFilterHref(filter.key)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                activeFilter === filter.key
-                  ? "bg-sage text-white"
-                  : "bg-white text-bark hover:bg-cream"
-              }`}
-            >
-              {filter.label}
-            </Link>
-          ))}
-        </div>
-        </div>
-
-        {plants.length > 0 ? (
-          <ProductGrid products={plants} />
-        ) : (
-          <div className="rounded-[2rem] border border-black/5 bg-white p-10 text-center shadow-card">
-            <p className="font-[family:var(--font-heading)] text-3xl">No plants matched that combination.</p>
-            <p className="mt-3 text-sm leading-6 text-bark/75">
-              Try widening the price range, changing the plant size, or clearing a few filters.
-            </p>
+            <form className="flex flex-col gap-4">
+              <div className="group flex items-center border-b border-[#516448] py-4">
+                <span className="material-symbols-outlined mr-4 text-[22px] text-[#516448]">
+                  search
+                </span>
+                <input
+                  type="text"
+                  name="search"
+                  defaultValue={searchQuery}
+                  placeholder="FIND YOUR NEXT SPECIES"
+                  className="w-full border-none bg-transparent font-[family:var(--font-body)] text-sm uppercase tracking-[0.2em] text-[#486730] placeholder-[#516448]/40 focus:outline-none"
+                />
+              </div>
+            </form>
           </div>
-        )}
-      </div>
-    </section>
+        </header>
+
+        <section className="mb-6 bg-[#ecefea] py-3">
+          <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between gap-8 px-[80px]">
+            <div className="no-scrollbar flex gap-10 overflow-x-auto py-2">
+              {editorialCategories.map((filter) => (
+                <Link
+                  key={filter.key}
+                  href={buildFilterHref(filter.key)}
+                  className={`font-[family:var(--font-body)] text-[10px] uppercase tracking-[0.2em] ${
+                    activeFilter === filter.key
+                      ? "border-b-2 border-[#486730] pb-1 text-[#486730]"
+                      : "text-[#486730]/60 transition-colors hover:text-[#486730]"
+                  }`}
+                >
+                  {filter.label}
+                </Link>
+              ))}
+            </div>
+
+            <form className="flex gap-4">
+              <FilterSelect name="condition" defaultValue={activeCondition}>
+                {conditionOptions.map((option) => (
+                  <option key={option.key} value={option.key}>
+                    {option.label}
+                  </option>
+                ))}
+              </FilterSelect>
+              <FilterSelect name="sort" defaultValue={activeSort}>
+                {sortOptions.map((option) => (
+                  <option key={option.key} value={option.key}>
+                    {option.label}
+                  </option>
+                ))}
+              </FilterSelect>
+              <FilterSelect name="price" defaultValue={activePrice}>
+                {priceOptions.map((option) => (
+                  <option key={option.key} value={option.key}>
+                    {option.label}
+                  </option>
+                ))}
+              </FilterSelect>
+              <FilterSelect name="size" defaultValue={activeSize}>
+                {sizeOptions.map((option) => (
+                  <option key={option.key} value={option.key}>
+                    {option.label}
+                  </option>
+                ))}
+              </FilterSelect>
+            </form>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-screen-2xl px-[80px]">
+          {plants.length > 0 ? (
+            <div className="grid gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+              {plants.map((plant) => (
+                <ShopEditorialCard
+                  key={plant.id}
+                  product={plant}
+                  imageSrc={plant.images[0]}
+                  badge={plant.tag}
+                  metadata={[plant.condition, plant.plantSize]}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="border border-black/8 bg-white p-10 text-center">
+              <p className="font-[family:var(--font-heading)] text-3xl tracking-[-0.03em] text-[#243020]">
+                No plants matched that combination.
+              </p>
+              <p className="mt-3 text-sm leading-7 text-bark/75">
+                Try widening the filters or resetting the search to return to the full collection.
+              </p>
+            </div>
+          )}
+        </section>
+      </main>
+    </>
   );
 }
