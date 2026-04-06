@@ -1,9 +1,7 @@
 import type { NextAuthOptions } from "next-auth";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import { compare } from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
 import EmailProvider from "next-auth/providers/email";
-import getMongoClientPromise from "@/lib/mongodb-client";
 import { connectToDatabase, isDatabaseConfigured } from "@/lib/mongoose";
 import { UserModel } from "@/models/User";
 
@@ -15,24 +13,22 @@ const smtpPort = Number(process.env.EMAIL_SERVER_PORT ?? "587");
 const smtpUser = process.env.EMAIL_SERVER_USER;
 const smtpPassword = process.env.EMAIL_SERVER_PASSWORD;
 const emailFrom = process.env.EMAIL_FROM;
-const isEmailProviderConfigured = Boolean(smtpHost && smtpUser && smtpPassword && emailFrom);
+const canUseDatabaseAuth = isDatabaseConfigured();
+const isEmailProviderConfigured = Boolean(
+  canUseDatabaseAuth && smtpHost && smtpUser && smtpPassword && emailFrom
+);
 
 if (!authSecret) {
   throw new Error("Missing NEXTAUTH_SECRET environment variable.");
 }
 
 export const authOptions: NextAuthOptions = {
-  ...(isDatabaseConfigured()
-    ? {
-        adapter: MongoDBAdapter(getMongoClientPromise())
-      }
-    : {}),
   secret: authSecret,
   session: {
     strategy: "jwt"
   },
   providers: [
-    ...(isDatabaseConfigured()
+    ...(canUseDatabaseAuth
       ? [
           CredentialsProvider({
             id: "password-login",
@@ -86,7 +82,7 @@ export const authOptions: NextAuthOptions = {
                 return null;
               }
 
-              if (!isDatabaseConfigured()) {
+              if (!canUseDatabaseAuth) {
                 return {
                   id: email,
                   email,
