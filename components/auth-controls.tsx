@@ -99,7 +99,7 @@ export function AuthControls({ mobile = false, onNavigate }: AuthControlsProps) 
         </div>
         <button
           type="button"
-          onClick={() => void signOut({ callbackUrl: "http://localhost:8090" })}
+          onClick={() => void signOut({ callbackUrl: "/" })}
           className="bg-terracotta px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#486730]"
         >
           Sign Out
