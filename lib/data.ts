@@ -19,6 +19,8 @@ import type {
 export const catalog = catalogData as CatalogData;
 export const instagramPosts = instagramData as InstagramPost[];
 
+export type CatalogItem = Product | CatalogPot | CatalogExtra;
+
 const SHOP_FILTER_OPTIONS: Array<{ key: ShopFilterKey; label: string }> = [
   { key: "all", label: "All Species" },
   { key: "statement", label: "Statement" },
@@ -77,12 +79,19 @@ function normalizeProduct(plant: CatalogData["plants"][number]): Product {
 export const getAllPlants = (): Product[] => catalog.plants.map(normalizeProduct);
 export const getAllPots = (): CatalogPot[] => catalog.pots;
 export const getAllExtras = (): CatalogExtra[] => catalog.extras;
+export const getAllCatalogItems = (): CatalogItem[] => [
+  ...getAllPlants(),
+  ...getAllPots(),
+  ...getAllExtras()
+];
 export const getPlantById = (id: string): Product | undefined =>
   getAllPlants().find((plant) => plant.id === id);
 export const getPotById = (id: string): CatalogPot | undefined =>
   getAllPots().find((pot) => pot.id === id);
 export const getExtraById = (id: string): CatalogExtra | undefined =>
   getAllExtras().find((extra) => extra.id === id);
+export const getCatalogItemById = (id: string): CatalogItem | undefined =>
+  getAllCatalogItems().find((item) => item.id === id);
 export const getExtrasByIds = (extraIds: string[]): CatalogExtra[] =>
   extraIds
     .map((extraId) => getExtraById(extraId))
