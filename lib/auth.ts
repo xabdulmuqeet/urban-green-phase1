@@ -1,7 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import { compare } from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
-import EmailProvider from "next-auth/providers/email";
 import { connectToDatabase, isDatabaseConfigured } from "@/lib/mongoose";
 import { UserModel } from "@/models/User";
 
@@ -9,15 +8,7 @@ const authSecret =
   process.env.NEXTAUTH_SECRET ??
   process.env.AUTH_SECRET ??
   (process.env.NODE_ENV !== "production" ? "urban-green-local-dev-secret" : undefined);
-const smtpHost = process.env.EMAIL_SERVER_HOST;
-const smtpPort = Number(process.env.EMAIL_SERVER_PORT ?? "587");
-const smtpUser = process.env.EMAIL_SERVER_USER;
-const smtpPassword = process.env.EMAIL_SERVER_PASSWORD;
-const emailFrom = process.env.EMAIL_FROM;
 const canUseDatabaseAuth = isDatabaseConfigured();
-const isEmailProviderConfigured = Boolean(
-  canUseDatabaseAuth && smtpHost && smtpUser && smtpPassword && emailFrom
-);
 
 export const authOptions: NextAuthOptions = {
   secret: authSecret,
@@ -104,21 +95,6 @@ export const authOptions: NextAuthOptions = {
           })
         ]
       : []),
-    ...(isEmailProviderConfigured
-      ? [
-          EmailProvider({
-            server: {
-              host: smtpHost!,
-              port: smtpPort,
-              auth: {
-                user: smtpUser!,
-                pass: smtpPassword!
-              }
-            },
-            from: emailFrom!
-          })
-        ]
-      : [])
   ],
   callbacks: {
     async jwt({ token, user }) {
