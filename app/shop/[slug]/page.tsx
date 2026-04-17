@@ -9,9 +9,9 @@ import { formatCurrency } from "@/lib/format";
 import type { CatalogExtra, CatalogPot, Product } from "@/lib/types";
 
 type ProductPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
@@ -219,7 +219,8 @@ function AccessoryDetailPage({ item }: { item: CatalogPot | CatalogExtra }) {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const item = getCatalogItemById(params.slug);
+  const { slug } = await params;
+  const item = getCatalogItemById(slug);
 
   if (!item) {
     notFound();
