@@ -28,45 +28,46 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt"
   },
   providers: [
-    ...(canUseDatabaseAuth
-      ? [
-          CredentialsProvider({
-            id: "password-login",
-            name: "Password Login",
-            credentials: {
-              email: { label: "Email", type: "email" },
-              password: { label: "Password", type: "password" }
-            },
-            async authorize(credentials) {
-              const email = credentials?.email?.trim().toLowerCase();
-              const password = credentials?.password ?? "";
+    CredentialsProvider({
+      id: "password-login",
+      name: "Password Login",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials) {
+        const email = credentials?.email?.trim().toLowerCase();
+        const password = credentials?.password ?? "";
 
-              if (!email || !password) {
-                return null;
-              }
+        if (!email || !password || !canUseDatabaseAuth) {
+          return null;
+        }
 
-              await connectToDatabase();
-              const user = await UserModel.findOne({ email });
+        try {
+          await connectToDatabase();
+          const user = await UserModel.findOne({ email });
 
-              if (!user?.passwordHash) {
-                return null;
-              }
+          if (!user?.passwordHash) {
+            return null;
+          }
 
-              const isValid = await compare(password, user.passwordHash);
+          const isValid = await compare(password, user.passwordHash);
 
-              if (!isValid) {
-                return null;
-              }
+          if (!isValid) {
+            return null;
+          }
 
-              return {
-                id: String(user._id),
-                email: user.email,
-                name: user.name ?? email.split("@")[0]
-              };
-            }
-          })
-        ]
-      : []),
+          return {
+            id: String(user._id),
+            email: user.email,
+            name: user.name ?? email.split("@")[0]
+          };
+        } catch (error) {
+          console.error("Password sign-in failed.", error);
+          return null;
+        }
+      }
+    }),
     ...(process.env.NODE_ENV !== "production"
       ? [
           CredentialsProvider({
