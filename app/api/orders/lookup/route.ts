@@ -3,6 +3,8 @@ import { guestOrderLookupSchema } from "@/lib/validators";
 import { OrderModel, type OrderHydratedDocument } from "@/models/Order";
 import { isDatabaseConfigured } from "@/lib/mongoose";
 import { rateLimit } from "@/lib/security/rate-limit";
+import { getStripe, isStripeConfigured } from "@/lib/stripe";
+import { finalizePaidCheckoutSession } from "@/lib/services/order-finalization-service";
 
 function toOrderResponse(order: OrderHydratedDocument | null) {
   if (!order) {
@@ -46,7 +48,13 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Missing session_id." }, { status: 400 });
     }
 
-    const order = await OrderModel.findOne({ stripeSessionId: sessionId });
+    let order = await OrderModel.findOne({ stripeSessionId: sessionId });
+
+    if (!order && isStripeConfigured()) {
+      const stripeSession = await getStripe().checkout.sessions.retrieve(sessionId);
+      order = await finalizePaidCheckoutSession(stripeSession);
+    }
+
     const response = toOrderResponse(order);
 
     if (!response) {

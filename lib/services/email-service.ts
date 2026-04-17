@@ -9,7 +9,7 @@ const smtpUser = process.env.EMAIL_SERVER_USER;
 const smtpPassword = process.env.EMAIL_SERVER_PASSWORD;
 const emailFrom = process.env.EMAIL_FROM;
 
-function isEmailConfigured() {
+export function isEmailConfigured() {
   return Boolean(smtpHost && smtpUser && smtpPassword && emailFrom);
 }
 
