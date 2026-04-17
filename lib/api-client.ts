@@ -130,7 +130,11 @@ export async function createOrderFromApi(items?: CartItem[]) {
   );
 }
 
-export async function fetchShippingQuoteFromApi(items: CartItem[], postalCode: string) {
+export async function fetchShippingQuoteFromApi(
+  items: CartItem[],
+  postalCode: string,
+  address?: Pick<CheckoutAddress, "city" | "state">
+) {
   return readJson<ShippingQuoteResponse>(
     await fetch("/api/checkout/quote", {
       method: "POST",
@@ -139,7 +143,10 @@ export async function fetchShippingQuoteFromApi(items: CartItem[], postalCode: s
       },
       body: JSON.stringify({
         items: mapFrontendCartToApi(items),
-        postalCode
+        postalCode,
+        city: address?.city,
+        state: address?.state,
+        countryCode: "AU"
       })
     })
   );

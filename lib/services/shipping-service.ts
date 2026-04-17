@@ -1,6 +1,6 @@
 import type { ApiCartItem, ShippingMethodOption, ShippingMethodType, ShippingQuoteResponse } from "@/lib/api-types";
 import { calculateCartTotal, getProductsMap } from "@/lib/commerce";
-import { lookupWeatherByPostalCode } from "@/lib/services/weather-service";
+import { lookupWeather } from "@/lib/services/weather-service";
 
 const STORE_LAT = Number(process.env.STORE_LAT ?? "40.7128");
 const STORE_LON = Number(process.env.STORE_LON ?? "-74.0060");
@@ -31,8 +31,24 @@ export type ShippingValidationResult = {
   selectedMethod: ShippingMethodOption;
 };
 
-export async function buildShippingQuote(items: ApiCartItem[], postalCode: string): Promise<ShippingQuoteResponse> {
-  const weather = await lookupWeatherByPostalCode(postalCode);
+type ShippingDestination = {
+  postalCode: string;
+  city?: string;
+  state?: string;
+  countryCode?: string;
+};
+
+export async function buildShippingQuote(
+  items: ApiCartItem[],
+  destination: string | ShippingDestination
+): Promise<ShippingQuoteResponse> {
+  const resolvedDestination =
+    typeof destination === "string" ? { postalCode: destination } : destination;
+  const weather = await lookupWeather(resolvedDestination).catch((error) => {
+    console.warn("Weather lookup failed; continuing without weather-based delivery guidance.", error);
+    return null;
+  });
+  const postalCode = resolvedDestination.postalCode;
   const productIds = new Set<string>();
 
   items.forEach((item) => {
@@ -55,11 +71,14 @@ export async function buildShippingQuote(items: ApiCartItem[], postalCode: strin
     return productsById.get(item.bundle.plant)?.type === "plant" && productsById.get(item.bundle.plant)?.condition === "fragile";
   });
 
-  const distanceMiles = getDistanceMiles(STORE_LAT, STORE_LON, weather.latitude, weather.longitude);
-  const isLocalDeliveryZone = distanceMiles <= LOCAL_DELIVERY_RADIUS_MILES;
+  const distanceMiles = weather
+    ? getDistanceMiles(STORE_LAT, STORE_LON, weather.latitude, weather.longitude)
+    : null;
+  const isLocalDeliveryZone =
+    typeof distanceMiles === "number" && distanceMiles <= LOCAL_DELIVERY_RADIUS_MILES;
   const subtotal = calculateCartTotal(items);
   const weatherWarning =
-    typeof weather.temperatureF === "number" && weather.temperatureF < 40
+    typeof weather?.temperatureF === "number" && weather.temperatureF < 40
       ? `Destination forecast is ${Math.round(weather.temperatureF)}°F. We recommend adding a Heat Pack.`
       : null;
   const suggestedExtra = weatherWarning
@@ -130,10 +149,10 @@ export async function buildShippingQuote(items: ApiCartItem[], postalCode: strin
 
 export async function validateShippingSelection(
   items: ApiCartItem[],
-  postalCode: string,
+  destination: string | ShippingDestination,
   shippingType: ShippingMethodType
 ): Promise<ShippingValidationResult> {
-  const quote = await buildShippingQuote(items, postalCode);
+  const quote = await buildShippingQuote(items, destination);
 
   if (quote.restrictionMessage) {
     throw new Error(quote.restrictionMessage);

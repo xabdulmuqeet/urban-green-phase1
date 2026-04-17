@@ -57,7 +57,10 @@ export const createCheckoutSchema = z.object({
 
 export const shippingQuoteSchema = z.object({
   items: z.array(apiCartItemSchema).optional(),
-  postalCode: z.string().trim().min(3)
+  postalCode: z.string().trim().min(3),
+  city: z.string().trim().min(2).optional(),
+  state: z.string().trim().min(2).optional(),
+  countryCode: z.string().trim().length(2).optional()
 });
 
 export const guestOrderLookupSchema = z.object({

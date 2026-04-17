@@ -97,7 +97,10 @@ export function CartPageClient() {
     setShippingError("");
 
     try {
-      const quote = await fetchShippingQuoteFromApi(cartItems, address.postalCode.trim());
+      const quote = await fetchShippingQuoteFromApi(cartItems, address.postalCode.trim(), {
+        city: address.city.trim(),
+        state: address.state.trim()
+      });
       setShippingQuote(quote);
       setSelectedShippingType(quote.selectedMethod);
     } catch (caughtError) {

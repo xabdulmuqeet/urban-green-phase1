@@ -85,7 +85,12 @@ export async function POST(request: Request) {
     const normalizedItems = await normalizeAndMergeCartItems(sourceItems);
     const { quote, selectedMethod } = await validateShippingSelection(
       normalizedItems,
-      deliveryAddress.postalCode,
+      {
+        postalCode: deliveryAddress.postalCode,
+        city: deliveryAddress.city,
+        state: deliveryAddress.state,
+        countryCode: "AU"
+      },
       payload.shippingType
     );
     const checkoutToken = randomUUID();

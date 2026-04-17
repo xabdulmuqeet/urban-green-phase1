@@ -4,7 +4,6 @@ import { normalizeAndMergeCartItems } from "@/lib/commerce";
 import { isDatabaseConfigured } from "@/lib/mongoose";
 import { rateLimit } from "@/lib/security/rate-limit";
 import { buildShippingQuote } from "@/lib/services/shipping-service";
-import { isWeatherConfigured } from "@/lib/services/weather-service";
 import { shippingQuoteSchema } from "@/lib/validators";
 
 export async function POST(request: Request) {
@@ -24,13 +23,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Database not configured." }, { status: 503 });
     }
 
-    if (!isWeatherConfigured()) {
-      return NextResponse.json(
-        { error: "Weather service not configured. Add OPENWEATHER_API_KEY to .env.local." },
-        { status: 503 }
-      );
-    }
-
     const payload = shippingQuoteSchema.parse(await request.json());
     const sourceItems = (payload.items ?? []) as ApiCartItem[];
 
@@ -39,7 +31,12 @@ export async function POST(request: Request) {
     }
 
     const normalizedItems = await normalizeAndMergeCartItems(sourceItems);
-    const quote = await buildShippingQuote(normalizedItems, payload.postalCode);
+    const quote = await buildShippingQuote(normalizedItems, {
+      postalCode: payload.postalCode,
+      city: payload.city,
+      state: payload.state,
+      countryCode: payload.countryCode
+    });
 
     return NextResponse.json(quote);
   } catch (error) {
