@@ -7,6 +7,7 @@ import { UserModel } from "@/models/User";
 
 const authSecret =
   process.env.NEXTAUTH_SECRET ??
+  process.env.AUTH_SECRET ??
   (process.env.NODE_ENV !== "production" ? "urban-green-local-dev-secret" : undefined);
 const smtpHost = process.env.EMAIL_SERVER_HOST;
 const smtpPort = Number(process.env.EMAIL_SERVER_PORT ?? "587");
@@ -17,10 +18,6 @@ const canUseDatabaseAuth = isDatabaseConfigured();
 const isEmailProviderConfigured = Boolean(
   canUseDatabaseAuth && smtpHost && smtpUser && smtpPassword && emailFrom
 );
-
-if (!authSecret) {
-  throw new Error("Missing NEXTAUTH_SECRET environment variable.");
-}
 
 export const authOptions: NextAuthOptions = {
   secret: authSecret,
